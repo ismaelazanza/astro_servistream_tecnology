@@ -1,0 +1,55 @@
+---
+interface ImpactStat {
+  value: string;
+  suffix?: string;
+  description: string;
+}
+
+interface Props {
+  title?: string;
+  image?: string;
+  imageAlt?: string;
+  stats?: ImpactStat[];
+}
+
+const defaultStats: ImpactStat[] = [
+  { value: '99.99', suffix: '%', description: 'Disponibilidad garantizada para mantener tu sitio siempre online' },
+  { value: '1', suffix: ' Gbps', description: 'Conectividad de alta velocidad en nuestra infraestructura' },
+  { value: '24', suffix: '/7', description: 'Monitoreo y soporte técnico para todos nuestros clientes' },
+];
+
+const {
+  title = 'Impacto en números',
+  image = '/img/inicio/tv-streaming-resultados.png',
+  imageAlt = 'Equipo técnico monitoreando infraestructura digital',
+  stats = defaultStats,
+} = Astro.props;
+---
+
+<section class="overflow-hidden bg-[#f5f5f5] text-[#10293b]" aria-labelledby="hosting-impact-title">
+  <div class="relative z-10 mx-auto w-full max-w-[96rem] px-5 pb-14 pt-16 sm:px-8 sm:pb-16 sm:pt-20 lg:px-16 lg:pb-20 lg:pt-16">
+    <h2 id="hosting-impact-title" class="text-center text-[clamp(2.6rem,4.5vw,5rem)] font-normal tracking-[-.04em] text-[var(--h-negro)]">{title}</h2>
+
+    <div class="mt-14 grid gap-10 sm:mt-16 sm:grid-cols-3 sm:gap-5 lg:mt-16 lg:gap-12">
+      {stats.map((stat) => (
+        <article class="text-center">
+          <p class="font-[var(--fuente-principal)] text-[clamp(4rem,7vw,8rem)] leading-[.82] font-light tracking-[-.07em] text-[#09283b]">
+            {stat.value}<sup class="ml-1 align-top text-[.38em] leading-none font-light tracking-normal text-[#71818c]">{stat.suffix}</sup>
+          </p>
+          <p class="mx-auto mt-5 max-w-sm font-[var(--fuente-principal)] text-sm leading-relaxed text-[#526577] sm:text-base">{stat.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <div class="relative -mt-32 h-[36rem] bg-[#f5f5f5] sm:-mt-44 sm:h-[46rem] lg:-mt-64 lg:h-[58rem]">
+    <img
+      class="h-full w-full object-cover object-center grayscale-[35%]"
+      style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 20%, rgba(0,0,0,.1) 34%, rgba(0,0,0,.5) 52%, #000 72%); mask-image: linear-gradient(to bottom, transparent 0%, transparent 20%, rgba(0,0,0,.1) 34%, rgba(0,0,0,.5) 52%, #000 72%);"
+      src={image}
+      alt={imageAlt}
+      loading="lazy"
+    />
+    <div class="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-black/35 to-transparent"></div>
+  </div>
+</section>

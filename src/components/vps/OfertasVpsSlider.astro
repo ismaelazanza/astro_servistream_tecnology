@@ -1,0 +1,179 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const offers = [
+  {
+    title: 'Recursos dedicados',
+    description: 'CPU, memoria RAM y almacenamiento NVMe aislados para mantener un rendimiento estable en cada proyecto.',
+  },
+  {
+    title: 'Administración incluida',
+    description: 'Nos encargamos de la puesta a punto, la seguridad y el monitoreo para que puedas concentrarte en tu negocio.',
+  },
+  {
+    title: 'Escala cuando quieras',
+    description: 'Aumenta los recursos de tu VPS a medida que crecen tu tienda, aplicación o portafolio de sitios web.',
+  },
+  {
+    title: 'CyberPanel incluido',
+    description: 'Gestiona dominios, cuentas, certificados SSL, copias de seguridad y bases de datos desde una sola interfaz.',
+  },
+  {
+    title: 'LiteSpeed integrado',
+    description: 'Acelera WordPress y tus aplicaciones con caché avanzada y un servidor web preparado para alto tráfico.',
+  },
+  {
+    title: 'Soporte especializado',
+    description: 'Recibe asistencia técnica en español cuando necesites resolver una incidencia o planificar el siguiente paso.',
+  },
+];
+
+const carouselOffers = [...offers, ...offers];
+const totalOffers = offers.length;
+---
+
+<section
+  class="relative grid  grid-rows-[minmax(4rem,1fr)_17rem] overflow-hidden border-y border-[rgb(28_28_28_/_12%)] bg-[#f7f5f2] text-[var(--h-negro)] max-[900px]:grid-rows-[27rem_21rem] max-[520px]:grid-rows-[28rem_22rem] "
+  aria-label="Ofertas de servidores VPS y CyberPanel"
+  aria-roledescription="carrusel"
+  data-vps-offers-slider
+  data-total-offers={totalOffers}
+>
+  <div class="px-[clamp(1.25rem,3.5vw,4.5rem)] pb-10 pt-[clamp(3rem,5vw,5.5rem)] max-[900px]:min-h-[27rem] max-[900px]:pt-28 max-[520px]:min-h-[28rem] max-[520px]:pt-30">
+    <h5 class="text-left">VPS administrado + CyberPanel</h5>
+    <h2 class=" max-w-[78rem] mt-12 text-balance leading-[.91] tracking-[-.065em] text-[var(--h-negro)]">
+      Tu servidor listo para crecer, sin perder tiempo en configuraciones
+    </h2>
+  </div>
+
+  <div class="offers-viewport relative min-h-[17rem] overflow-hidden border-t border-[rgb(28_28_28_/_12%)] max-[900px]:min-h-[21rem] max-[520px]:min-h-[22rem]" aria-live="polite">
+    <div class="flex h-full will-change-transform motion-reduce:scroll-auto" data-offers-track>
+      {carouselOffers.map((offer, index) => (
+        <article
+          class="grid h-full min-w-0 flex-[0_0_100%] grid-cols-[clamp(5.5rem,8vw,9rem)_minmax(0,1fr)] items-center border-r border-[rgb(28_28_28_/_12%)] px-[clamp(1.25rem,2vw,2.75rem)] py-8 min-[521px]:flex-[0_0_50%] min-[901px]:flex-[0_0_33.333333%] max-[900px]:grid-cols-[5rem_1fr] max-[900px]:py-6"
+          aria-hidden={index >= offers.length ? 'true' : undefined}
+        >
+          <span class="font-[var(--fuente-principal)] text-[clamp(4.5rem,6.5vw,8rem)] leading-[.8] font-medium tracking-[-.09em] text-transparent opacity-50 [-webkit-text-stroke:1px_rgb(223_22_66_/_48%)] [writing-mode:vertical-rl] max-[900px]:text-[4.5rem]" aria-hidden="true">
+            0{(index % offers.length) + 1}
+          </span>
+          <div>
+            <h3 class="font-[var(--fuente-principal)] text-[clamp(1.05rem,1.35vw,1.45rem)] font-[650] tracking-[-.035em]">{offer.title}</h3>
+            <p class="mt-4 max-w-[25rem] text-[clamp(.9rem,1vw,1.05rem)] leading-[1.62] text-[rgb(28_28_28_/_70%)]">{offer.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <div class="absolute right-[clamp(1.25rem,3.5vw,4.5rem)] top-[clamp(3rem,5vw,5.5rem)] z-3 flex items-center gap-5 max-[520px]:left-5 max-[520px]:right-5 max-[520px]:justify-between">
+    <div class="flex items-center gap-2 font-[var(--fuente-principal)] text-[.68rem] leading-none font-semibold tracking-[.08em] max-[520px]:hidden" aria-hidden="true">
+      <span data-current-slide>01</span>
+      <span class="h-px w-6 bg-[rgb(28_28_28_/_35%)]"></span>
+      <span>0{offers.length}</span>
+    </div>
+
+    <div class="grid grid-cols-[repeat(2,3.25rem)] overflow-hidden rounded-full border border-[#df1642]">
+      <button class="grid h-[3.25rem] cursor-pointer place-items-center border-0 bg-transparent text-[var(--h-negro)] transition-colors duration-200 hover:bg-[#df1642] hover:text-white focus-visible:bg-[#df1642] focus-visible:text-white focus-visible:outline-none" type="button" aria-label="Ver oferta anterior" data-offer-prev>
+        <MaterialIcon name="chevron_left" size={23} />
+      </button>
+      <button class="grid h-[3.25rem] cursor-pointer place-items-center border-0 border-l border-[rgb(223_22_66_/_30%)] bg-transparent text-[var(--h-negro)] transition-colors duration-200 hover:bg-[#df1642] hover:text-white focus-visible:bg-[#df1642] focus-visible:text-white focus-visible:outline-none" type="button" aria-label="Ver oferta siguiente" data-offer-next>
+        <MaterialIcon name="chevron_right" size={23} />
+      </button>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  const initVpsOfferSliders = () => {
+    document.querySelectorAll('[data-vps-offers-slider]').forEach((slider) => {
+      if (!(slider instanceof HTMLElement) || slider.dataset.ready) return;
+      slider.dataset.ready = 'true';
+
+      const currentLabel = slider.querySelector('[data-current-slide]');
+      const viewport = slider.querySelector('.offers-viewport');
+      const track = slider.querySelector('[data-offers-track]');
+      const previous = slider.querySelector('[data-offer-prev]');
+      const next = slider.querySelector('[data-offer-next]');
+      const total = Number(slider.dataset.totalOffers);
+      if (!(track instanceof HTMLElement) || total < 2) return;
+
+      let current = 0;
+      let isAnimating = false;
+      let touchStartX = 0;
+      let resetTimer;
+
+      const move = (animated = true) => {
+        const card = track.firstElementChild;
+        if (!(card instanceof HTMLElement)) return;
+        track.style.transition = animated ? 'transform 620ms cubic-bezier(.22,1,.36,1)' : 'none';
+        track.style.transform = `translate3d(${-current * card.getBoundingClientRect().width}px, 0, 0)`;
+
+        if (currentLabel) currentLabel.textContent = String((current % total) + 1).padStart(2, '0');
+      };
+
+      const showOffer = (index) => {
+        if (isAnimating) return;
+        isAnimating = true;
+        window.clearTimeout(resetTimer);
+
+        if (index < 0) {
+          current = total;
+          move(false);
+          void track.offsetWidth;
+          current = total - 1;
+          move(true);
+          resetTimer = window.setTimeout(() => {
+            isAnimating = false;
+          }, 660);
+          return;
+        }
+
+        if (index >= total) {
+          current = total;
+          move(true);
+          resetTimer = window.setTimeout(() => {
+            current = 0;
+            move(false);
+            isAnimating = false;
+          }, 660);
+          return;
+        }
+
+        current = Math.max(0, index);
+        move(true);
+
+        resetTimer = window.setTimeout(() => {
+          isAnimating = false;
+        }, 660);
+      };
+
+      previous?.addEventListener('click', () => showOffer(current - 1));
+      next?.addEventListener('click', () => showOffer(current + 1));
+
+      slider.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') showOffer(current - 1);
+        if (event.key === 'ArrowRight') showOffer(current + 1);
+      });
+
+      viewport?.addEventListener('touchstart', (event) => {
+        touchStartX = event.changedTouches[0]?.clientX ?? 0;
+      }, { passive: true });
+
+      viewport?.addEventListener('touchend', (event) => {
+        const distance = (event.changedTouches[0]?.clientX ?? touchStartX) - touchStartX;
+        if (Math.abs(distance) < 50) return;
+        showOffer(current + (distance < 0 ? 1 : -1));
+      }, { passive: true });
+
+      window.addEventListener('resize', () => move(false), { passive: true });
+    });
+  };
+
+  document.addEventListener('astro:page-load', initVpsOfferSliders);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initVpsOfferSliders, { once: true });
+  } else {
+    initVpsOfferSliders();
+  }
+</script>

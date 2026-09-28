@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MenuNegro from '../components/menuGlobal.astro';
+import MaterialIcon from '../components/MaterialIcon.astro';
+import BeneficiosHosting from '../components/web-hosting/BeneficiosHosting.astro';
+import PreciosHosting from '../components/web-hosting/PreciosHosting.astro';
+import CaracteristicasHosting from '../components/web-hosting/CaracteristicasHosting.astro';
+import OpinionesHosting from '../components/web-hosting/OpinionesHosting.astro';
+import ClientesHostingSlider from '../components/web-hosting/ClientesHostingSlider.astro';
+import ImpactoHosting from '../components/web-hosting/ImpactoHosting.astro';
+import ServiciosHosting from '../components/web-hosting/ServiciosHosting.astro';
+import PreguntasHosting from '../components/web-hosting/PreguntasHosting.astro';
+import Footer from '../components/footerNegro.astro';
+
+const hostingStats = [
+  {
+    value: '99.99%',
+    title: 'Disponibilidad garantizada',
+    link: 'Infraestructura estable',
+    href: '#infraestructura',
+  },
+  {
+    value: '1 Gbps',
+    title: 'Conectividad de alta velocidad',
+    link: 'Rendimiento superior',
+    href: '#rendimiento',
+  },
+  {
+    value: '24/7',
+    title: 'Monitoreo y soporte técnico',
+    link: 'Siempre acompañados',
+    href: '#soporte',
+  },
+  {
+    value: '100%',
+    title: 'Protección administrada',
+    link: 'Seguridad avanzada',
+    href: '#seguridad',
+  },
+];
+---
+
+<Layout
+  title="Web Hosting Premium | Servistream Technology"
+  description="Hosting web rápido, seguro y administrado con alta disponibilidad y soporte permanente."
+  bodyClass="bg-[]"
+>
+  <div class="relative overflow-hidden bg-[] text-[var(--parrafo-blanco)]">
+    <img
+      class="absolute inset-0 size-full object-cover object-center grayscale brightness-[.28] contrast-125"
+      src=""
+      alt=""
+      aria-hidden="true"
+    />
+    <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(3,4,5,.92)_0%,rgba(10,11,12,.72)_48%,rgba(4,5,6,.9)_100%)]"></div>
+    <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.72))]"></div>
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_52%_36%,rgba(255,255,255,.07),transparent_34%)]"></div>
+    <div class="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(90deg,transparent_0_12.45%,rgba(255,255,255,.04)_12.5%_12.58%)]"></div>
+
+    <div class="relative z-50">
+      <MenuNegro variant="transparente" overlay={false} />
+    </div>
+
+    <main
+      class="data-reveal-ignore relative z-10 mx-auto flex w-[min(100%-3rem,96rem)] flex-col justify-center py-[clamp(4rem,8vh,7rem)] pb-10 max-[900px]:justify-start max-[900px]:pt-16 max-[540px]:w-[min(100%-2rem,32rem)] max-[540px]:pt-12"
+      aria-labelledby="hosting-title"
+    >
+      <div class="mx-auto w-[min(100%,76rem)]">
+        <div class="max-w-232">
+          <h5 class="mb-[1.6rem] text-left text-[1.2rem] leading-[1.2] text-[var(--parrafo-blanco)]">
+            Infraestructura que impulsa tu crecimiento
+          </h5>
+          <h1
+            id="hosting-title"
+            class="max-w-228 text-[clamp(2.2rem,5vw,5.7rem)] leading-[.94] font-normal tracking-[-.055em] text-[var(--h-blanco)] max-[540px]:text-[clamp(2.8rem,14vw,4.5rem)]"
+          >
+            Hosting que responde,<br />
+            tecnología que protege<span class="text-(--color-primario)">.</span>
+          </h1>
+          <p class="mt-10 max-w-184 font-[var(--fuente-principal)] text-[clamp(1rem,1vw,1.2rem)] leading-[1.6] text-[var(--parrafo-blanco)]">
+            Rendimiento, seguridad y soporte experto para que tu sitio permanezca rápido, estable y disponible en todo momento.
+          </p>
+        </div>
+
+        <div
+          class="mt-[clamp(4rem,10vh,8rem)] grid grid-cols-4 max-[900px]:grid-cols-2 max-[540px]:mt-14 max-[540px]:grid-cols-1"
+          aria-label="Características principales del servicio"
+        >
+        </div>
+      </div>
+
+      <a
+        class="mt-auto inline-flex items-center self-start gap-[.55rem] font-[var(--fuente-principal)] text-sm leading-none text-white/70 no-underline transition-all duration-200 hover:-translate-x-1 hover:text-white focus-visible:-translate-x-1 focus-visible:text-white max-[900px]:mt-10"
+        href="/"
+        aria-label="Volver al inicio"
+      >
+        <MaterialIcon name="arrow_back" size={20} />
+        Volver
+      </a>
+    </main>
+  </div>
+  <BeneficiosHosting />
+  <PreciosHosting />
+  <ClientesHostingSlider />
+  <ServiciosHosting />
+  <CaracteristicasHosting />
+  <OpinionesHosting />
+  <PreguntasHosting />
+  <Footer />
+</Layout>

@@ -1,0 +1,45 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const tools = [
+  { icon: 'person_add', label: 'Cuentas cPanel' },
+  { icon: 'inventory_2', label: 'Paquetes a medida' },
+  { icon: 'sell', label: 'Marca blanca' },
+  { icon: 'pause_circle', label: 'Suspendes cuentas' },
+  { icon: 'language', label: 'Gestión DNS' },
+];
+---
+
+<main class="overflow-hidden bg-white" aria-labelledby="reseller-title">
+  <section class="mx-auto grid container items-center gap-12 py-14 sm:w-[min(100%-4rem,116rem)] sm:py-20 lg:min-h-[calc(100svh-5.25rem)] lg:grid-cols-[minmax(0,.78fr)_minmax(38rem,1.22fr)] lg:gap-10 lg:py-16">
+    <div class="relative z-10 max-w-2xl">
+      <h5 class="text-left text-[var(--h-negro)]">Reseller Hosting</h5>
+      <h1 id="reseller-title" class="mt-4 max-w-xl text-[clamp(2rem,3.45vw,5.6rem)] leading-[.98] text-[var(--h-negro)]">
+        Crea tu propio negocio de hosting web
+      </h1>
+
+      <ul class="mt-10 grid gap-1 font-[var(--fuente-principal)] leading-[1.4] text-[#25242b]" aria-label="Beneficios del reseller hosting">
+        <li class="flex items-start gap-3"><MaterialIcon name="check" size={22} class="mt-0.5 shrink-0 text-[#18ae62]" />Tu marca, tus precios y total control de tus clientes</li>
+        <li class="flex items-start gap-3"><MaterialIcon name="check" size={22} class="mt-0.5 shrink-0 text-[#18ae62]" />Certificados SSL incluidos para todos tus sitios</li>
+        <li class="flex items-start gap-3"><MaterialIcon name="check" size={22} class="mt-0.5 shrink-0 text-[#18ae62]" />Soporte técnico humano cuando lo necesites</li>
+      </ul>
+
+      <p class="mt-10 font-[var(--fuente-principal)] text-[clamp(2.9rem,4vw,4.65rem)] leading-none font-bold text-[var(--h-negro)]"><span class="text-[.3em] align-top">$</span>6.99<span class="ml-1 text-[.36em] font-medium tracking-normal">/mes</span></p>
+      <a href="https://clientes.servistream.net/cart.php" class="mt-9 inline-flex min-h-12 items-center justify-center rounded-full bg-[#1769ef] px-9 font-[var(--fuente-principal)] text-lg font-bold text-white no-underline shadow-[0_16px_28px_rgb(23_105_239_/_20%)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#0959d9] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1769ef]">Ver planes</a>
+      <p class="mt-6 flex items-center gap-2 font-[var(--fuente-principal)] text-sm text-[#34333a]"><MaterialIcon name="verified_user" size={22} class="text-[#20bd68]" />Cancela cuando quieras, válido solo en planes mensuales</p>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-5xl">
+      <div class="absolute inset-y-[2%] right-[-9vw] left-[6%] -z-10 bg-[linear-gradient(120deg,#f8fcff_12%,#e8f7ff_52%,#dcefff)] [background-image:linear-gradient(rgba(90,172,226,.11)_1px,transparent_1px),linear-gradient(90deg,rgba(90,172,226,.11)_1px,transparent_1px),linear-gradient(120deg,#f8fcff_12%,#e8f7ff_52%,#dcefff)] [background-size:4.3rem_4.3rem,4.3rem_4.3rem,100%_100%]"></div>
+      <div class="relative mx-2 min-h-110 overflow-hidden rounded-[1.6rem] border border-[#e9ebf4] bg-white p-5 shadow-[0_22px_52px_rgb(44_95_135_/_15%)] sm:mx-8 sm:p-8 lg:min-h-136">
+        <p class="font-[var(--fuente-principal)] text-2xl font-black italic tracking-[-.1em] text-[#9da2ad]">WHM</p>
+        <div class="mt-6 grid max-w-[72%] grid-cols-2 border-l border-t border-[#e5e7f0] sm:grid-cols-3">
+          {tools.map((tool) => <div class="grid min-h-30 place-items-center border-r border-b border-[#e5e7f0] p-3 text-center"><MaterialIcon name={tool.icon} size={30} class="text-[#404854]" /><span class="mt-2 font-[var(--fuente-principal)] text-xs font-semibold leading-tight text-[#303745] sm:text-sm">{tool.label}</span></div>)}
+        </div>
+        <div class="absolute bottom-12 left-8 flex items-end gap-5 sm:left-12"><span class="grid size-18 place-items-center rounded-2xl border-4 border-[#28313e] bg-white text-[#20ae67]"><MaterialIcon name="lock" size={38} /></span><div class="grid gap-2"><span class="h-4 w-18 rounded-full bg-pink-100"></span><span class="h-4 w-34 rounded-full bg-[#edf0f5]"></span><span class="h-4 w-28 rounded-full bg-[#edf0f5]"></span></div></div>
+        <img src="/img/reseller-hosting/asesor-reseller.png" alt="Asesor de reseller hosting con una computadora portátil" class="absolute bottom-0 right-[-4%] h-[82%] max-w-[53%] object-contain object-bottom sm:right-[1%]" loading="eager" fetchpriority="high" />
+      </div>
+      <div class="relative z-10 -mt-6 ml-[12%] inline-flex items-center gap-3 rounded-full bg-white px-5 py-3 font-[var(--fuente-principal)] text-sm font-medium text-[#38404d] shadow-[0_12px_28px_rgb(46_89_121_/_18%)] sm:-mt-8 sm:px-7 sm:py-4 sm:text-base"><MaterialIcon name="verified_user" size={27} class="text-[#3dc47b]" /> Infraestructura confiable para tu negocio</div>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,23 @@
+---
+const categories = [
+  { title: 'CentovaCast', items: [{ question: '¿Qué es CentovaCast?', answer: 'Es un panel de control especializado para administrar una radio online: permite configurar la transmisión, manejar AutoDJ, crear listas de reproducción y consultar estadísticas.' }, { question: '¿Puedo transmitir en vivo y usar AutoDJ?', answer: 'Sí. Puedes emitir en vivo cuando lo necesites y dejar una programación automática en AutoDJ para mantener tu señal al aire.' }, { question: '¿Funciona con Shoutcast e Icecast?', answer: 'Sí. Los planes CentovaCast son compatibles con ambos motores, para que elijas el que mejor se adapte a tu software de transmisión.' }] },
+  { title: 'Planes y activación', items: [{ question: '¿Qué plan debo elegir?', answer: 'Elige según tus oyentes simultáneos y la calidad de audio requerida. Puedes empezar con el plan adecuado para tu audiencia actual y escalar después.' }, { question: '¿La transferencia es ilimitada?', answer: 'Sí. Todos los planes CentovaCast incluyen transferencia ilimitada para que puedas transmitir sin preocuparte por consumo mensual.' }, { question: '¿Cuándo se activa mi servicio?', answer: 'La activación se realiza una vez confirmado el pago. Recibirás los datos de acceso y conexión para comenzar a configurar tu estación.' }] },
+  { title: 'Audiencia y compatibilidad', items: [{ question: '¿Mis oyentes pueden escuchar desde el celular?', answer: 'Sí. Incluimos reproductor HTML5, URLs seguras y compatibilidad con dispositivos móviles para facilitar el acceso a tu señal.' }, { question: '¿Puedo utilizar SSL en mi transmisión?', answer: 'Sí. Todos los planes son compatibles con SSL para compartir enlaces de reproducción seguros en páginas web y aplicaciones.' }, { question: '¿Qué estadísticas puedo consultar?', answer: 'CentovaCast muestra oyentes actuales, máximos de audiencia, ubicación geográfica y otros datos útiles para entender el crecimiento de tu radio.' }] },
+];
+---
+
+<section class="bg-[#03040d] py-20 text-white sm:py-32" aria-labelledby="centova-faq-title" data-centova-faq>
+  <div class="mx-auto container"><header class="mx-auto max-w-3xl text-center"><h2 id="centova-faq-title" class="leading-none text-[var(--h-blanco)]">Preguntas frecuentes</h2><p class="mt-5 font-[var(--fuente-principal)] leading-relaxed text-[#aaa9bc]">¿Tienes otra pregunta? Nuestro equipo está listo para ayudarte.</p></header><div class="mt-16 grid gap-x-16 gap-y-12 lg:grid-cols-3">{categories.map((category) => <section><h3 class="mb-6 font-[var(--fuente-principal)] text-lg font-bold text-white">{category.title}</h3><div>{category.items.map((item) => <details class="centova-faq-item border-b border-white/10"><summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-[var(--fuente-principal)] text-base font-medium text-[#deddeb] transition hover:text-white"><span>{item.question}</span><span class="centova-faq-icon text-xl text-[#a9a4d5]">+</span></summary><p class="pb-5 pr-8 font-[var(--fuente-principal)] text-sm leading-relaxed text-[#aaa9bc]">{item.answer}</p></details>)}</div></section>)}</div></div>
+</section>
+
+<script>
+  document.querySelectorAll('[data-centova-faq]').forEach((section) => {
+    const items = [...section.querySelectorAll('details')];
+    items.forEach((item) => item.addEventListener('toggle', () => { if (item.open) items.forEach((other) => { if (other !== item) other.open = false; }); }));
+  });
+</script>
+
+<style>
+  .centova-faq-item[open] .centova-faq-icon { transform: rotate(45deg); color: #75a8ff; }
+  .centova-faq-icon { transition: transform .2s ease, color .2s ease; }
+</style>

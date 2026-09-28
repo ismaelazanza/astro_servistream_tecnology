@@ -1,0 +1,49 @@
+---
+interface Props {
+  tone?: 'blue' | 'violet';
+}
+
+const { tone = 'blue' } = Astro.props;
+---
+
+<div class:list={['streaming-atmosphere', `streaming-atmosphere--${tone}`]} aria-hidden="true" data-reveal-ignore>
+  <div class="streaming-atmosphere__aurora"></div>
+  <svg class="streaming-atmosphere__signals" viewBox="0 0 1800 1000" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="streaming-signal" x1="0" x2="1">
+        <stop stop-color="#5e8cff" stop-opacity="0" />
+        <stop offset=".22" stop-color="#80b3ff" stop-opacity=".65" />
+        <stop offset=".58" stop-color="#866aff" stop-opacity=".88" />
+        <stop offset="1" stop-color="#5e8cff" stop-opacity="0" />
+      </linearGradient>
+      <filter id="streaming-signal-glow"><feGaussianBlur stdDeviation="3" /></filter>
+    </defs>
+    <g fill="none" stroke="url(#streaming-signal)" stroke-linecap="round">
+      <path class="streaming-atmosphere__line streaming-atmosphere__line--one" d="M-110 220 C190 292 355 144 662 266 S1170 410 1910 168" stroke-width="1.2" />
+      <path class="streaming-atmosphere__line streaming-atmosphere__line--two" d="M-100 390 C218 528 404 294 750 402 S1266 622 1910 420" stroke-width="1" />
+      <path class="streaming-atmosphere__line streaming-atmosphere__line--three" d="M-130 624 C186 438 460 652 786 570 S1262 762 1910 566" stroke-width="1.1" filter="url(#streaming-signal-glow)" />
+    </g>
+  </svg>
+  <span class="streaming-atmosphere__node streaming-atmosphere__node--one"></span>
+  <span class="streaming-atmosphere__node streaming-atmosphere__node--two"></span>
+  <span class="streaming-atmosphere__node streaming-atmosphere__node--three"></span>
+</div>
+
+<style>
+  .streaming-atmosphere { position: absolute; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; background: linear-gradient(180deg, #030713 0%, #05091a 42%, #030713 100%); }
+  .streaming-atmosphere--violet { background: linear-gradient(180deg, #03040d 0%, #08071d 42%, #03040d 100%); }
+  .streaming-atmosphere__aurora { position: absolute; inset: -12% -10% auto; height: 52rem; opacity: .72; background: radial-gradient(ellipse at 50% 7%, rgb(55 111 255 / .44), transparent 42%), radial-gradient(ellipse at 18% 31%, rgb(66 107 255 / .18), transparent 28%), radial-gradient(ellipse at 83% 40%, rgb(122 73 255 / .23), transparent 31%); animation: streaming-aurora 16s ease-in-out infinite alternate; }
+  .streaming-atmosphere--violet .streaming-atmosphere__aurora { background: radial-gradient(ellipse at 50% 7%, rgb(113 58 244 / .38), transparent 42%), radial-gradient(ellipse at 18% 31%, rgb(49 93 255 / .2), transparent 28%), radial-gradient(ellipse at 83% 40%, rgb(145 84 255 / .22), transparent 31%); }
+  .streaming-atmosphere__signals { position: absolute; inset: 5rem 0 auto; width: 100%; height: 73rem; opacity: .64; }
+  .streaming-atmosphere__line { stroke-dasharray: 28 48; animation: streaming-signal-flow 14s linear infinite; }
+  .streaming-atmosphere__line--two { animation-duration: 20s; animation-direction: reverse; opacity: .68; }
+  .streaming-atmosphere__line--three { animation-duration: 24s; opacity: .5; }
+  .streaming-atmosphere__node { position: absolute; display: block; width: .45rem; height: .45rem; border-radius: 999px; background: #b4ceff; box-shadow: 0 0 0 .32rem rgb(96 144 255 / .11), 0 0 1.6rem rgb(100 150 255 / .88); animation: streaming-orbit 9s ease-in-out infinite; }
+  .streaming-atmosphere__node--one { top: 16%; left: 16%; animation-delay: -2s; }
+  .streaming-atmosphere__node--two { top: 31%; right: 13%; animation-duration: 11s; animation-delay: -5s; }
+  .streaming-atmosphere__node--three { top: 58%; left: 73%; animation-duration: 13s; animation-delay: -7s; }
+  @keyframes streaming-aurora { from { transform: translate3d(-2%, 0, 0) scale(1); } to { transform: translate3d(2%, 3%, 0) scale(1.08); } }
+  @keyframes streaming-signal-flow { to { stroke-dashoffset: -228; } }
+  @keyframes streaming-orbit { 50% { transform: translate3d(0, -1.1rem, 0) scale(1.55); opacity: .72; } }
+  @media (prefers-reduced-motion: reduce) { .streaming-atmosphere__aurora, .streaming-atmosphere__line, .streaming-atmosphere__node { animation: none; } }
+</style>

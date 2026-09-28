@@ -1,0 +1,157 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const plans = [
+  {
+    name: 'WordPress Inicio',
+    subtitle: 'Sitios nuevos / emprendedores',
+    oldPrice: '$8.99',
+    price: '$5.99',
+    saving: 'Ahorra 15%',
+    description: 'Ideal para lanzar tu sitio WordPress con rendimiento optimizado y seguridad incluida.',
+    href: '#',
+    buttonLabel: 'Contratar ahora',
+    featured: false,
+    features: [
+      { label: '1 sitio WordPress optimizado', included: true },
+      { label: 'Disco SSD NVMe', included: true },
+      { label: 'Cloudflare incluido', included: true },
+      { label: 'Soporte técnico', included: true },
+      { label: 'VPS dedicado', included: true },
+    ],
+  },
+  {
+    name: 'WordPress Pro',
+    subtitle: 'Negocios / alto rendimiento',
+    oldPrice: '$15.99',
+    price: '$9.99',
+    saving: 'Ahorra 20%',
+    description: 'Para sitios que necesitan más velocidad, cache avanzada y recursos estables sobre infraestructura VPS.',
+    href: '#',
+    buttonLabel: 'Contratar ahora',
+    featured: true,
+    features: [
+      { label: 'WordPress con LiteSpeed Cache', included: true },
+      { label: 'VPS administrado', included: true },
+      { label: 'Discos SSD NVMe', included: true },
+      { label: 'Cloudflare optimizado', included: true },
+      { label: 'Migración incluida', included: true },
+    ],
+  },
+  {
+    name: 'WordPress Empresa',
+    subtitle: 'Tiendas / proyectos críticos',
+    oldPrice: '$35.99',
+    price: '$23.99',
+    saving: 'Ahorra 25%',
+    description: 'Recursos superiores para WooCommerce, sitios con tráfico alto y proyectos donde la estabilidad importa.',
+    href: '#',
+    buttonLabel: 'Contratar ahora',
+    featured: false,
+    features: [
+      { label: 'VPS de mayor capacidad', included: true },
+      { label: 'Optimización avanzada', included: true },
+      { label: 'Cloudflare y seguridad', included: true },
+      { label: 'Soporte prioritario', included: true },
+      { label: 'Monitoreo administrado', included: true },
+    ],
+  },
+];
+---
+
+<section id="wordpress-hosting" class="bg-[#f4f6f7] px-5 py-16 sm:px-8 lg:px-12 lg:py-24" aria-labelledby="wordpress-pricing-title">
+  <div class="mx-auto container">
+    <div class="mb-12 max-w-[44rem]">
+      <h5 id="wordpress-pricing-title" class="text-left">Planes WordPress</h5>
+      <h2 class="mt-4">Elige el rendimiento que necesita tu sitio.</h2>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-3 lg:gap-8">
+      {plans.map((plan) => (
+        <article
+          class:list={[
+            'flex min-h-[44rem] flex-col rounded-[2rem] px-8 py-9 sm:px-10 lg:px-11 lg:py-12',
+            plan.featured ? 'bg-[#5614ff] text-white' : 'bg-[#f4f6f7] text-[#26333d]',
+          ]}
+        >
+          <header>
+            <h3 class:list={[
+              'font-[var(--fuente-principal)] text-[clamp(1.8rem,2.2vw,2.35rem)] leading-none font-black tracking-[-.04em]',
+              plan.featured ? 'text-[#62eff3]' : 'text-[#26333d]',
+            ]}>
+              {plan.name}
+            </h3>
+            <p class:list={[
+              'mt-4 font-[var(--fuente-principal)] leading-tight',
+              plan.featured ? 'text-white/90' : 'text-[#52616b]',
+            ]}>
+              {plan.subtitle}
+            </p>
+          </header>
+
+          <div class="mt-10">
+            <p class:list={[
+              'font-[var(--fuente-principal)] text-lg leading-none line-through',
+              plan.featured ? 'text-white/58' : 'text-[#7d878e]',
+            ]}>
+              {plan.oldPrice}
+            </p>
+            <strong class:list={[
+              'mt-3 block font-[var(--fuente-principal)] text-[48px] leading-[.78] font-black tracking-[-.05em]',
+              plan.featured ? 'text-[#62eff3]' : 'text-[#26333d]',
+            ]}>
+              {plan.price}
+            </strong>
+            <span class:list={[
+              'mt-6 inline-flex rounded-full px-4 py-2 font-[var(--fuente-principal)] text-base leading-none font-bold',
+              plan.featured ? 'bg-white/18 text-white' : 'bg-[#e8edf0] text-[#52616b]',
+            ]}>
+              {plan.saving}
+            </span>
+          </div>
+
+          <p class:list={[
+            'mt-10 font-[var(--fuente-principal)]',
+            plan.featured ? 'text-white' : 'text-[#45535d]',
+          ]}>
+            {plan.description}
+          </p>
+
+          <ul class="mt-10 grid list-none gap-1 p-0">
+            {plan.features.map((feature) => (
+              <li class:list={[
+                'flex items-start gap-1 font-[var(--fuente-principal)] leading-[-0.2rem]',
+                feature.included
+                  ? plan.featured ? 'text-white' : 'text-[#45535d]'
+                  : plan.featured ? 'text-white/45' : 'text-[#8b949a]',
+              ]}>
+                <MaterialIcon
+                  name={feature.included ? 'ic:baseline-check' : 'close'}
+                  size={20}
+                  class:list={[
+                    'mt-px shrink-0',
+                    feature.included ? 'text-[#5a11ff]': 'text-[#8b949a]',
+                    plan.featured && feature.included ? 'text-[#62eff3]' : '',
+                  ]}
+                />
+                {feature.label}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            class:list={[
+              'mt-8 inline-flex min-h-12 w-fit items-center justify-center rounded-[1.35rem] px-8 font-[var(--fuente-principal)] text-lg no-underline transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4',
+              plan.featured
+                ? 'bg-white text-[#26333d] hover:bg-[#62eff3] focus-visible:outline-white'
+                : 'bg-[#5614ff] text-white hover:bg-[#26333d] focus-visible:outline-[#5614ff]',
+            ]}
+            href={plan.href}
+          >
+            {plan.buttonLabel}
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

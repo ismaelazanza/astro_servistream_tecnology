@@ -1,0 +1,46 @@
+---
+const categories = [
+  { title: 'Conceptos básicos', items: [
+    { question: '¿Qué es Radio Streaming?', answer: 'Es un servicio que distribuye tu señal de audio por internet para que tus oyentes puedan sintonizarla desde cualquier dispositivo conectado.' },
+    { question: '¿Cómo inicio mi radio online?', answer: 'Elige un plan, completa la compra y recibirás los datos de acceso a tu panel. Desde allí podrás configurar tu señal, AutoDJ y reproductores.' },
+    { question: '¿Necesito conocimientos técnicos?', answer: 'No. El panel de control simplifica la configuración y nuestro equipo de soporte puede orientarte durante la puesta en marcha.' },
+  ]},
+  { title: 'Planes y servicio', items: [
+    { question: '¿Qué plan debo elegir?', answer: 'Depende de la cantidad de oyentes simultáneos y la calidad de audio que necesites. Puedes comenzar con un plan menor y aumentar capacidad cuando tu audiencia crezca.' },
+    { question: '¿La transferencia es ilimitada?', answer: 'Sí. Todos los planes de Radio Streaming incluyen transferencia ilimitada para que puedas transmitir sin preocuparte por el consumo mensual.' },
+    { question: '¿Qué incluye el espacio AutoDJ?', answer: 'AutoDJ permite cargar y programar música en el servidor para que tu radio continúe al aire incluso cuando no estés transmitiendo en vivo.' },
+  ]},
+  { title: 'Transmisión y compatibilidad', items: [
+    { question: '¿Puedo transmitir desde mi celular o computadora?', answer: 'Sí. Puedes emitir desde aplicaciones compatibles para computadora y dispositivos móviles, usando los datos de conexión de tu cuenta.' },
+    { question: '¿Mis oyentes podrán escuchar desde cualquier dispositivo?', answer: 'Sí. Incluimos reproductor HTML5 y compatibilidad con reproductores populares para escuchar desde navegadores, computadoras y móviles.' },
+    { question: '¿La señal puede usar SSL?', answer: 'Sí. Nuestros planes son compatibles con URLs de transmisión segura mediante HTTPS/SSL, ideal para páginas web y aplicaciones actuales.' },
+  ]},
+];
+---
+
+<section class="bg-[#03040d] py-20 text-white sm:py-32" aria-labelledby="radio-faq-title" data-radio-faq>
+  <div class="mx-auto container">
+    <header class="mx-auto max-w-3xl text-center">
+      <h2 id="radio-faq-title" class="leading-none text-[var(--h-blanco)]">Preguntas frecuentes</h2>
+      <p class="mt-5 font-[var(--fuente-principal)] leading-relaxed text-[#aaa9bc]">¿No encuentras lo que buscas? Nuestro equipo está listo para ayudarte.</p>
+    </header>
+    <div class="mt-16 grid gap-x-16 gap-y-12 lg:grid-cols-3">
+      {categories.map((category) => <section><h3 class="mb-6 font-[var(--fuente-principal)] text-lg font-bold text-white">{category.title}</h3><div>{category.items.map((item) => <details class="faq-item border-b border-white/10"><summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-[var(--fuente-principal)] text-base font-medium text-[#deddeb] transition hover:text-white"><span>{item.question}</span><span class="faq-icon text-xl text-[#a9a4d5]">+</span></summary><p class="pb-5 pr-8 font-[var(--fuente-principal)] text-sm leading-relaxed text-[#aaa9bc]">{item.answer}</p></details>)}</div></section>)}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('[data-radio-faq]').forEach((section) => {
+    const items = [...section.querySelectorAll('details')];
+    items.forEach((item) => item.addEventListener('toggle', () => {
+      if (!item.open) return;
+      items.forEach((other) => { if (other !== item) other.open = false; });
+    }));
+  });
+</script>
+
+<style>
+  .faq-item[open] .faq-icon { transform: rotate(45deg); color: #8f82ff; }
+  .faq-icon { transition: transform .2s ease, color .2s ease; }
+</style>

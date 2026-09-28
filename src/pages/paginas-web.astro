@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MenuNegro from '../components/menuGlobal.astro';
+import HeaderPagina from '../components/paginas-web/HeaderPagina.astro';
+import QuienesSomosPag from '../components/paginas-web/QuienesSomosPag.astro';
+import SolucionesDigitales from '../components/paginas-web/SolucionesDigitales.astro';
+import IntegracionesWeb from '../components/paginas-web/IntegracionesWeb.astro';
+import Footer from '../components/footerNegro.astro';
+---
+
+<Layout
+  title="Páginas Web | Servistream Technology"
+  description="Crea tu página web profesional con Servistream. Soluciones web modernas, diseño responsive y optimizadas para SEO."
+>
+  <MenuNegro variant="blanco" />
+  <div class="paginas-web-experience">
+    <HeaderPagina />
+    <QuienesSomosPag />
+    <SolucionesDigitales />
+    <IntegracionesWeb />
+  </div>
+  <Footer />
+</Layout>

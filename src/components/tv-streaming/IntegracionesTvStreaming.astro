@@ -1,0 +1,19 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const integrations = [
+  { name: 'OBS Studio', icon: 'sensors' }, { name: 'Streamlabs', icon: 'smart_display' }, { name: 'vMix', icon: 'view_quilt' },
+  { name: 'Ecamm Live', icon: 'videocam' }, { name: 'Zoom', icon: 'video_call' }, { name: 'RTMP', icon: 'settings_input_antenna' },
+  { name: 'Wirecast', icon: 'cast' }, { name: 'XSplit', icon: 'open_in_full' }, { name: 'GoPro', icon: 'photo_camera' },
+];
+---
+
+<section class="relative overflow-hidden bg-[#030713] py-20 text-white sm:py-32" aria-labelledby="integration-title">
+  <div class="pointer-events-none absolute right-[5%] top-[15%] size-100 rounded-full bg-[#315cff]/10 blur-3xl"></div>
+  <div class="relative mx-auto grid container items-center gap-14 lg:grid-cols-[1.15fr_.85fr]">
+    <div data-tv-reveal class="grid overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#071027]/35 sm:grid-cols-3">
+      {integrations.map((integration) => <div class="tv-integration flex min-h-38 flex-col items-center justify-center gap-3 border-b border-r border-white/10 p-5 text-center last:border-b-0"><MaterialIcon name={integration.icon} size={31} class="text-[#c5d3ff]" /><span class="font-[var(--fuente-principal)] text-base font-bold text-white">{integration.name}</span></div>)}
+    </div>
+    <div data-tv-reveal class="max-w-xl lg:pl-8"><h5 class="text-left text-[#6490ff]">INTEGRACIONES</h5><h2 id="integration-title" class="mt-6 text-white leading-[.95]">Funciona con tus aplicaciones de streaming</h2><p class="mt-7 font-[var(--fuente-principal)] leading-relaxed text-[#bac4e0]">No necesitas cambiar tu configuración actual. Usa StreamCP Pro con tu codificador favorito mediante RTMP y mantén el control de la señal desde un solo panel.</p><a href="#funciones" class="mt-9 inline-flex items-center gap-2 font-[var(--fuente-principal)] font-bold text-[#78a0ff] no-underline transition hover:gap-3">Conocer las funciones <MaterialIcon name="arrow_forward" size={20} /></a></div>
+  </div>
+</section>

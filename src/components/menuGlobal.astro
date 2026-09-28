@@ -1,0 +1,238 @@
+---
+import BotonContacto from './inicio/BotonContacto.astro';
+import { menuMaster, type MenuVariant } from '../data/menu';
+
+interface Props {
+  variant?: MenuVariant;
+  overlay?: boolean;
+}
+
+const { variant = 'blanco', overlay = variant === 'transparente' } = Astro.props;
+---
+
+<header class:list={['site-header', `menu-${variant}`, { 'is-overlay': overlay }]} data-menu-header data-reveal-ignore>
+  <div class="nav-shell">
+    <a class="brand" href={menuMaster.brand.href} aria-label={menuMaster.brand.label}>
+      <img class="brand-logo w-36" src={menuMaster.brand.logo} alt="Servistream Technology" />
+    </a>
+
+    <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" data-mobile-toggle>
+      <span class="sr-only">Abrir menú</span>
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="main-navigation" class="main-navigation" aria-label="Navegación principal" data-navigation>
+      <div class="nav-links">
+        {menuMaster.links.map((link) => link.submenu ? (
+          <div class="nav-item has-submenu" data-menu-item>
+            <button class="nav-link" type="button" aria-expanded="false" data-submenu-trigger={link.submenu}>
+              {link.label} <span class="chevron" aria-hidden="true"></span>
+            </button>
+          </div>
+        ) : (
+          <a class="nav-link" href={link.href}>{link.label}</a>
+        ))}
+      </div>
+
+      <div class="contact-summary">
+        <span>{menuMaster.contact.eyebrow}</span>
+        <p>
+          <a href={`mailto:${menuMaster.contact.email}`}>E-mail: {menuMaster.contact.email}</a>
+          <i></i>
+          <a href={menuMaster.contact.phoneHref} target="_blank" rel="noopener noreferrer">{menuMaster.contact.phoneLabel}</a>
+        </p>
+      </div>
+
+      <BotonContacto class="nav-cta" variant={variant} />
+    </nav>
+  </div>
+
+  {Object.entries(menuMaster.submenus).map(([name, columns]) => (
+    <div class="mega-menu" id={`submenu-${name}`} data-submenu={name} aria-hidden="true">
+      <div class="mega-inner">
+        {columns.map((column) => (
+          <section class="mega-column">
+            <p class="column-title">{column.title}</p>
+            <ul class:list={{ featured: 'featured' in column && column.featured }}>
+              {column.links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+            </ul>
+          </section>
+        ))}
+      </div>
+    </div>
+  ))}
+</header>
+
+<script>
+  const header = document.querySelector('[data-menu-header]');
+
+  if (header instanceof HTMLElement && !header.dataset.ready) {
+    header.dataset.ready = 'true';
+    const mobileToggle = header.querySelector('[data-mobile-toggle]');
+    const navigation = header.querySelector('[data-navigation]');
+    const triggers = [...header.querySelectorAll('[data-submenu-trigger]')];
+    const submenus = [...header.querySelectorAll('[data-submenu]')];
+    const directLinks = [...header.querySelectorAll('.nav-links > a.nav-link')];
+
+    const closeSubmenus = () => {
+      triggers.forEach((trigger) => trigger.setAttribute('aria-expanded', 'false'));
+      submenus.forEach((submenu) => {
+        submenu.classList.remove('is-open');
+        submenu.setAttribute('aria-hidden', 'true');
+      });
+    };
+
+    const toggleSubmenu = (trigger) => {
+      const name = trigger.getAttribute('data-submenu-trigger');
+      const submenu = header.querySelector(`[data-submenu="${name}"]`);
+      if (!(submenu instanceof HTMLElement)) return;
+      const shouldOpen = trigger.getAttribute('aria-expanded') !== 'true';
+      const switching = shouldOpen && submenus.some((item) => item.classList.contains('is-open'));
+
+      if (switching) header.classList.add('is-switching-submenu');
+      closeSubmenus();
+      if (shouldOpen) {
+        trigger.setAttribute('aria-expanded', 'true');
+        submenu.classList.add('is-open');
+        submenu.setAttribute('aria-hidden', 'false');
+      }
+      if (switching) {
+        void header.offsetHeight;
+        header.classList.remove('is-switching-submenu');
+      }
+    };
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => toggleSubmenu(trigger));
+      trigger.parentElement?.addEventListener('mouseenter', () => {
+        if (window.matchMedia('(min-width: 961px)').matches && trigger.getAttribute('aria-expanded') !== 'true') toggleSubmenu(trigger);
+      });
+    });
+
+    directLinks.forEach((link) => {
+      link.addEventListener('mouseenter', closeSubmenus);
+      link.addEventListener('focus', closeSubmenus);
+    });
+
+    header.addEventListener('mouseleave', () => {
+      if (window.matchMedia('(min-width: 961px)').matches) closeSubmenus();
+    });
+
+    mobileToggle?.addEventListener('click', () => {
+      const open = mobileToggle.getAttribute('aria-expanded') !== 'true';
+      mobileToggle.setAttribute('aria-expanded', String(open));
+      navigation?.classList.toggle('is-open', open);
+      if (!open) closeSubmenus();
+    });
+
+    document.addEventListener('click', (event) => {
+      if (event.target instanceof Node && !header.contains(event.target)) closeSubmenus();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeSubmenus();
+        mobileToggle?.setAttribute('aria-expanded', 'false');
+        navigation?.classList.remove('is-open');
+      }
+    });
+  }
+</script>
+
+<style>
+  .site-header {
+    --menu-bg: #fff;
+    --menu-surface: #fff;
+    --menu-text: #171717;
+    --menu-muted: #989898;
+    --menu-rule: #e8e8e8;
+    --menu-shadow: 0 28px 42px rgb(0 0 0 / 7%);
+    position: relative;
+    z-index: 500;
+    width: 100%;
+    color: var(--menu-text);
+    background: var(--menu-bg);
+    font-family: var(--fuente-principal);
+  }
+  .site-header.menu-negro {
+    --menu-bg: #111;
+    --menu-surface: #151515;
+    --menu-text: #fff;
+    --menu-muted: rgb(255 255 255 / 55%);
+    --menu-rule: rgb(255 255 255 / 14%);
+    --menu-shadow: 0 28px 42px rgb(0 0 0 / 25%);
+  }
+  .site-header.menu-transparente {
+    --menu-bg: transparent;
+    --menu-surface: rgb(12 14 18 / 98%);
+    --menu-text: #fff;
+    --menu-muted: rgb(255 255 255 / 65%);
+    --menu-rule: rgb(255 255 255 / 16%);
+    --menu-shadow: 0 28px 50px rgb(0 0 0 / 24%);
+    backdrop-filter: blur(2px);
+  }
+  .site-header.is-overlay { position: absolute; inset: 0 0 auto; }
+  .nav-shell { width: min(100% - 3rem, 120rem); min-height: 5.25rem; margin: auto; display: flex; align-items: center; }
+  .brand { display: flex; flex: 0 0 auto; align-items: center; gap: .8rem; color: inherit; text-decoration: none; }
+  .menu-negro .brand-logo, .menu-transparente .brand-logo { filter: brightness(0) invert(1); }
+  .brand-mark { width: 3.2rem; height: 3.2rem; border-radius: 50%; background: repeating-linear-gradient(90deg,#111 0 3px,transparent 3px 6px); clip-path: polygon(50% 0,60% 8%,68% 2%,73% 15%,82% 10%,84% 25%,94% 25%,91% 40%,100% 50%,91% 60%,94% 75%,84% 75%,82% 90%,73% 85%,68% 98%,60% 92%,50% 100%,40% 92%,32% 98%,27% 85%,18% 90%,16% 75%,6% 75%,9% 60%,0 50%,9% 40%,6% 25%,16% 25%,18% 10%,27% 15%,32% 2%,40% 8%); }
+  .brand-name { font-family: var(--fuente-principal); font-size: 1.7rem; font-weight: 700; letter-spacing: -.04em; }
+  .main-navigation { display: flex; flex: 1; align-items: center; margin-left: clamp(3rem,7vw,8rem); gap: clamp(2rem,4vw,5rem); }
+  .nav-links { display: flex; align-items: center; gap: clamp(1.4rem,2.5vw,3rem); }
+  .nav-item { display: flex; }
+  .nav-link { display: inline-flex; align-items: center; gap: .4rem; padding: .9rem 0; color: var(--menu-text); background: transparent; border: 0; font: 500 1.05rem/1 var(--fuente-principal); text-decoration: none; cursor: pointer; transition: color 180ms ease; }
+  .nav-link:hover, .nav-link:focus-visible, .nav-link[aria-expanded='true'] { color: var(--color-primario); }
+  .nav-link:focus-visible { outline: 2px solid var(--color-primario); outline-offset: 5px; }
+  .chevron { width: .42rem; height: .42rem; display: none; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform 180ms ease; }
+  [aria-expanded='true'] .chevron { transform: rotate(225deg) translate(-1px,-1px); }
+  .contact-summary { margin-left: auto; white-space: nowrap; }
+  .contact-summary > span { color: var(--menu-muted); font-size: .84rem; }
+  .contact-summary p { display: flex; align-items: center; gap: 1rem; margin-top: .25rem; color: var(--menu-text); font-size: .92rem; }
+  .contact-summary a { color: inherit; text-decoration: none; }
+  .contact-summary a:hover { color: var(--color-primario); }
+  .contact-summary i { width: 1px; height: 1.15rem; background: var(--menu-rule); }
+  .nav-cta { flex: 0 0 auto; }
+  .mega-menu { position: absolute; top: 100%; left: 0; z-index: 510; width: 100%; visibility: hidden; overflow: hidden; opacity: 0; background: var(--menu-surface); box-shadow: var(--menu-shadow); transform: translateY(-12px); pointer-events: none; transition: transform 260ms cubic-bezier(.2,.8,.2,1), opacity 220ms ease, visibility 220ms; }
+  .site-header.is-switching-submenu .mega-menu { transition: none; }
+  .menu-transparente .mega-menu { backdrop-filter: blur(18px); }
+  .mega-menu.is-open { visibility: visible; opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .mega-inner { width: min(70%, 70rem); margin: auto; padding: 2.25rem 0 1.25rem; display: grid; grid-template-columns: 9.5rem 11rem minmax(14rem, 1fr); gap: 3.5rem; }
+  .column-title { margin: 0 0 1.7rem; color: var(--menu-muted); font-size: .94rem; }
+  .mega-column ul { display: grid; gap: .65rem; margin: 0; padding: 0; list-style: none; }
+  .mega-column a { position: relative; display: inline-block; color: var(--menu-text); font-size: 0.9rem; line-height: 1.35; text-decoration: none; transition: color 180ms ease, transform 180ms ease; }
+  .mega-column a:hover, .mega-column a:focus-visible { color: var(--color-primario); transform: translateX(5px); }
+  .mega-column .featured a { font-family: var(--fuente-principal); font-size: 1.2rem; font-weight: 500; color: var(--menu-text); }
+  .mobile-toggle { display: none; width: 2.9rem; height: 2.9rem; margin-left: auto; padding: .65rem; border: 0; background: transparent; cursor: pointer; }
+  .mobile-toggle > span:not(.sr-only) { display: block; height: 2px; margin: 5px 0; background: var(--menu-text); transition: transform 200ms ease, opacity 200ms ease; }
+  .mobile-toggle[aria-expanded='true'] > span:nth-of-type(2) { transform: translateY(7px) rotate(45deg); }
+  .mobile-toggle[aria-expanded='true'] > span:nth-of-type(3) { opacity: 0; }
+  .mobile-toggle[aria-expanded='true'] > span:nth-of-type(4) { transform: translateY(-7px) rotate(-45deg); }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+  @media (max-width: 1400px) {
+    .contact-summary { display: none; }
+    .main-navigation { justify-content: space-between; }
+  }
+
+  @media (max-width: 960px) {
+    .nav-shell { min-height: 5rem; width: min(100% - 2rem, 50rem); flex-wrap: wrap; }
+    .brand-mark { width: 2.55rem; height: 2.55rem; }
+    .brand-name { font-size: 1.4rem; }
+    .mobile-toggle { display: block; }
+    .main-navigation { position: absolute; top: 100%; left: 0; width: 100%; max-height: 0; display: block; margin: 0; overflow: hidden; visibility: hidden; opacity: 0; background: var(--menu-surface); box-shadow: var(--menu-shadow); transition: max-height 420ms cubic-bezier(.2,.8,.2,1), opacity 220ms ease, visibility 220ms; }
+    .menu-transparente .main-navigation { backdrop-filter: blur(18px); }
+    .main-navigation.is-open { max-height: calc(100vh - 5rem); visibility: visible; overflow-y: auto; opacity: 1; }
+    .nav-links { width: min(100% - 2rem,50rem); margin: auto; padding: 1rem 0; display: grid; gap: 0; }
+    .nav-link { width: 100%; justify-content: space-between; padding: 1rem .2rem; border-bottom: 1px solid var(--menu-rule); font-size: 1.12rem; }
+    .chevron { display: block; margin-right: .4rem; }
+    .nav-cta { margin: 1rem; width: calc(100% - 2rem); }
+    .mega-menu { position: static; max-height: 0; box-shadow: none; transform: none; transition: max-height 420ms cubic-bezier(.2,.8,.2,1), opacity 220ms ease, visibility 220ms; }
+    .mega-menu.is-open { max-height: 80rem; }
+    .mega-inner { width: min(100% - 2rem,50rem); padding: 1.7rem 0 2.4rem; grid-template-columns: 1fr; gap: 2rem; }
+    .column-title { margin-bottom: .9rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+  }
+</style>

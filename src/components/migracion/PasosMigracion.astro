@@ -1,0 +1,41 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const steps = [
+  {
+    icon: 'ads_click',
+    title: 'Elige tu plan',
+    description: 'Tenemos una amplia gama de opciones. Simplemente elige un plan con las funciones y recursos que tu web necesita.',
+  },
+  {
+    icon: 'format_align_left',
+    title: 'Completa el formulario',
+    description: 'Introduce los detalles de tu sitio web, incluidos la URL, las credenciales de inicio de sesión y los archivos de backup. Nosotros nos encargamos del resto.',
+  },
+  {
+    icon: 'task_alt',
+    title: 'Nosotros nos encargamos del resto mientras tu web permanece activa',
+    description: 'Migraremos tu WordPress u otra web de otro proveedor de forma rápida y segura, manteniéndola activa en todo momento.',
+  },
+];
+---
+
+<section class="bg-white px-5 py-18 sm:px-8 sm:py-24 lg:px-12 lg:py-32" aria-labelledby="pasos-migracion-title">
+  <div class="mx-auto container">
+    <h2 id="pasos-migracion-title" class="mx-auto max-w-6xl text-center  text-[var(--h-negro)]">
+      Sigue dos pasos y nosotros <br> nos encargaremos del resto
+    </h2>
+
+    <div class="mt-12 grid gap-5 sm:mt-16 md:grid-cols-3 lg:mt-20 lg:gap-8">
+      {steps.map((step) => (
+        <article class="rounded-[1.5rem] bg-[#f7f7f8] p-7 sm:p-8 lg:min-h-62 lg:p-9">
+          <span class="grid size-14 place-items-center rounded-lg bg-[#e9e5ff] text-[#301b69]" aria-hidden="true">
+            <MaterialIcon name={step.icon} size={31} />
+          </span>
+          <h3 class="mt-7 max-w-xl text-[clamp(1.2rem,1vw,2rem)] leading-[1.16] text-[var(--h-negro)]">{step.title}</h3>
+          <p class="mt-4 max-w-xl font-[var(--fuente-principal)] leading-[1.55] text-[#56545b]">{step.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

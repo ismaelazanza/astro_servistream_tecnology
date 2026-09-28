@@ -1,0 +1,116 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+---
+
+<main class="relative isolate min-h-[calc(100svh-5rem)] overflow-hidden bg-[#fbfbfd] px-5 py-16 sm:px-8 sm:py-24 lg:px-12 lg:py-30" data-availability-checker data-availability-url="https://clientes.servistream.net/site-availability.php">
+  <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_0%_52%,#c6d8ff_0%,transparent_33%),radial-gradient(circle_at_100%_58%,#d8c6ff_0%,transparent_34%)]"></div>
+  <div class="pointer-events-none absolute inset-0 -z-10 opacity-40 [background-image:radial-gradient(#bfc3d1_1px,transparent_1px)] [background-size:22px_22px]"></div>
+
+  <section class="mx-auto max-w-6xl text-center" aria-labelledby="availability-title">
+    <p class="mx-auto inline-flex items-center gap-2 rounded-full bg-[#f0f0f0] px-5 py-2 font-[var(--fuente-principal)] text-xs font-medium tracking-[.04em] text-[var(--color-primario)] uppercase sm:text-sm"><MaterialIcon name="travel_explore" size={18} />Comprobador de disponibilidad web</p>
+    <h1 id="availability-title" class="mx-auto mt-8 max-w-5xl text-[clamp(1rem,3vw,6.8rem)] leading-[.93] text-[var(--h-negro)]">Consultar disponibilidad del sitio web</h1>
+    <p class="mx-auto mt-6 max-w-3xl font-[var(--fuente-principal)] text-[#5d5a64]">¿El sitio web no funciona? Consulta si está en línea, el estado HTTP y el tiempo de respuesta.</p>
+
+    <form class="mx-auto mt-11 max-w-5xl rounded-[1.4rem] bg-white p-2 text-left shadow-[0_22px_52px_rgb(46_34_90_/_14%)] sm:mt-14 sm:flex sm:items-center sm:rounded-[1.5rem]" data-availability-form>
+      <label class="block min-w-0 flex-1 px-4 py-3 sm:px-5" for="site-url">
+        <span class="mb-2 flex items-center gap-1 font-[var(--fuente-principal)] text-xs font-semibold text-[#28252d]"><MaterialIcon name="search" size={16} />Dominio o URL</span>
+        <input id="site-url" class="w-full border-0 bg-transparent font-[var(--fuente-principal)] text-base text-[#27242c] outline-none placeholder:text-[#83808a] sm:text-lg" name="url" type="text" inputmode="url" autocomplete="url" placeholder="ejemplo.com" value="servistream.net" required data-availability-input />
+      </label>
+      <button class="flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[var(--color-primario)] px-8 font-[var(--fuente-principal)] text-base font-bold text-white transition-colors hover:bg-[#017155] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#6636e9] sm:w-auto" type="submit" data-availability-submit>
+        <MaterialIcon name="monitoring" size={21} /> <span data-submit-label>Comprobar</span>
+      </button>
+    </form>
+
+    <p class="mt-6 font-[var(--fuente-principal)] text-sm text-[#56515f] sm:text-base"><span class="mr-2 inline-grid size-6 place-items-center rounded-full bg-[var(--color-primario)] text-xs font-bold text-white">S</span>¿Buscas hosting estable? <a class="font-semibold text-[var(--color-primario)] underline decoration-transparent underline-offset-4 transition hover:decoration-current" href="/web-hosting">Conoce nuestros planes de web hosting</a>.</p>
+
+    <div class="mx-auto mt-10 hidden max-w-4xl rounded-[1.5rem] border p-7 text-left sm:mt-14 sm:p-9" role="status" aria-live="polite" data-availability-result>
+      <div class="flex items-start gap-4">
+        <span class="grid size-12 shrink-0 place-items-center rounded-full" data-result-icon-wrap><MaterialIcon name="check_circle" size={29} data-result-icon /></span>
+        <div class="min-w-0 flex-1">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <h2 class="break-all font-[var(--fuente-principal)] text-xl font-bold tracking-[-.04em] text-[#25232a] sm:text-2xl" data-result-domain></h2>
+            <span class="rounded-full px-3 py-1 font-[var(--fuente-principal)] text-xs font-bold" data-result-code></span>
+          </div>
+          <p class="mt-3 font-[var(--fuente-principal)] text-base leading-[1.55] text-[#4f4d55] sm:text-lg" data-result-message></p>
+          <p class="mt-4 hidden font-[var(--fuente-principal)] text-sm text-[#706d77]" data-result-meta></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  const initAvailabilityChecker = () => {
+    document.querySelectorAll('[data-availability-checker]').forEach((checker) => {
+      if (!(checker instanceof HTMLElement) || checker.dataset.ready) return;
+      checker.dataset.ready = 'true';
+
+      const form = checker.querySelector('[data-availability-form]');
+      const input = checker.querySelector('[data-availability-input]');
+      const submit = checker.querySelector('[data-availability-submit]');
+      const submitLabel = checker.querySelector('[data-submit-label]');
+      const result = checker.querySelector('[data-availability-result]');
+      const domain = checker.querySelector('[data-result-domain]');
+      const code = checker.querySelector('[data-result-code]');
+      const message = checker.querySelector('[data-result-message]');
+      const meta = checker.querySelector('[data-result-meta]');
+      const icon = checker.querySelector('[data-result-icon]');
+      const iconWrap = checker.querySelector('[data-result-icon-wrap]');
+      const endpoint = checker.dataset.availabilityUrl;
+      if (!(form instanceof HTMLFormElement) || !(input instanceof HTMLInputElement) || !(submit instanceof HTMLButtonElement) || !(result instanceof HTMLElement) || !endpoint) return;
+
+      const normaliseUrl = (value) => {
+        const trimmed = value.trim();
+        if (!trimmed) return '';
+        return /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+      };
+
+      const render = (payload, fallbackDomain) => {
+        const online = Boolean(payload.online);
+        const checkedDomain = payload.domain || fallbackDomain;
+        result.classList.remove('hidden', 'border-[#f2c8cf]', 'bg-[#fff3f5]', 'border-[#c7e5d1]', 'bg-[#effcf4]');
+        result.classList.add(online ? 'border-[#c7e5d1]' : 'border-[#f2c8cf]', online ? 'bg-[#effcf4]' : 'bg-[#fff3f5]');
+        if (domain instanceof HTMLElement) domain.textContent = checkedDomain;
+        if (code instanceof HTMLElement) {
+          code.textContent = payload.status ? `HTTP ${payload.status}` : 'Sin respuesta';
+          code.className = `rounded-full px-3 py-1 font-[var(--fuente-principal)] text-xs font-bold ${online ? 'bg-[#d8f4e2] text-[#087e43]' : 'bg-[#ffe0e5] text-[#c32748]'}`;
+        }
+        if (message instanceof HTMLElement) message.textContent = online
+          ? `${checkedDomain} está en línea y devolvió el estado HTTP ${payload.status}.`
+          : (payload.message || `${checkedDomain} no respondió a la comprobación.`);
+        if (meta instanceof HTMLElement) {
+          const parts = [payload.responseTime ? `${payload.responseTime} ms de respuesta` : '', payload.protocol ? payload.protocol.toUpperCase() : ''].filter(Boolean);
+          meta.textContent = parts.join(' · ');
+          meta.classList.toggle('hidden', !parts.length);
+        }
+        if (icon instanceof HTMLElement) icon.textContent = online ? 'check_circle' : 'error';
+        if (iconWrap instanceof HTMLElement) iconWrap.className = `grid size-12 shrink-0 place-items-center rounded-full ${online ? 'bg-[#d8f4e2] text-[#087e43]' : 'bg-[#ffe0e5] text-[#c32748]'}`;
+      };
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const url = normaliseUrl(input.value);
+        if (!url) return;
+        submit.disabled = true;
+        submit.classList.add('cursor-wait', 'opacity-75');
+        if (submitLabel instanceof HTMLElement) submitLabel.textContent = 'Comprobando…';
+
+        try {
+          const response = await fetch(`${endpoint}?url=${encodeURIComponent(url)}`, { headers: { Accept: 'application/json' } });
+          const payload = await response.json();
+          render(payload, input.value.replace(/^https?:\/\//i, '').replace(/\/.*/, ''));
+        } catch {
+          render({ online: false, message: 'No pudimos completar la comprobación. Inténtalo de nuevo en unos segundos.' }, input.value);
+        } finally {
+          submit.disabled = false;
+          submit.classList.remove('cursor-wait', 'opacity-75');
+          if (submitLabel instanceof HTMLElement) submitLabel.textContent = 'Controlar';
+        }
+      });
+    });
+  };
+
+  document.addEventListener('astro:page-load', initAvailabilityChecker);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAvailabilityChecker, { once: true });
+  else initAvailabilityChecker();
+</script>

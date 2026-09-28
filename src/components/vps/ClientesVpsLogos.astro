@@ -1,0 +1,34 @@
+---
+const clients = [
+  { src: '/img/clientes/acolita.svg', name: 'Acolita' },
+  { src: '/img/clientes/corporacion.svg', name: 'Corporación' },
+  { src: '/img/clientes/eldeportivo.svg', name: 'El Deportivo' },
+  { src: '/img/clientes/gonet.svg', name: 'GoNet' },
+  { src: '/img/clientes/laverdad.svg', name: 'La Verdad' },
+  { src: '/img/clientes/masperiodismo.svg', name: 'Más Periodismo' },
+  { src: '/img/clientes/meganet.svg', name: 'Meganet' },
+  { src: '/img/clientes/simar.svg', name: 'Simar' },
+];
+---
+
+<section class="bg-[#101014] px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-20" aria-labelledby="vps-clientes-title">
+  <div class="mx-auto max-w-[118rem]">
+    <div class="mb-14 flex items-center justify-between gap-6">
+      <h5 id="vps-clientes-title" class="text-left text-[var(--h-blanco)]">Clientes que confían en Servistream</h5>
+
+    </div>
+
+    <div class="grid grid-cols-2 gap-x-10 gap-y-14 sm:grid-cols-3 lg:grid-cols-4">
+      {clients.map((client) => (
+        <div class="flex min-h-20 items-center justify-center">
+          <img
+            class="h-14 w-full max-w-[11rem] object-contain opacity-70 grayscale invert transition duration-200 hover:opacity-100"
+            src={client.src}
+            alt={client.name}
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

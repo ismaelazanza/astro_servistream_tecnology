@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MenuNegro from '../components/menuGlobal.astro';
+import PlanesRadioCentovacast from '../components/radio-centovacast/PlanesRadioCentovacast.astro';
+import BeneficiosRadioCentovacast from '../components/radio-centovacast/BeneficiosRadioCentovacast.astro';
+import PanelCentovacast from '../components/radio-centovacast/PanelCentovacast.astro';
+import PreguntasRadioCentovacast from '../components/radio-centovacast/PreguntasRadioCentovacast.astro';
+import Footer from '../components/footerNegro.astro';
+import DarkStreamingAtmosphere from '../components/DarkStreamingAtmosphere.astro';
+---
+
+<Layout title="Radio Streaming CentovaCast | ServiStream" description="Planes de radio streaming con CentovaCast, AutoDJ, SSL, estadísticas y soporte para Shoutcast e Icecast." bodyClass="bg-[#03040d]">
+  <div class="dark-streaming-experience relative isolate overflow-hidden bg-[#03040d]">
+    <DarkStreamingAtmosphere tone="violet" />
+    <div class="relative z-10">
+    <MenuNegro variant="transparente" />
+    <PlanesRadioCentovacast />
+    <BeneficiosRadioCentovacast />
+    <PanelCentovacast />
+    <PreguntasRadioCentovacast />
+    </div>
+  </div>
+  <Footer />
+</Layout>

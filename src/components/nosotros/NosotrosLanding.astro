@@ -1,0 +1,842 @@
+---
+import MaterialIcon from "../MaterialIcon.astro";
+
+const pillars = [
+  {
+    icon: "cloud_done",
+    number: "01",
+    title: "Infraestructura que responde",
+    text: "Diseñamos servicios de hosting y nube para que cada proyecto tenga una base rápida, segura y estable.",
+  },
+  {
+    icon: "podcasts",
+    number: "02",
+    title: "Streaming sin complicaciones",
+    text: "Acercamos la radio y la televisión online a equipos que necesitan emitir, crecer y llegar más lejos.",
+  },
+  {
+    icon: "support_agent",
+    number: "03",
+    title: "Personas detrás de la tecnología",
+    text: "Combinamos herramientas claras con acompañamiento cercano para que puedas enfocarte en tu contenido.",
+  },
+];
+
+const principles = [
+  {
+    icon: "bolt",
+    title: "Rendimiento útil",
+    text: "Tecnología que se siente ágil cuando tu audiencia la necesita.",
+  },
+  {
+    icon: "verified_user",
+    title: "Seguridad desde la base",
+    text: "Servicios pensados para proteger la continuidad de tu proyecto.",
+  },
+  {
+    icon: "all_inclusive",
+    title: "Escalabilidad real",
+    text: "Una plataforma que acompaña tus siguientes pasos, no los limita.",
+  },
+];
+---
+
+<main class="about-page overflow-hidden bg-[#f7f9ff] text-[#101935]">
+  <section
+    class="about-hero relative isolate overflow-hidden bg-[#171717] pb-20 pt-36 text-white sm:pb-28 sm:pt-44"
+    aria-labelledby="about-title"
+  >
+    <div class="about-orb about-orb-a" aria-hidden="true"></div>
+    <div class="about-orb about-orb-b" aria-hidden="true"></div>
+    <div class="about-grid" aria-hidden="true"></div>
+    <div class="about-arc about-arc-a" aria-hidden="true"></div>
+    <div class="about-arc about-arc-b" aria-hidden="true"></div>
+
+    <div class="relative mx-auto w-[min(100%-2.5rem,76rem)]">
+      <div class="grid items-end gap-12 lg:grid-cols-[1.08fr_.92fr] lg:gap-18">
+        <header data-reveal class="max-w-3xl">
+          <h5
+            class="mb-6 flex items-center gap-3 text-[#91b2ff] sm:text-sm"
+          >
+            <span
+              class="size-2 rounded-full bg-[#6d96ff] shadow-[0_0_20px_#6d96ff]"
+            ></span>
+            Nosotros · Servistream
+        </h5>
+          <h1
+            id="about-title"
+            class="max-w-3xl font-[var(--fuente-principal)] text-[clamp(3.2rem,5.2vw,7rem)] font-medium leading-[.91] text-white"
+          >
+            Tecnología que hace que tus ideas sigan <span class="text-[#90adff]"
+              >en línea.</span
+            >
+          </h1>
+          <p
+            class="mt-8 max-w-xl font-[var(--fuente-principal)] leading-relaxed text-[#b9c7ec] "
+          >
+            Desde 2014, en Servistream construimos infraestructura para
+            proyectos que quieren estar presentes: en la web, en la radio y en
+            la televisión online.
+          </p>
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a href="mailto:soporte@servistream.net" class="about-primary-link"
+              >Hablar con el equipo <MaterialIcon
+                name="arrow_forward"
+                size={18}
+              /></a
+            >
+            <a href="#nuestro-enfoque" class="about-quiet-link"
+              >Conoce nuestro enfoque <MaterialIcon name="south" size={18} /></a
+            >
+          </div>
+        </header>
+
+        <div
+          data-reveal
+          class="about-network relative mx-auto w-full max-w-xl"
+          aria-label="Infraestructura Servistream conectada"
+        >
+          <div class="network-topline">
+            <span class="network-live-dot"></span>
+            <p class="text-[12px] text-white">Infraestructura activa</p>
+          </div>
+          <div class="network-stage">
+            <div class="network-ring ring-one"></div><div
+              class="network-ring ring-two"
+            >
+            </div><div class="network-ring ring-three"></div>
+            <span class="network-orbit orbit-one"></span><span
+              class="network-orbit orbit-two"></span><span
+              class="network-orbit orbit-three"></span>
+            <div class="network-core"><span>S</span><small><p class="text-[6px] font-bold text-white">SERVISTREAM</p></small></div>
+            <div class="network-node node-hosting">
+              <MaterialIcon name="language" size={20} /><span><p class="text-white font-semibold text-[12px]">Hosting</p></span>
+            </div>
+            <div class="network-node node-radio">
+              <MaterialIcon name="graphic_eq" size={20} /><span><p class="text-white font-semibold text-[12px]">Radio</p></span>
+            </div>
+            <div class="network-node node-tv">
+              <MaterialIcon name="live_tv" size={20} /><span><p class="text-white font-semibold text-[12px]">TV</p></span>
+            </div>
+          </div>
+          <div class="network-foot">
+            <div><span>UPTIME</span><strong>Siempre disponible</strong></div>
+            <div><span>ALCANCE</span><strong>Web · Radio · TV</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="nuestro-enfoque"
+    class="relative bg-[#f7f9ff] py-20 sm:py-32"
+    aria-labelledby="about-purpose-title"
+  >
+    <div class="mx-auto w-[min(100%-2.5rem,76rem)]">
+      <div class="grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:gap-20">
+        <div data-reveal>
+          <h5 class="about-kicker text-left text-[#3b68d5]">LO QUE NOS MUEVE</h5>
+
+        </div>
+        <div data-reveal>
+          <h2
+            id="about-purpose-title"
+            class="max-w-4xl font-[var(--fuente-principal)] leading-[.99] text-[#101935]"
+          >
+            Nuestro trabajo es que la tecnología deje de ser una preocupación.
+          </h2>
+          <p
+            class="mt-8 font-[var(--fuente-principal)] leading-relaxed text-[#5a6886]"
+          >
+            Elegimos lo esencial: plataformas robustas, procesos claros y un
+            equipo que entiende que detrás de cada servicio hay una marca, una
+            comunidad y una señal que no puede detenerse.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="about-metrics mt-16 grid gap-px overflow-hidden rounded-[1.7rem] bg-[#dbe4fa] shadow-[0_24px_55px_rgba(45,69,126,.09)] sm:grid-cols-3"
+        data-reveal
+      >
+        <div><strong><p class="font-bold text-5xl">2014</p></strong><span><p class="text-sm">El año en que comenzamos</p></span></div>
+        <div><strong><p class="font-bold text-5xl">1.245</p></strong><span><p class="text-sm">Sitios alojados</p></span></div>
+        <div><strong><p class="font-bold text-5xl">+500</p></strong><span><p class="text-sm">Clientes satisfechos</p></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="relative bg-[#edf2ff] py-20 sm:py-32"
+    aria-labelledby="about-pillars-title"
+  >
+    <div class="about-blue-glow" aria-hidden="true"></div>
+    <div class="relative mx-auto w-[min(100%-2.5rem,76rem)]">
+      <header
+        data-reveal
+        class="flex flex-col justify-between gap-7 border-b border-[#cfdcff] pb-10 md:flex-row md:items-end"
+      >
+        <div>
+          <h5 class="text-left text-[#3b68d5]">NUESTRA MANERA DE HACERLO</h5><h2
+            id="about-pillars-title"
+            class="mt-5 font-[var(--fuente-principal)] leading-none"
+          >
+            Una base sólida para cada señal.
+          </h2>
+        </div>
+        <p
+          class="max-w-sm font-[var(--fuente-principal)] leading-relaxed text-[#5a6886]"
+        >
+          Infraestructura y acompañamiento, organizados para que tu operación
+          sea más simple.
+        </p>
+      </header>
+      <div class="mt-5 grid md:grid-cols-3">
+        {
+          pillars.map((pillar) => (
+            <article
+              data-reveal
+              class="about-pillar group relative border-b border-[#cfdcff] py-10 md:border-b-0 md:px-8 md:first:pl-0 md:not(:last-child):border-r md:last:pr-0"
+            >
+              <span class="absolute right-0 top-9 font-[var(--fuente-principal)] text-sm font-bold text-[#90aaf0] md:right-8">
+                {pillar.number}
+              </span>
+              <div class="grid size-12 place-items-center rounded-2xl border border-[#b9ccff] bg-white text-[#3167e5] shadow-[0_14px_28px_rgba(40,86,190,.12)] transition duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_19px_35px_rgba(40,86,190,.2)]">
+                <MaterialIcon name={pillar.icon} size={25} />
+              </div>
+              <h3 class="mt-10 max-w-[15rem] font-[var(--fuente-principal)] text-2xl text-[#17234b]">
+                {pillar.title}
+              </h3>
+              <p class="mt-4 max-w-sm font-[var(--fuente-principal)] leading-relaxed text-[#5a6886]">
+                {pillar.text}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="relative overflow-hidden bg-[#171717] py-20 text-white sm:py-32"
+    aria-labelledby="about-services-title"
+  >
+    <div class="service-section-noise" aria-hidden="true"></div>
+    <div class="relative mx-auto w-[min(100%-2.5rem,76rem)]">
+      <div class="grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-18">
+        <header data-reveal>
+          <h5 class="text-[#3b68d5] text-left">NUESTRO UNIVERSO</h5><h2
+            id="about-services-title"
+            class="mt-5 font-[var(--fuente-principal)] leading-[.96] text-white"
+          >
+            Donde tu proyecto necesita estar.
+          </h2><p
+            class="mt-7 max-w-md font-[var(--fuente-principal)] leading-relaxed text-[#b7c4e7]"
+          >
+            Alojamos, conectamos y acompañamos experiencias digitales que
+            necesitan continuidad.
+          </p>
+        </header>
+        <div class="grid gap-4 sm:grid-cols-3" data-reveal>
+          {
+            [
+              [
+                "language",
+                "Hosting",
+                "Una presencia web confiable para tus ideas.",
+              ],
+              [
+                "radio",
+                "Radio streaming",
+                "Una emisión constante para tu audiencia.",
+              ],
+              ["live_tv", "TV streaming", "Video online listo para crecer."],
+            ].map(([icon, title, text], index) => (
+              <article
+                class:list={[
+                  "about-service-card",
+                  index === 1 ? "about-service-card-active" : "",
+                ]}
+              >
+                <>
+                  <div class="service-icon">
+                    <MaterialIcon name={icon} size={25} />
+                  </div>
+                  <p class="service-index">0{index + 1}</p>
+                  <p class="text-xl text-white mt-25">{title}</p>
+                  <p class="text-white">{text}</p>
+                </>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="bg-[#f7f9ff] py-20 sm:py-32"
+    aria-labelledby="about-principles-title"
+  >
+    <div class="mx-auto w-[min(100%-2.5rem,76rem)]">
+      <header data-reveal class="max-w-3xl">
+        <h5 class="about-kicker text-[#3b68d5] text-left">NUESTROS PRINCIPIOS</h5><h2
+          id="about-principles-title"
+          class="mt-5 font-[var(--fuente-principal)] text-[#101935]"
+        >
+          Más claridad, menos fricción.
+        </h2>
+      </header>
+      <div class="mt-12 grid gap-4 lg:grid-cols-3">
+        {
+          principles.map((principle) => (
+            <article data-reveal class="about-principle">
+              <>
+                <MaterialIcon
+                  name={principle.icon}
+                  size={27}
+                  class="text-[#3e70eb]"
+                />
+                <h3>{principle.title}</h3>
+                <p>{principle.text}</p>
+                <span class="principle-line" />
+              </>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="px-5 pb-20 sm:px-8 sm:pb-28"
+    aria-label="Contacto Servistream"
+  >
+    <div
+      data-reveal
+      class="about-cta mx-auto max-w-[76rem] overflow-hidden rounded-[2rem] bg-[#171717] px-7 py-14 text-center text-white shadow-[0_25px_60px_rgba(39,94,231,.28)] sm:px-12 sm:py-20"
+    >
+      <div class="cta-orbit cta-orbit-one" aria-hidden="true"></div><div
+        class="cta-orbit cta-orbit-two"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="relative">
+        <h5
+          class="font-[var(--fuente-principal)] text-[#3b68d5]"
+        >
+          CONVERSEMOS
+      </h5><h2
+          class="mx-auto mt-5 font-[var(--fuente-principal)] leading-[.94] text-white"
+        >
+          Tu siguiente señal merece <br> una gran base.
+        </h2><p
+          class="mx-auto mt-6 max-w-xl font-[var(--fuente-principal)] mb-20 leading-relaxed text-[#dfe7ff]"
+        >
+          Cuéntanos qué quieres construir. Estamos listos para acompañarte.
+        </p><a href="mailto:soporte@servistream.net" class="about-cta-link"
+          >Escríbenos <MaterialIcon name="arrow_forward" size={18} /></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<style>
+  .about-page :global(*) {
+    box-sizing: border-box;
+  }
+  .about-hero {
+    min-height: 44rem;
+  }
+  .about-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.25;
+    background-image:
+      linear-gradient(rgba(132, 160, 255, 0.13) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(132, 160, 255, 0.13) 1px, transparent 1px);
+    background-size: 4.5rem 4.5rem;
+    mask-image: linear-gradient(to bottom, black, transparent 78%);
+  }
+  .about-orb {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(10px);
+    pointer-events: none;
+  }
+  .about-orb-a {
+    width: 38rem;
+    height: 38rem;
+    left: -12rem;
+    top: -17rem;
+    background: radial-gradient(
+      circle,
+      rgba(58, 101, 255, 0.58),
+      rgba(58, 101, 255, 0) 67%
+    );
+    animation: about-float 12s ease-in-out infinite alternate;
+  }
+  .about-orb-b {
+    width: 44rem;
+    height: 44rem;
+    right: -15rem;
+    bottom: -27rem;
+    background: radial-gradient(
+      circle,
+      rgba(89, 62, 255, 0.46),
+      rgba(89, 62, 255, 0) 69%
+    );
+    animation: about-float 15s ease-in-out -4s infinite alternate-reverse;
+  }
+  .about-arc {
+    position: absolute;
+    border: 1px solid rgba(128, 155, 255, 0.25);
+    border-radius: 50%;
+    width: 62rem;
+    height: 30rem;
+    right: -13rem;
+    bottom: -14rem;
+    transform: rotate(-18deg);
+  }
+  .about-arc-b {
+    width: 48rem;
+    height: 22rem;
+    right: 3rem;
+    bottom: -14rem;
+    border-color: rgba(125, 181, 255, 0.17);
+  }
+  .about-primary-link,
+  .about-cta-link {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    border-radius: 999px;
+    background: #fff;
+    padding: 0.7rem 1.25rem;
+    color: #19357f;
+    text-decoration: none;
+    font: var(--fuente-principal);
+    font-weight: 400;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+  .about-primary-link:hover,
+  .about-cta-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+  }
+  .about-quiet-link {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 0.2rem;
+    color: #d7e2ff;
+    text-decoration: none;
+    font: var(--fuente-principal);
+    font-weight: 400;
+  }
+  .about-network {
+    border: 1px solid rgba(161, 184, 255, 0.25);
+    border-radius: 1.9rem;
+
+    box-shadow:
+      inset 0 1px rgba(255, 255, 255, 0.11),
+      0 28px 70px rgba(0, 0, 0, 0.27);
+    backdrop-filter: blur(14px);
+    overflow: hidden;
+    padding: 1.15rem;
+  }
+  .network-topline {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.15rem 0.2rem 1rem;
+    color: #c9d7ff;
+    font: var(--fuente-principal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .network-live-dot {
+    width: 0.48rem;
+    height: 0.48rem;
+    border-radius: 50%;
+    background: #73f0b2;
+    box-shadow:
+      0 0 0 5px rgba(115, 240, 178, 0.12),
+      0 0 20px #73f0b2;
+  }
+  .network-stage {
+    position: relative;
+    height: 20.5rem;
+    overflow: hidden;
+  }
+  .network-ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border: 1px solid rgba(141, 170, 255, 0.25);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .ring-one {
+    width: 9rem;
+    height: 9rem;
+    border-color: rgba(143, 174, 255, 0.5);
+    box-shadow: 0 0 50px rgba(87, 125, 255, 0.12);
+  }
+  .ring-two {
+    width: 16rem;
+    height: 16rem;
+  }
+  .ring-three {
+    width: 25rem;
+    height: 25rem;
+    border-style: dashed;
+    animation: about-spin 24s linear infinite;
+  }
+  .network-core {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+    display: flex;
+    width: 5.2rem;
+    height: 5.2rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    border: 1px solid rgba(184, 203, 255, 0.7);
+    border-radius: 1.45rem;
+    background: linear-gradient(145deg, #6691ff, #364ec2);
+    box-shadow:
+      0 0 0 10px rgba(101, 142, 255, 0.08),
+      0 0 50px rgba(88, 128, 255, 0.55);
+    transform: translate(-50%, -50%);
+  }
+  .network-core span {
+    font: 800 3rem/0.9 var(--fuente-principal);
+  }
+  .network-core small {
+    display: block;
+    margin: 0;
+    font: 700 0.45rem/1 var(--fuente-principal);
+    letter-spacing: 0.12em;
+    text-align: center;
+  }
+  .network-core small :global(p) { margin: 0; color: inherit; font: inherit; }
+  .network-node {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    border-radius: 0.75rem;
+    background: rgba(12, 22, 59, 0.82);
+    padding: 0.55rem 0.65rem;
+    color: #e5ebff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    font: var(--fuente-principal);
+  }
+  .network-node :global(.material-icons) {
+    color: #89a8ff;
+  }
+  .node-hosting {
+    left: 7%;
+    top: 20%;
+  }
+  .node-radio {
+    right: 4%;
+    top: 48%;
+  }
+  .node-tv {
+    left: 16%;
+    bottom: 12%;
+  }
+  .network-orbit {
+    position: absolute;
+    z-index: 2;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: #8cadff;
+    box-shadow: 0 0 16px #8cadff;
+  }
+  .orbit-one {
+    left: 38%;
+    top: 16%;
+    animation: about-orbit-one 7s ease-in-out infinite;
+  }
+  .orbit-two {
+    right: 19%;
+    bottom: 25%;
+    animation: about-orbit-two 9s ease-in-out infinite;
+  }
+  .orbit-three {
+    left: 24%;
+    bottom: 31%;
+    width: 0.38rem;
+    height: 0.38rem;
+    background: #77e9bd;
+    box-shadow: 0 0 16px #77e9bd;
+    animation: about-orbit-three 6s ease-in-out infinite;
+  }
+  .network-foot {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 1rem;
+  }
+  .network-foot div {
+    display: grid;
+    gap: 0.3rem;
+  }
+  .network-foot span {
+    color: #91a5d9;
+    font: var(--fuente-principal);
+    letter-spacing: 0.12em;
+    font-size: 12px;
+    font-weight: 700;
+
+  }
+  .network-foot strong {
+    color: #edf1ff;
+    font: var(--fuente-principal);
+    font-size: 14px;
+  }
+
+  .about-kicker-dark {
+    color: #91b2ff;
+  }
+  .about-metrics > div {
+    display: grid;
+    gap: 0.45rem;
+    background: #fff;
+    padding: 2rem 1.75rem;
+  }
+  .about-metrics strong {
+    color: #244da5;
+    font: var(--fuente-principal);
+    letter-spacing: -0.07em;
+  }
+  .about-metrics span {
+    color: #65718b;
+    font: var(--fuente-principal);
+  }
+  .about-blue-glow {
+    position: absolute;
+    top: 4rem;
+    right: 10%;
+    width: 25rem;
+    height: 25rem;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(97, 136, 255, 0.18),
+      transparent 68%
+    );
+    filter: blur(8px);
+  }
+  .about-pillar:first-child {
+    padding-left: 0;
+  }
+  .about-pillar:last-child {
+    padding-right: 0;
+  }
+  .service-section-noise {
+    position: absolute;
+    inset: 0;
+    opacity: 0.32;
+    background-image: radial-gradient(
+      rgba(149, 175, 255, 0.38) 0.8px,
+      transparent 0.8px
+    );
+    background-size: 1.6rem 1.6rem;
+    mask-image: linear-gradient(90deg, transparent, black 50%, transparent);
+  }
+  .about-service-card {
+    position: relative;
+    min-height: 18rem;
+    overflow: hidden;
+    border-radius: 1.35rem;
+    background: rgba(255, 255, 255, 0.045);
+    padding: 1.15rem;
+    transition:
+      transform 0.35s ease,
+      background 0.35s ease,
+      border-color 0.35s ease;
+  }
+  .about-service-card:hover {
+    transform: translateY(-7px);
+    background: rgba(96, 127, 255, 0.16);
+    border-color: rgba(161, 184, 255, 0.45);
+  }
+
+  .service-icon {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    border: 1px solid rgba(183, 200, 255, 0.38);
+    border-radius: 1rem;
+    color: #afc3ff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .service-index {
+    position: absolute;
+    right: 1.15rem;
+    top: 1.25rem;
+    color: #94b0ff;
+    font: var(--fuente-principal);
+    letter-spacing: 0.14em;
+  }
+
+  .about-service-card > p:last-child {
+    margin-top: 1rem;
+    color: #b7c4e7;
+    font: var(--fuente-principal);
+    font-size: 14px;
+  }
+  .about-principle {
+    position: relative;
+    min-height: 15rem;
+    overflow: hidden;
+    border-radius: 1.3rem;
+    background: #fff;
+    padding: 1.75rem;
+    box-shadow: 0 12px 35px rgba(40, 68, 140, 0.06);
+  }
+  .about-principle h3 {
+    margin-top: 3.5rem;
+    color: #1c2b55;
+    font: var(--fuente-principal);
+    font-size: 24px;
+  }
+  .about-principle p {
+    margin-top: 0.8rem;
+    color: #64708b;
+    font: var(--fuente-principal);
+  }
+  .principle-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 42%;
+    height: 3px;
+    background: linear-gradient(90deg, #3d70ed, #3d70ed);
+    transition: width 0.35s ease;
+  }
+  .about-principle:hover .principle-line {
+    width: 100%;
+  }
+  .about-cta {
+    position: relative;
+    isolation: isolate;
+  }
+  .about-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        circle at 20% 120%,
+        rgba(0, 15, 98, 0.28),
+        transparent 35%
+      ),
+      radial-gradient(
+        circle at 90% -10%,
+        rgba(176, 212, 255, 0.3),
+        transparent 27%
+      );
+    z-index: -1;
+  }
+  .cta-orbit {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 50%;
+  }
+  .cta-orbit-one {
+    width: 38rem;
+    height: 18rem;
+    left: -11rem;
+    bottom: -14rem;
+    transform: rotate(-21deg);
+  }
+  .cta-orbit-two {
+    width: 35rem;
+    height: 19rem;
+    right: -10rem;
+    top: -13rem;
+    transform: rotate(24deg);
+  }
+  @keyframes about-float {
+    to {
+      transform: translate3d(3rem, 2rem, 0) scale(1.1);
+    }
+  }
+  @keyframes about-spin {
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  @keyframes about-orbit-one {
+    50% {
+      transform: translate(5rem, 5.8rem);
+    }
+  }
+  @keyframes about-orbit-two {
+    50% {
+      transform: translate(-5rem, -5rem);
+    }
+  }
+  @keyframes about-orbit-three {
+    50% {
+      transform: translate(4rem, -4.5rem);
+    }
+  }
+  @media (max-width: 767px) {
+    .about-hero {
+      min-height: auto;
+    }
+    .network-stage {
+      height: 18rem;
+    }
+    .network-ring.ring-three {
+      width: 20rem;
+      height: 20rem;
+    }
+    .about-pillar:first-child,
+    .about-pillar:last-child {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .about-service-card {
+      min-height: 14rem;
+    }
+    .about-service-card h3 {
+      margin-top: 3rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .about-orb-a,
+    .about-orb-b,
+    .ring-three,
+    .orbit-one,
+    .orbit-two,
+    .orbit-three {
+      animation: none;
+    }
+    .about-primary-link,
+    .about-cta-link,
+    .about-service-card {
+      transition: none;
+    }
+  }
+</style>

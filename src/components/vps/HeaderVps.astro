@@ -1,0 +1,782 @@
+---
+import MaterialIcon from "../MaterialIcon.astro";
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+}
+
+const {
+  eyebrow = "VPS administrado",
+  title = "Potencia dedicada,\nsin la complejidad",
+  description = "Servidores VPS administrados con CyberPanel, LiteSpeed y almacenamiento NVMe para proyectos que necesitan velocidad, control y capacidad real de crecimiento.",
+} = Astro.props;
+
+const systemStats = [
+  {
+    icon: "memory",
+    label: "CPU aislada",
+    value: "Cores dedicados",
+    meter: "76%",
+  },
+  {
+    icon: "developer_board",
+    label: "Memoria",
+    value: "RAM garantizada",
+    meter: "62%",
+  },
+  {
+    icon: "database",
+    label: "Almacenamiento",
+    value: "NVMe de alto I/O",
+    meter: "88%",
+  },
+];
+---
+
+<header
+  class="vps-hero relative isolate overflow-hidden bg-[#071127] text-white"
+  aria-labelledby="vps-title"
+>
+  <div class="vps-hero-grid" aria-hidden="true"></div>
+  <div class="vps-hero-aurora vps-hero-aurora-one" aria-hidden="true"></div>
+  <div class="vps-hero-aurora vps-hero-aurora-two" aria-hidden="true"></div>
+  <div class="vps-orbit vps-orbit-one" aria-hidden="true"></div>
+  <div class="vps-orbit vps-orbit-two" aria-hidden="true"></div>
+
+  <div
+    class="relative mx-auto flex min-h-[47rem] w-[min(100%-2.5rem,120rem)] flex-col pb-10 pt-32 sm:min-h-[50rem] sm:pb-12 sm:pt-38 lg:w-[min(100%-4rem,120rem)] lg:pb-14 lg:pt-42"
+  >
+    <div
+      class="grid flex-1 items-center gap-14 lg:grid-cols-[.93fr_1.07fr] lg:gap-20"
+    >
+      <div data-reveal class="max-w-3xl">
+        <h5 class="vps-kicker"><span></span>{eyebrow}</h5>
+        <h2
+          id="vps-title"
+          class="mt-7 max-w-3xl whitespace-pre-line font-[var(--fuente-secundaria)] text-7xl text-[#d91c43]"
+        >
+          {title}<i class="not-italic text-[#73e9cf]">.</i>
+        </h2>
+        <p
+          class="mt-8 max-w-xl font-[var(--fuente-principal)] leading-relaxed text-[#b9c8ec]"
+        >
+          {description}
+        </p>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a class="vps-hero-primary" href="#precios-vps"
+            >Ver planes VPS <MaterialIcon name="arrow_forward" size={18} /></a
+          >
+          <a class="vps-hero-secondary" href="#recursos-vps"
+            >Conocer los recursos <MaterialIcon name="south" size={18} /></a
+          >
+        </div>
+      </div>
+
+      <div
+        data-reveal
+        class="vps-console relative mx-auto w-full max-w-[42rem]"
+        aria-label="Panel de recursos VPS"
+      >
+        <div class="console-light console-light-one" aria-hidden="true">
+        </div><div class="console-light console-light-two" aria-hidden="true">
+        </div>
+        <div class="console-topbar">
+          <div class="flex items-center gap-2">
+            <span class="console-live"></span><span>VPS / NODO ACTIVO</span>
+          </div><span class="console-location"
+            ><MaterialIcon name="public" size={14} /> USA</span>
+        </div>
+        <div class="console-stage">
+          <div class="console-radar" aria-hidden="true">
+            <i></i><i></i><i></i>
+          </div><div class="console-core">
+            <span class="core-mark"><MaterialIcon name="dns" size={32} /></span
+            ><strong>VPS</strong><small>ADMINISTRADO</small>
+          </div><span class="signal signal-a" aria-hidden="true"></span><span
+            class="signal signal-b"
+            aria-hidden="true"></span><span
+            class="signal signal-c"
+            aria-hidden="true"></span><div
+            class="console-route"
+            aria-hidden="true"
+          >
+          </div><div class="console-route" aria-hidden="true">
+          </div><div class="console-route" aria-hidden="true"></div>
+        </div>
+        <div class="console-stats">
+          {
+            systemStats.map((stat) => (
+              <article class="console-stat">
+                <>
+                  <MaterialIcon
+                    name={stat.icon}
+                    size={20}
+                    class="text-[#91aeff]"
+                  />
+                  <p>{stat.label}</p>
+                  <strong>{stat.value}</strong>
+                  <span class="stat-meter">
+                    <i style={`width:${stat.meter}`} />
+                  </span>
+                </>
+              </article>
+            ))
+          }
+        </div>
+        <div class="console-foot">
+          <span><b></b> Servicios operativos</span><span
+            >CyberPanel + LiteSpeed</span>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="recursos-vps"
+      data-reveal
+      class="vps-hero-notes mt-14 border-t border-white/12 pt-7 lg:mt-10 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] lg:gap-12"
+    >
+      <article>
+        <span>GESTIÓN DEL SERVIDOR</span><p>
+          CyberPanel y LiteSpeed simplifican la administración para que puedas
+          operar con rapidez y confianza.
+        </p>
+      </article>
+      <article>
+        <span>RECURSOS QUE NO SE COMPARTEN</span><p>
+          Discos NVMe, capacidad aislada y gestión especializada sostienen
+          aplicaciones, tiendas y sitios exigentes.
+        </p>
+      </article>
+      <div class="vps-note-status"><span></span> Listo para escalar</div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .vps-hero {
+    min-height: 47rem;
+  }
+  .vps-hero-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.33;
+    background-image:
+      linear-gradient(rgba(133, 160, 255, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(133, 160, 255, 0.12) 1px, transparent 1px);
+    background-size: 4.8rem 4.8rem;
+    mask-image: linear-gradient(115deg, black, transparent 78%);
+  }
+  .vps-hero-aurora {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(18px);
+  }
+  .vps-hero-aurora-one {
+    width: 45rem;
+    height: 45rem;
+    top: -27rem;
+    right: -10rem;
+    background: radial-gradient(
+      circle,
+      rgba(62, 104, 255, 0.42),
+      rgba(62, 104, 255, 0) 68%
+    );
+    animation: vps-aurora 15s ease-in-out infinite alternate;
+  }
+  .vps-hero-aurora-two {
+    width: 36rem;
+    height: 36rem;
+    bottom: -24rem;
+    left: 28%;
+    background: radial-gradient(
+      circle,
+      rgba(59, 203, 198, 0.18),
+      rgba(59, 203, 198, 0) 69%
+    );
+    animation: vps-aurora 12s ease-in-out -4s infinite alternate-reverse;
+  }
+  .vps-orbit {
+    position: absolute;
+    border: 1px solid rgba(124, 151, 255, 0.16);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .vps-orbit-one {
+    width: 66rem;
+    height: 31rem;
+    right: -18rem;
+    top: 11rem;
+    transform: rotate(-22deg);
+  }
+  .vps-orbit-two {
+    width: 46rem;
+    height: 19rem;
+    right: 4rem;
+    top: 20rem;
+    border-color: rgba(119, 232, 207, 0.12);
+    transform: rotate(29deg);
+  }
+  .vps-kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: #9cb5ff;
+    font: 700 0.72rem/1 var(--fuente-principal);
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+  }
+  .vps-kicker span {
+    width: 0.48rem;
+    height: 0.48rem;
+    border-radius: 50%;
+    background: #73e9cf;
+    box-shadow:
+      0 0 0 5px rgba(115, 233, 207, 0.1),
+      0 0 17px #73e9cf;
+  }
+  .vps-hero-primary,
+  .vps-hero-secondary {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    border-radius: 999px;
+    padding: 0.72rem 1.15rem;
+    font: 700 0.9rem/1 var(--fuente-principal);
+    text-decoration: none;
+    transition:
+      transform 0.25s ease,
+      background 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+  .vps-hero-primary {
+    background: #f5f8ff;
+    color: #14285d;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  }
+  .vps-hero-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 17px 38px rgba(0, 0, 0, 0.3);
+  }
+  .vps-hero-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.04);
+    color: #dce5ff;
+  }
+  .vps-hero-secondary:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .vps-console {
+    overflow: hidden;
+    border: 1px solid rgba(151, 177, 255, 0.29);
+    border-radius: 1.55rem;
+    background: linear-gradient(
+      145deg,
+      rgba(31, 48, 104, 0.73),
+      rgba(8, 18, 47, 0.86)
+    );
+    padding: 1rem;
+    box-shadow:
+      inset 0 1px rgba(255, 255, 255, 0.14),
+      0 28px 70px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(15px);
+  }
+  .console-light {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(20px);
+    pointer-events: none;
+  }
+  .console-light-one {
+    width: 15rem;
+    height: 15rem;
+    top: -9rem;
+    right: 12%;
+    background: rgba(103, 138, 255, 0.31);
+  }
+  .console-light-two {
+    width: 12rem;
+    height: 12rem;
+    bottom: 1rem;
+    left: 12%;
+    background: rgba(69, 211, 190, 0.13);
+  }
+  .console-topbar,
+  .console-foot {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: #c5d4fb;
+    font: 700 0.62rem/1 var(--fuente-principal);
+    letter-spacing: 0.12em;
+  }
+  .console-topbar {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.35rem 0.35rem 1rem;
+  }
+  .console-live {
+    width: 0.43rem;
+    height: 0.43rem;
+    border-radius: 50%;
+    background: #73e9cf;
+    box-shadow:
+      0 0 0 5px rgba(115, 233, 207, 0.1),
+      0 0 14px #73e9cf;
+  }
+  .console-location {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #9eb6ff;
+    letter-spacing: 0.08em;
+  }
+  .console-stage {
+    position: relative;
+    height: 19rem;
+    overflow: hidden;
+  }
+  .console-radar {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: 16.5rem;
+    height: 16.5rem;
+    border: 1px dashed rgba(143, 170, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: vps-spin 24s linear infinite;
+  }
+  .console-radar i {
+    position: absolute;
+    inset: 15%;
+    border: 1px solid rgba(143, 170, 255, 0.24);
+    border-radius: 50%;
+  }
+  .console-radar i:nth-child(2) {
+    inset: 30%;
+  }
+  .console-radar i:nth-child(3) {
+    inset: 45%;
+    border-color: rgba(115, 233, 207, 0.45);
+  }
+  .console-core {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    width: 7rem;
+    height: 7rem;
+    place-items: center;
+    border: 1px solid rgba(202, 216, 255, 0.65);
+    border-radius: 1.7rem;
+    background: linear-gradient(145deg, #4b75e7, #203f9a);
+    box-shadow:
+      0 0 0 12px rgba(102, 141, 255, 0.08),
+      0 0 55px rgba(93, 132, 255, 0.47);
+    transform: translate(-50%, -50%) rotate(-8deg);
+  }
+  .core-mark {
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    place-items: center;
+    border-radius: 0.7rem;
+    background: rgba(255, 255, 255, 0.14);
+    color: #dce6ff;
+  }
+  .console-core strong {
+    margin-top: -0.4rem;
+    font: 800 1.2rem/0.8 var(--fuente-principal);
+    letter-spacing: 0.06em;
+  }
+  .console-core small {
+    margin-top: -0.7rem;
+    color: #c5d4ff;
+    font: 700 0.47rem/1 var(--fuente-principal);
+    letter-spacing: 0.11em;
+  }
+  .signal {
+    position: absolute;
+    z-index: 4;
+    width: 0.52rem;
+    height: 0.52rem;
+    border-radius: 50%;
+    background: #8eadff;
+    box-shadow: 0 0 16px #8eadff;
+  }
+  .signal-a {
+    left: 21%;
+    top: 26%;
+    animation: vps-pulse 5s ease-in-out infinite;
+  }
+  .signal-b {
+    right: 18%;
+    top: 51%;
+    background: #73e9cf;
+    box-shadow: 0 0 16px #73e9cf;
+    animation: vps-pulse 6s ease-in-out -2s infinite;
+  }
+  .signal-c {
+    bottom: 17%;
+    left: 35%;
+    width: 0.35rem;
+    height: 0.35rem;
+    animation: vps-pulse 4.5s ease-in-out -1s infinite;
+  }
+  .console-route {
+    position: absolute;
+    z-index: 1;
+    width: 36%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(140, 170, 255, 0.8),
+      transparent
+    );
+    transform-origin: left;
+  }
+  .route-one {
+    top: 35%;
+    left: 16%;
+    transform: rotate(22deg);
+  }
+  .route-two {
+    top: 53%;
+    right: 13%;
+    transform: rotate(-12deg);
+  }
+  .route-three {
+    bottom: 28%;
+    left: 23%;
+    width: 42%;
+    transform: rotate(-32deg);
+  }
+  .console-stats {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.55rem;
+  }
+  .console-stat {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.9rem;
+    background: rgba(5, 14, 41, 0.45);
+    padding: 0.75rem;
+  }
+  .console-stat p {
+    margin-top: 0.8rem;
+    color: #aabadd;
+    font: 600 0.65rem/1.2 var(--fuente-principal);
+  }
+  .console-stat strong {
+    display: block;
+    margin-top: 0.35rem;
+    color: #f4f7ff;
+    font: 600 0.73rem/1.2 var(--fuente-principal);
+  }
+  .stat-meter {
+    display: block;
+    height: 0.2rem;
+    margin-top: 0.8rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(177, 196, 255, 0.16);
+  }
+  .stat-meter i {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #7196ff, #7ce7d2);
+    animation: vps-meter 2.4s ease-out both;
+  }
+  .console-foot {
+    margin-top: 0.75rem;
+    padding: 0.6rem 0.35rem 0.1rem;
+    color: #a9b9dd;
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+  }
+  .console-foot span:first-child {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .console-foot b,
+  .vps-note-status span {
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 50%;
+    background: #73e9cf;
+    box-shadow: 0 0 12px #73e9cf;
+  }
+  .vps-hero-notes article {
+    max-width: 28rem;
+  }
+  .vps-hero-notes article + article {
+    margin-top: 1.6rem;
+  }
+  .vps-hero-notes article span {
+    color: #8eabff;
+    font: 700 0.62rem/1 var(--fuente-principal);
+    letter-spacing: 0.12em;
+  }
+  .vps-hero-notes article p {
+    margin-top: 0.75rem;
+    color: #c1cdec;
+    font: 400 0.93rem/1.55 var(--fuente-principal);
+  }
+  .vps-note-status {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.55rem;
+    margin-top: 1.5rem;
+    color: #e1e9ff;
+    font: 600 0.82rem/1 var(--fuente-principal);
+  }
+  @keyframes vps-aurora {
+    to {
+      transform: translate3d(-2.5rem, 2rem, 0) scale(1.12);
+    }
+  }
+  @keyframes vps-spin {
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  @keyframes vps-pulse {
+    50% {
+      transform: scale(1.8);
+      opacity: 0.62;
+    }
+  }
+  @keyframes vps-meter {
+    from {
+      width: 0;
+    }
+  }
+  @media (min-width: 1024px) {
+    .vps-hero-notes article + article {
+      margin-top: 0;
+    }
+    .vps-note-status {
+      justify-content: flex-end;
+      margin-top: 0;
+      align-self: center;
+    }
+  }
+  @media (max-width: 639px) {
+    .vps-console {
+      padding: 0.7rem;
+    }
+    .console-stage {
+      height: 16rem;
+    }
+    .console-radar {
+      width: 13rem;
+      height: 13rem;
+    }
+    .console-core {
+      width: 6rem;
+      height: 6rem;
+    }
+    .console-stat {
+      padding: 0.6rem;
+    }
+    .console-stat strong {
+      font-size: 0.63rem;
+    }
+    .console-foot {
+      font-size: 0.52rem;
+    }
+    .vps-hero-secondary {
+      display: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .vps-hero-aurora-one,
+    .vps-hero-aurora-two,
+    .console-radar,
+    .signal,
+    .stat-meter i {
+      animation: none;
+    }
+    .vps-hero-primary,
+    .vps-hero-secondary {
+      transition: none;
+    }
+  }
+  /* Tema claro VPS: el rojo comunica energía y el panel permanece legible. */
+  .vps-hero {
+    background: #fff1f3;
+    color: #211d20;
+  }
+  .vps-hero-grid {
+    opacity: 0.52;
+    background-image:
+      linear-gradient(rgb(229 27 70 / 9%) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(229 27 70 / 9%) 1px, transparent 1px);
+  }
+  .vps-hero-aurora-one {
+    background: radial-gradient(
+      circle,
+      rgba(255, 84, 120, 0.23),
+      rgba(255, 84, 120, 0) 68%
+    );
+  }
+  .vps-hero-aurora-two {
+    background: radial-gradient(
+      circle,
+      rgba(229, 27, 70, 0.14),
+      rgba(229, 27, 70, 0) 69%
+    );
+  }
+  .vps-orbit {
+    border-color: rgb(229 27 70 / 17%);
+  }
+  .vps-orbit-two {
+    border-color: rgb(28 167 134 / 16%);
+  }
+  .vps-kicker {
+    color: #d91c43;
+  }
+  .vps-kicker span,
+  .console-live,
+  .console-foot b,
+  .vps-note-status span {
+    background: #e51b46;
+    box-shadow: 0 0 15px rgb(229 27 70 / 45%);
+  }
+  .vps-hero h1 {
+    color: #e51b46;
+  }
+  .vps-hero h1 i {
+    color: #16a97e;
+  }
+  .vps-hero > div > div > div > p:not(.vps-kicker) {
+    color: #554047;
+  }
+  .vps-hero-primary {
+    background: #e51b46;
+    color: #fff;
+    box-shadow: 0 14px 28px rgb(229 27 70 / 22%);
+  }
+  .vps-hero-secondary {
+    border-color: rgb(81 49 59 / 20%);
+    background: rgb(255 255 255 / 55%);
+    color: #482f37;
+  }
+  .vps-hero-secondary:hover {
+    background: #fff;
+  }
+  .vps-console {
+    border-color: rgb(229 27 70 / 20%);
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(255, 244, 246, 0.88)
+    );
+    box-shadow:
+      inset 0 1px #fff,
+      0 28px 70px rgb(125 27 49 / 15%);
+  }
+  .console-light-one {
+    background: rgba(255, 105, 135, 0.18);
+  }
+  .console-light-two {
+    background: rgba(255, 188, 199, 0.3);
+  }
+  .console-topbar,
+  .console-foot {
+    color: #725761;
+    border-color: rgb(97 53 64 / 14%);
+  }
+  .console-location {
+    color: #d91c43;
+  }
+  .console-stage {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 249, 250, 0.36),
+      rgba(255, 222, 229, 0.42)
+    );
+  }
+  .console-radar {
+    border-color: rgb(229 27 70 / 27%);
+  }
+  .console-radar i {
+    border-color: rgb(229 27 70 / 18%);
+  }
+  .console-radar i:nth-child(3) {
+    border-color: rgb(22 169 126 / 45%);
+  }
+  .console-core {
+    border-color: rgb(255 255 255 / 82%);
+    background: linear-gradient(145deg, #ff5879, #d70d3c);
+    box-shadow:
+      0 0 0 12px rgb(229 27 70 / 8%),
+      0 0 55px rgb(229 27 70 / 27%);
+    color: white;
+  }
+  .core-mark {
+    color: #fff;
+    background: rgb(255 255 255 / 18%);
+  }
+  .console-core small {
+    color: #ffe8ed;
+  }
+  .signal {
+    background: #ef4165;
+    box-shadow: 0 0 16px #ef4165;
+  }
+  .signal-b {
+    background: #16a97e;
+    box-shadow: 0 0 16px #16a97e;
+  }
+  .console-route {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(229, 27, 70, 0.62),
+      transparent
+    );
+  }
+  .console-stat {
+    border-color: rgb(229 27 70 / 12%);
+    background: rgb(255 255 255 / 65%);
+  }
+  .console-stat p {
+    color: #8b6d76;
+  }
+  .console-stat strong {
+    color: #3c2930;
+  }
+  .stat-meter {
+    background: rgb(229 27 70 / 12%);
+  }
+  .stat-meter i {
+    background: linear-gradient(90deg, #e51b46, #ff849d);
+  }
+  .vps-hero-notes {
+    border-color: rgb(62 39 45 / 18%);
+  }
+  .vps-hero-notes article span {
+    color: #d91c43;
+  }
+  .vps-hero-notes article p {
+    color: #513c43;
+  }
+  .vps-note-status {
+    color: #3a2930;
+  }
+</style>

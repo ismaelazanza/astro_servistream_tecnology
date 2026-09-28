@@ -1,0 +1,211 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+export interface HostingTestimonial {
+  tag: string;
+  quote: string;
+  name: string;
+  role: string;
+  initials: string;
+}
+
+interface Props {
+  testimonials?: HostingTestimonial[];
+  image?: string;
+  imageAlt?: string;
+  interval?: number;
+}
+
+const defaultTestimonials: HostingTestimonial[] = [
+  {
+    tag: 'Rendimiento confiable',
+    quote: 'Desde que migramos, nuestro sitio carga mucho más rápido y se mantiene estable incluso cuando recibimos más visitas.',
+    name: 'María P.',
+    role: 'Cliente de Hosting Premium',
+    initials: 'MP',
+  },
+  {
+    tag: 'Soporte cercano',
+    quote: 'La migración fue ordenada y sin interrupciones. El equipo respondió cada consulta con claridad y rapidez.',
+    name: 'Carlos R.',
+    role: 'Cliente de Hosting Pro',
+    initials: 'CR',
+  },
+  {
+    tag: 'Seguridad permanente',
+    quote: 'Tener respaldos diarios y protección administrada nos permite concentrarnos en el negocio con mucha más tranquilidad.',
+    name: 'Andrea G.',
+    role: 'Cliente de Hosting Empresa',
+    initials: 'AG',
+  },
+];
+
+const {
+  testimonials = defaultTestimonials,
+  image = '/img/web-hosting/equipo-hosting.avif',
+  imageAlt = 'Equipo técnico revisando el rendimiento de una infraestructura de hosting',
+  interval = 7000,
+} = Astro.props;
+---
+
+<section
+  class="grid overflow-hidden bg-white lg:grid-cols-2"
+  aria-label="Opiniones de clientes de web hosting"
+  data-hosting-testimonials
+  data-testimonial-count={testimonials.length}
+  data-interval={interval}
+>
+  <div class="flex min-h-160 flex-col px-5 py-14 sm:min-h-176 sm:px-10 sm:py-18 lg:min-h-200 lg:px-[clamp(3rem,7vw,8rem)] lg:py-[clamp(4rem,7vw,7rem)]">
+    <div class="testimonial-viewport" data-testimonial-viewport>
+      <div class="testimonial-track" data-testimonial-track>
+        {testimonials.map((testimonial, index) => (
+          <article
+            class="testimonial-slide"
+            aria-hidden={index === 0 ? 'false' : 'true'}
+            data-testimonial-slide
+          >
+            <span class="self-start rounded-full bg-[#f0f1f0] px-4 py-2 font-[var(--fuente-principal)] text-xs font-semibold text-[#252625]">
+              {testimonial.tag}
+            </span>
+
+            <blockquote class="mt-10 max-w-3xl font-[var(--fuente-secundaria)] text-[clamp(2.25rem,4.2vw,2.8rem)] leading-[1.02] font-normal text-[#161716]">
+              “{testimonial.quote}”
+            </blockquote>
+
+            <footer class="mt-10 flex items-center gap-4">
+              <span class="grid size-14 shrink-0 place-items-center rounded-full bg-[#171817] font-[var(--fuente-principal)] text-sm font-semibold text-white" aria-hidden="true">
+                {testimonial.initials}
+              </span>
+              <div>
+                <p class="font-[var(--fuente-principal)] text-base font-semibold text-[#171817]">{testimonial.name}</p>
+                <p class="mt-1 font-[var(--fuente-principal)] text-sm text-[#626462]">{testimonial.role}</p>
+              </div>
+            </footer>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-10 flex items-center justify-between gap-6">
+      <div class="flex rounded-full bg-[#f2f3f2] p-1">
+        <button class="testimonial-control" type="button" aria-label="Opinión anterior" data-testimonial-prev>
+          <MaterialIcon name="arrow_back" size={22} />
+        </button>
+        <button class="testimonial-control" type="button" aria-label="Siguiente opinión" data-testimonial-next>
+          <MaterialIcon name="arrow_forward" size={22} />
+        </button>
+      </div>
+
+      <p class="flex items-center gap-3 font-[var(--fuente-principal)] text-sm font-semibold text-[#222]" aria-live="polite">
+        <span data-testimonial-current>1</span>
+        <span class="h-px w-12 bg-[#777]" aria-hidden="true"></span>
+        <span>{testimonials.length}</span>
+      </p>
+    </div>
+  </div>
+
+  <figure class="min-h-120 lg:min-h-200">
+    <img class="size-full object-cover object-center" src={image} alt={imageAlt} loading="lazy" />
+  </figure>
+</section>
+
+<script>
+  const initHostingTestimonials = () => {
+    document.querySelectorAll('[data-hosting-testimonials]').forEach((section) => {
+      if (!(section instanceof HTMLElement) || section.dataset.ready) return;
+      section.dataset.ready = 'true';
+
+      const track = section.querySelector('[data-testimonial-track]');
+      const slides = [...section.querySelectorAll('[data-testimonial-slide]')];
+      const current = section.querySelector('[data-testimonial-current]');
+      const previous = section.querySelector('[data-testimonial-prev]');
+      const next = section.querySelector('[data-testimonial-next]');
+      const total = Number(section.dataset.testimonialCount ?? slides.length);
+      const interval = Number(section.dataset.interval ?? 7000);
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let index = 0;
+      let timer;
+
+      const show = (nextIndex) => {
+        index = (nextIndex + total) % total;
+        if (track instanceof HTMLElement) track.style.transform = `translate3d(-${index * 100}%, 0, 0)`;
+        if (current) current.textContent = String(index + 1);
+        slides.forEach((slide, slideIndex) => slide.setAttribute('aria-hidden', String(slideIndex !== index)));
+      };
+
+      const stop = () => window.clearInterval(timer);
+      const start = () => {
+        stop();
+        if (!reducedMotion && total > 1) timer = window.setInterval(() => show(index + 1), interval);
+      };
+
+      previous?.addEventListener('click', () => { show(index - 1); start(); });
+      next?.addEventListener('click', () => { show(index + 1); start(); });
+      section.addEventListener('mouseenter', stop);
+      section.addEventListener('mouseleave', start);
+      section.addEventListener('focusin', stop);
+      section.addEventListener('focusout', (event) => {
+        if (event.relatedTarget instanceof Node && section.contains(event.relatedTarget)) return;
+        start();
+      });
+
+      show(0);
+      start();
+    });
+  };
+
+  document.addEventListener('astro:page-load', initHostingTestimonials);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initHostingTestimonials, { once: true });
+  else initHostingTestimonials();
+</script>
+
+<style>
+  .testimonial-viewport {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .testimonial-track {
+    display: flex;
+    height: 100%;
+    transition: transform 650ms cubic-bezier(.22, 1, .36, 1);
+    will-change: transform;
+  }
+
+  .testimonial-slide {
+    display: flex;
+    width: 100%;
+    min-width: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .testimonial-control {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #171817;
+    cursor: pointer;
+    transition: background 180ms ease, color 180ms ease;
+  }
+
+  .testimonial-control:hover {
+    background: #171817;
+    color: #fff;
+  }
+
+  .testimonial-control:focus-visible {
+    outline: 2px solid #00a77e;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .testimonial-track {
+      transition: none;
+    }
+  }
+</style>

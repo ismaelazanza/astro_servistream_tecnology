@@ -1,0 +1,43 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const plans = [
+  { name: 'Plan Centova 128', monthly: '$10', href: 'https://clientes.servistream.net/index.php?rp=/store/streaming-radio-centovacast/plan-centova-128', features: ['260 oyentes simultáneos', 'Hasta 128 KBPS', 'Transferencia ilimitada', 'Compatible con SSL', 'AutoDJ ilimitado', 'Soporte para móviles', 'Reproductor HTML5', 'Shoutcast / Icecast', 'Panel CentovaCast', 'App Android (aplican restricciones)'] },
+  { name: 'Plan Centova 256', monthly: '$15', href: 'https://clientes.servistream.net/index.php?rp=/store/streaming-radio-centovacast/plan-centova-256', features: ['400 oyentes simultáneos', 'Hasta 256 KBPS', 'Transferencia ilimitada', 'Compatible con SSL', 'AutoDJ ilimitado', 'Soporte para móviles', 'Reproductor HTML5', 'Shoutcast / Icecast', 'Panel CentovaCast', 'App Android (aplican restricciones)'], popular: true },
+  { name: 'Plan Centova 320', monthly: '$20', href: 'https://clientes.servistream.net/index.php?rp=/store/streaming-radio-centovacast/plan-centova-320', features: ['999 oyentes simultáneos', 'Hasta 320 KBPS', 'Transferencia ilimitada', 'Compatible con SSL', 'AutoDJ ilimitado', 'Soporte para móviles', 'Reproductor HTML5', 'Shoutcast / Icecast', 'Panel CentovaCast', 'App Android (aplican restricciones)'] },
+  { name: 'Plan Centova Ilimitado', monthly: '$25', href: 'https://clientes.servistream.net/index.php?rp=/store/streaming-radio-centovacast/plan-centova-ilimitado', features: ['Oyentes ilimitados', 'Hasta 320 KBPS', 'Transferencia ilimitada', 'Compatible con SSL', 'AutoDJ ilimitado', 'Soporte para móviles', 'Reproductor HTML5', 'Shoutcast / Icecast', 'Panel CentovaCast', 'App Android (aplican restricciones)'], featured: true },
+];
+---
+
+<main class="relative overflow-hidden bg-[#03040d] text-white" aria-labelledby="centova-title">
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-[46rem] bg-[radial-gradient(ellipse_at_50%_20%,rgba(27,91,231,.48),transparent_45%),radial-gradient(ellipse_at_25%_18%,rgba(27,54,180,.36),transparent_34%),linear-gradient(180deg,#050516_0%,#03040d_86%)]"></div>
+  <svg class="pointer-events-none absolute left-0 top-[14rem] h-[52rem] w-full opacity-90" viewBox="0 0 1800 800" preserveAspectRatio="none" aria-hidden="true">
+    <defs><linearGradient id="centova-beam" x1="0" x2="1"><stop stop-color="#263fff" stop-opacity="0"/><stop offset=".12" stop-color="#4d9dff" stop-opacity=".65"/><stop offset=".55" stop-color="#436dff" stop-opacity=".9"/><stop offset="1" stop-color="#6ca6ff" stop-opacity=".12"/></linearGradient><filter id="centova-glow"><feGaussianBlur stdDeviation="3" /></filter></defs>
+    <g fill="none" stroke="url(#centova-beam)" stroke-linecap="round">
+      <path d="M-120 230 C190 280 325 425 640 435 S1200 380 1920 610" stroke-width="1.5" filter="url(#centova-glow)" /><path d="M-120 230 C190 280 325 425 640 435 S1200 380 1920 610" stroke-width="1.2" />
+      <path d="M-80 260 C220 310 380 455 700 470 S1260 420 1900 650" stroke-width="1.2" /><path d="M-90 294 C210 340 410 495 750 505 S1290 465 1920 682" stroke-width="1" />
+      <path d="M-70 328 C245 382 454 530 790 540 S1305 515 1880 720" stroke-width="1.2" filter="url(#centova-glow)" /><path d="M-70 328 C245 382 454 530 790 540 S1305 515 1880 720" stroke-width=".9" />
+      <path d="M-90 370 C220 418 480 570 840 585 S1345 565 1920 760" stroke-width=".85" /><path d="M-70 410 C235 462 495 615 875 630 S1370 610 1920 790" stroke-width=".8" />
+    </g>
+  </svg>
+  <section class="relative mx-auto container py-20 sm:py-28">
+    <header class="mx-auto max-w-5xl text-center">
+      <h5 class="mt-20 text-[#91b1ff]">RADIO STREAMING CENTOVACAST</h5>
+      <h1 id="centova-title" class="mt-6 text-[clamp(2rem,4vw,6.6rem)] leading-[.92] text-[var(--h-blanco)]">Tu radio en internet,<br />siempre al aire</h1>
+      <p class="mx-auto mt-7 max-w-3xl font-[var(--fuente-principal)] leading-relaxed text-[#c4c5d5]">Una plataforma completa con CentovaCast para transmitir, automatizar y ofrecer una experiencia de audio insuperable a tus oyentes.</p>
+    </header>
+
+    <div class="relative mt-24 grid gap-6 md:grid-cols-2 xl:grid-cols-4 xl:items-stretch">
+      {plans.map((plan) => <article class:list={['relative flex min-h-full flex-col rounded-3xl border border-white/10 p-6 font-[var(--fuente-principal)] backdrop-blur-[3px]', plan.featured ? 'bg-[linear-gradient(145deg,rgba(31,81,147,.48),rgba(18,16,41,.22))]' : 'bg-white/[.025]']}>
+        {plan.popular && <span class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-[#3b82f6] px-4 py-1 text-xs font-bold text-white">MÁS ELEGIDO</span>}
+        {plan.featured && <span class="inline-flex self-start rounded-lg bg-[#66a2ff]/20 px-3 py-1.5 text-[14px] text-white">Profesional</span>}
+        <p class="text-[14px] text-[#deddea]">{plan.name}</p>
+        <p class="mt-7 text-[clamp(3rem,2vw,5rem)] leading-none text-white">{plan.monthly}<span class="ml-2 text-base tracking-normal text-[#b4b3c4]">/mes</span></p>
+        <a href={plan.href} class:list={['mt-10 flex min-h-10 items-center justify-center rounded-full border font-semibold text-white no-underline transition hover:-translate-y-0.5', plan.featured ? 'border-[#4f8fff] bg-[#2768df] hover:bg-[#1e59c4]' : 'border-white/20 bg-white/10 hover:bg-white/15']}>Elegir este plan</a>
+        <div class="my-10 border-t border-white/10"></div>
+        <p class="text-[12px] font-semibold text-white">Características incluidas:</p>
+        <ul class="mt-6 grid gap-0 text-[14px] font-light text-[#c1c0d0]">{plan.features.map((feature) => <li class="flex gap-3"><MaterialIcon name="check" size={19} class="shrink-0 text-[#75a8ff]" />{feature}</li>)}</ul>
+      </article>)}
+    </div>
+  </section>
+</main>

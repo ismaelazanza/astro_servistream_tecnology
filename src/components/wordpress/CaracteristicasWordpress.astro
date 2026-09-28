@@ -1,0 +1,81 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const features = [
+  {
+    icon: 'track_changes',
+    title: 'Rendimiento',
+    description: 'Optimización de caché, PHP, LiteSpeed y recursos VPS para mantener WordPress rápido y estable.',
+  },
+  {
+    icon: 'cloud',
+    title: 'Cloudflare',
+    description: 'Integramos CDN, DNS, cache de borde y protección para mejorar tiempos de carga y seguridad.',
+  },
+  {
+    icon: 'language',
+    title: 'Alcance global',
+    description: 'Entrega contenido desde la red de Cloudflare para visitantes en Ecuador, USA y otros mercados.',
+  },
+  {
+    icon: 'bar_chart',
+    title: 'NVMe',
+    description: 'Discos SSD NVMe para reducir esperas en consultas, panel de WordPress y carga de contenido.',
+  },
+  {
+    icon: 'shield',
+    title: 'Protección',
+    description: 'Configuración administrada para reducir riesgos, endurecer accesos y mantener el sitio actualizado.',
+  },
+  {
+    icon: 'monitoring',
+    title: 'Monitoreo',
+    description: 'Seguimiento del rendimiento del servidor para anticipar problemas y sostener una experiencia fluida.',
+  },
+];
+---
+
+<section class="bg-[#f4f6f7] px-5 py-10 sm:px-8 lg:px-12 lg:py-10" aria-labelledby="wordpress-features-title">
+  <div class="container mx-auto grid gap-5 xl:grid-cols-[22rem_1fr]">
+    <aside class="flex min-h-[24rem] flex-col rounded-[1.5rem] bg-[#5614ff] px-7 py-6 text-white lg:min-h-[26rem]">
+      <h5 class="text-left text-[var(--h-blanco)]">Cómo trabajamos</h5>
+      <h2 id="wordpress-features-title" class="mt-4 text-white">
+        WordPress
+        <span class="block text-[#62eff3]">Rápido.</span>
+      </h2>
+      <p class="mt-4 font-[var(--fuente-principal)] text-[clamp(.95rem,1vw,1.05rem)] leading-[1.42] text-white">
+        Reducimos la carga técnica de tu WordPress con infraestructura administrada, rendimiento garantizado y soporte especializado.
+      </p>
+
+      <div class="mt-auto pt-5">
+        <div class="mb-3 flex items-center justify-between gap-4">
+          <p class="font-[var(--fuente-principal)] text-sm font-black text-white">Uptime garantizado</p>
+          <span class="rounded-full bg-[#151519] px-3 py-1.5 font-[var(--fuente-principal)] text-xs font-black text-white">99.9%</span>
+        </div>
+        <div class="h-1 overflow-hidden rounded-full bg-white/35">
+          <span class="block h-full w-[99%] rounded-full bg-white"></span>
+        </div>
+        <strong class="mt-5 block font-[var(--fuente-principal)] text-[clamp(2.45rem,3vw,3.4rem)] leading-none font-black tracking-[-.04em] text-white">
+          99.9%
+        </strong>
+        <p class="mt-2 font-[var(--fuente-principal)] text-sm font-black text-white">rendimiento optimizado</p>
+      </div>
+    </aside>
+
+    <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {features.map((feature) => (
+        <article class="min-h-[13rem] rounded-[1.5rem] bg-white px-6 py-6 lg:px-7">
+          <span class="grid size-12 place-items-center rounded-[.9rem] bg-[#f4f6f7] text-[#5614ff]">
+            <MaterialIcon name={feature.icon} size={25} />
+          </span>
+          <h3 class="mt-4 font-[var(--fuente-principal)] text-[clamp(1.18rem,1.25vw,1.35rem)] leading-tight font-black text-[#26333d]">
+            {feature.title}
+          </h3>
+          <p class="mt-2 font-[var(--fuente-principal)] text-[clamp(.9rem,.96vw,.98rem)] leading-[1.35] text-[#52616b]">
+            {feature.description}
+          </p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

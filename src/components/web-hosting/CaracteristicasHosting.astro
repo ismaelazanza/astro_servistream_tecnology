@@ -1,0 +1,94 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+export interface HostingFeature {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  features?: HostingFeature[];
+}
+
+const defaultFeatures: HostingFeature[] = [
+  {
+    title: 'cPanel con CloudLinux',
+    description: '¡Hasta 4 GB de RAM por cuenta de cPanel con CloudLinux, lo que le permite ejecutar versiones de PHP desde PHP 5.2 hasta 8.0!',
+    icon: 'developer_board',
+  },
+  {
+    title: 'JetBackup incluido',
+    description: 'Explore, restaure y descargue copias de seguridad utilizando la herramienta JetBackup directamente en su panel de control de cPanel.',
+    icon: 'folder_copy',
+  },
+  {
+    title: 'SSL gratuitos ilimitados',
+    description: 'Certificados SSL para cada dominio y subdominio que agregues a tu panel de control.',
+    icon: 'lock',
+  },
+  {
+    title: 'Autoinstalador de WordPress',
+    description: 'Instale y administre WordPress y más de 300 aplicaciones directamente en cPanel, usando Softaculous.',
+    icon: 'app_registration',
+  },
+  {
+    title: 'Servidores NVMe ultrarrápidos',
+    description: 'Ejecutamos los mejores y más recientes servidores en la nube, con discos NVMe de alto rendimiento. Como trabajamos 100% en la nube, podemos actualizar su sitio al hardware más reciente sin interrupciones.',
+    icon: 'dns',
+  },
+  {
+    title: 'Recursos ilimitados',
+    description: 'Nuestros sistemas son infinitamente escalables: puede seguir actualizándose a medida que necesite más recursos e incluso podemos ayudarlo a medida que crece hacia servidores dedicados.',
+    icon: 'monitoring',
+  },
+];
+
+const {
+  eyebrow = 'Tecnología incluida',
+  title = 'Soluciones para cada necesidad',
+  description = 'Herramientas profesionales, seguridad y rendimiento integrados en todos nuestros planes de hosting.',
+  features = defaultFeatures,
+} = Astro.props;
+---
+
+<section class="bg-[#ffffff] pb-40" aria-labelledby="hosting-features-title">
+  <div class="px-5 pb-16 pt-20 sm:px-8 sm:pb-20 sm:pt-28 lg:px-16 lg:pb-24 lg:pt-32">
+    <div class="mx-auto w-full">
+      <p class="mb-6 font-[var(--fuente-principal)] text-xs font-medium tracking-[.2em] uppercase text-center">{eyebrow}</p>
+      <h2 id="hosting-features-title" class="tracking-[-.06em] text-center text-[var(--h-negro)]">
+        {title}<span class="text-[#00b285]">.</span>
+      </h2>
+      <p class="mt-10 text-center font-[var(--fuente-principal)] text-base leading-relaxed sm:text-lg">{description}</p>
+    </div>
+  </div>
+
+  <div class="grid border-t border-[#838383]/20 sm:grid-cols-2 lg:grid-cols-3">
+    {features.map((feature, index) => (
+      <article
+        class:list={[
+          'group relative flex min-h-56 flex-col border-b border-[#838383]/20 px-7 py-7 transition-colors duration-300 hover:bg-[#f5f5f5] sm:min-h-50 sm:px-9 sm:py-8 lg:min-h-50 lg:px-10',
+          { 'sm:border-l': index % 2 !== 0 },
+          { 'lg:border-l': index % 3 !== 0 },
+          { 'lg:border-l-0': index % 3 === 0 },
+        ]}
+      >
+        <MaterialIcon
+          name={feature.icon}
+          size={0}
+          class=" transition-all duration-300 group-hover:-translate-y-1 group-hover:text-[#00b285]"
+        />
+
+        <div class="mt-auto max-w-md">
+          <div class="mb-3 flex items-start justify-between gap-5">
+            <h3 class="font-[var(--fuente-principal)] text-[clamp(1.15rem,1.35vw,1.5rem)] font-semibold leading-tight">{feature.title}</h3>
+          </div>
+          <p class="font-[var(--fuente-principal)] text-sm leading-relaxed text-[#20283a]/75 sm:text-[.95rem]">{feature.description}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,30 @@
+---
+interface Props {
+  name: string;
+  size?: number | string;
+  class?: string;
+  title?: string;
+  'aria-hidden'?: boolean | 'true' | 'false';
+}
+
+const {
+  name,
+  size = 24,
+  class: className,
+  title,
+  'aria-hidden': ariaHidden = title ? undefined : true,
+} = Astro.props;
+
+const iconSize = typeof size === 'number' ? `${size}px` : size;
+const iconName = name
+  .replace(/^ic:(?:outline|baseline|round|sharp|twotone)-/, '')
+  .replaceAll('-', '_');
+---
+
+<span
+  class:list={['material-symbols-outlined', className]}
+  style={`--material-icon-size: ${iconSize}`}
+  role={title ? 'img' : undefined}
+  aria-label={title}
+  aria-hidden={ariaHidden}
+>{iconName}</span>

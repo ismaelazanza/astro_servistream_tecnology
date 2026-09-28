@@ -1,0 +1,49 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const stats = [
+  {
+    icon: 'ic:outline-grain',
+    value: '2858+',
+    label: 'Sitios migrados y optimizados',
+    tone: 'bg-[#e90934]/95 text-white',
+  },
+  {
+    icon: 'ic:outline-lens-blur',
+    value: '532+',
+    label: 'Servidores administrados',
+    tone: 'bg-[#101014]/92 text-white',
+  },
+];
+---
+
+<section class="relative overflow-hidden bg-white" aria-label="Equipo Servistream VPS">
+  <div class="relative min-h-[34rem] lg:min-h-[44rem]">
+    <img
+      class="absolute inset-0 h-full w-full object-cover"
+      src="/img/vps/equipo-corporativo-vps.png"
+      alt="Equipo corporativo de tecnología sonriendo en oficina moderna"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/20"></div>
+
+    <div class="relative z-10 mx-auto flex h-full min-h-[34rem] w-full max-w-[118rem] items-end px-4 sm:px-8 lg:min-h-[44rem] lg:px-12">
+      <div class="grid w-full max-w-[52rem] md:grid-cols-2">
+        {stats.map((stat) => (
+          <article class:list={['min-h-[15.5rem] px-8 py-8 backdrop-blur-[1px] sm:px-10 sm:py-10 lg:min-h-[17rem]', stat.tone]}>
+            <div class="flex items-center gap-2">
+              <MaterialIcon name={stat.icon} size="3.6rem" class="shrink-0 leading-none text-white" />
+              <strong class="font-[var(--fuente-principal)] text-[clamp(3rem,4.4vw,4.2rem)] leading-none text-white tracking-normal">
+                {stat.value}
+              </strong>
+            </div>
+            <p class="mt-5 max-w-[15rem] font-[var(--fuente-principal)] text-[clamp(1.15rem,1.35vw,1.45rem)] leading-tight font-bold text-white">
+              {stat.label}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

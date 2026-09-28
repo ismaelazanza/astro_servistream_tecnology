@@ -1,0 +1,27 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const benefits = [
+  { icon: 'high_quality', title: 'Calidad de sonido', text: 'Transmite hasta 320 KBPS con codecs MP3, AAC y AACPlus para un audio claro y profesional.' },
+  { icon: 'insights', title: 'Estadísticas en tiempo real', text: 'Consulta oyentes conectados, países, picos de audiencia y datos clave de tu transmisión.' },
+  { icon: 'lock', title: 'HTML5 y SSL', text: 'Comparte un reproductor moderno y URLs seguras para escuchar desde cualquier navegador.' },
+  { icon: 'queue_music', title: 'AutoDJ ilimitado', text: 'Carga tu programación al servidor para mantener la emisora activa aun cuando no transmitas en vivo.' },
+  { icon: 'speed', title: 'Delay mínimo', text: 'Infraestructura optimizada y estratégicamente ubicada para reducir el retardo de tu señal.' },
+  { icon: 'tune', title: 'CentovaCast v3', text: 'Gestiona streaming, AutoDJ, listas, estadísticas y reproductores desde un panel intuitivo.' },
+  { icon: 'headphones', title: 'Shoutcast e Icecast', text: 'Elige el motor compatible con tu flujo de trabajo y transmite con aplicaciones populares.' },
+  { icon: 'devices', title: 'Compatibilidad total', text: 'Tu audiencia puede escuchar desde móviles, reproductor HTML5, Winamp, Real y Windows Player.' },
+];
+---
+
+<section class="bg-[#03040d] py-20 text-white sm:py-32" aria-labelledby="centova-benefits-title">
+  <div class="mx-auto container">
+    <header class="max-w-4xl">
+      <h5 class="text-left text-[#71a3ff]">TECNOLOGÍA PARA TU EMISORA</h5>
+      <h2 id="centova-benefits-title" class="mt-6 text-[var(--h-blanco)]">Control, calidad y continuidad para tu radio</h2>
+      <p class="mt-7 max-w-3xl font-[var(--fuente-principal)] text-lg leading-relaxed text-[#bcbccb] sm:text-xl">CentovaCast reúne las herramientas esenciales para crear una señal estable y hacer crecer tu audiencia.</p>
+    </header>
+    <div class="mt-18 grid gap-x-12 gap-y-14 sm:grid-cols-2 xl:grid-cols-4">
+      {benefits.map((benefit) => <article class="max-w-sm font-[var(--fuente-principal)]"><MaterialIcon name={benefit.icon} size={30} class="text-[#71a3ff]" /><h3 class="mt-5 text-[20px] font-medium">{benefit.title}</h3><p class="mt-4 text-base text-[#b6b5c4]">{benefit.text}</p></article>)}
+    </div>
+  </div>
+</section>

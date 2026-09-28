@@ -1,0 +1,222 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import MenuGlobal from "../../components/menuGlobal.astro";
+import FooterNegro from "../../components/footerNegro.astro";
+import MaterialIcon from "../../components/MaterialIcon.astro";
+import { blogPosts } from "../../data/blog";
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const related = blogPosts.filter((item) => item.slug !== post.slug).slice(0, 3);
+---
+
+<Layout
+  title={`${post.title} | Blog ServiStream`}
+  description={post.excerpt}
+  bodyClass="bg-[#fbfcff]"
+>
+  <MenuGlobal variant="blanco" />
+  <main class="article-page bg-[#fbfcff] text-[#17213e]">
+    <article>
+      <header class={`article-hero tone-${post.tone}`}>
+        <div class="article-hero-grid" aria-hidden="true"></div><div
+          class="relative mx-auto w-[min(100%-2.5rem,55rem)] pb-16 pt-36 sm:pb-24 sm:pt-44"
+        >
+          <a href="/blog" class="article-back"
+            ><MaterialIcon name="west" size={18} /> Volver al blog</a
+          ><p class="article-meta">
+            <span>{post.category}</span>{post.date} · Lectura de {
+              post.readingTime
+            }
+          </p><h1>{post.title}</h1><p>{post.excerpt}</p>
+        </div>
+      </header>
+      <div class="mx-auto w-[min(100%-2.5rem,46rem)] py-14 sm:py-20">
+        <p class="article-lead">{post.intro}</p>{
+          post.sections.map((section) => (
+            <section class="article-section">
+              <h2>{section.heading}</h2>
+              {section.paragraphs.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+            </section>
+          ))
+        }<div class="article-end">
+          <span><MaterialIcon name="favorite" size={19} /></span><p>
+            ¿Te resultó útil? Comparte este artículo con tu equipo.
+          </p>
+        </div>
+      </div>
+    </article>
+    <section
+      class="border-t border-[#e1e8f6] bg-[#f2f6ff] py-16 sm:py-20"
+      aria-labelledby="related-title"
+    >
+      <div class="mx-auto w-[min(100%-2.5rem,76rem)]">
+        <h2 id="related-title">También te puede interesar</h2><div
+          class="mt-9 grid gap-4 md:grid-cols-3"
+        >
+          {
+            related.map((item) => (
+              <a href={`/blog/${item.slug}`} class="related-post">
+                <>
+                  <MaterialIcon name={item.icon} size={25} />
+                  <p>{item.category}</p>
+                  <h3>{item.title}</h3>
+                  <span>
+                    Leer artículo{" "}
+                    <MaterialIcon name="arrow_forward" size={17} />
+                  </span>
+                </>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .article-hero {
+    position: relative;
+    overflow: hidden;
+    background: #edf3ff;
+  }
+  .article-hero-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.7;
+    background-image:
+      linear-gradient(#d5e2ff 1px, transparent 1px),
+      linear-gradient(90deg, #d5e2ff 1px, transparent 1px);
+    background-size: 4.5rem 4.5rem;
+    mask-image: linear-gradient(90deg, black, transparent);
+  }
+  .tone-mint {
+    background: #e9fbf6;
+  }
+  .tone-coral {
+    background: #fff0f3;
+  }
+  .tone-violet {
+    background: #f2efff;
+  }
+  .tone-amber {
+    background: #fff8e9;
+  }
+  .article-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: #405fba;
+    font: 700 0.9rem var(--fuente-principal);
+    text-decoration: none;
+  }
+  .article-meta {
+    display: flex;
+    gap: 0.55rem;
+    margin-top: 3.5rem;
+    color: #697694;
+    font: 600 0.82rem var(--fuente-principal);
+  }
+  .article-meta span {
+    color: #4068d3;
+  }
+  .article-hero h1 {
+    margin-top: 1.15rem;
+    font: 500 clamp(2.8rem, 6vw, 5.8rem)/0.95 var(--fuente-secundaria);
+  }
+  .article-hero p:last-child {
+    max-width: 41rem;
+    margin-top: 1.5rem;
+    color: #53617e;
+    font: 400 1.15rem/1.6 var(--fuente-principal);
+  }
+  .article-lead {
+    color: #293a60;
+    font: 400 1.3rem/1.65 var(--fuente-principal);
+  }
+  .article-section {
+    margin-top: 3.2rem;
+  }
+  .article-section h2 {
+    font: 600 clamp(1.8rem, 3vw, 2.6rem)/1.05 var(--fuente-secundaria);
+    letter-spacing: -0.045em;
+  }
+  .article-section p {
+    margin-top: 1.15rem;
+    color: #56637f;
+    font: 400 1.06rem/1.7 var(--fuente-principal);
+  }
+  .article-end {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 4rem;
+    border-top: 1px solid #dce5f6;
+    padding-top: 2rem;
+    color: #53617e;
+    font: 500 0.95rem var(--fuente-principal);
+  }
+  .article-end span {
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    place-items: center;
+    border-radius: 50%;
+    background: #e4ecff;
+    color: #4a71dc;
+  }
+  .article-page > section h2 {
+    font: 600 clamp(2rem, 3vw, 3rem)/1 var(--fuente-secundaria);
+    letter-spacing: -0.055em;
+  }
+  .related-post {
+    min-height: 15rem;
+    border: 1px solid #d9e4f8;
+    border-radius: 1.2rem;
+    background: white;
+    padding: 1.5rem;
+    color: #233250;
+    text-decoration: none;
+    transition: 0.25s;
+  }
+  .related-post:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 30px rgba(45, 71, 137, 0.12);
+  }
+  .related-post > :first-child {
+    color: #5278df;
+  }
+  .related-post p {
+    margin-top: 1.5rem;
+    color: #5673c8;
+    font: 700 0.7rem var(--fuente-principal);
+    letter-spacing: 0.08em;
+  }
+  .related-post h3 {
+    margin-top: 0.65rem;
+    font: 600 1.2rem/1.15 var(--fuente-principal);
+    letter-spacing: -0.035em;
+  }
+  .related-post span {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.5rem;
+    color: #4469c9;
+    font: 700 0.8rem var(--fuente-principal);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .related-post {
+      transition: none;
+    }
+  }
+</style>

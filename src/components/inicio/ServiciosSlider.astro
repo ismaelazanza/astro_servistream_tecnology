@@ -1,0 +1,194 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+import BotonUno from '../BotonUno.astro';
+
+const services = [
+  {
+    number: '01',
+    title: 'Hosting Premium',
+    description: 'Alojamiento ultrarrápido, seguro y escalable para que tu proyecto permanezca siempre disponible.',
+    icon: 'ic:round-dns',
+    accent: '#1c1c1c',
+    tint: '#ffffff',
+  },
+  {
+    number: '02',
+    title: 'Radio Streaming',
+    description: 'Transmite tu estación en vivo con audio estable, estadísticas y cobertura para oyentes globales.',
+    icon: 'ic:round-cell-tower',
+    accent: '#1c1c1c',
+    tint: '#ffffff',
+  },
+  {
+    number: '03',
+    title: 'TV Streaming',
+    description: 'Distribución profesional de video en directo, adaptable a cualquier pantalla y audiencia.',
+    icon: 'ic:round-connected-tv',
+    accent: '#1c1c1c',
+    tint: '#ffffff',
+  },
+  {
+    number: '04',
+    title: 'Diseño Web',
+    description: 'Sitios modernos, rápidos y responsivos creados para comunicar tu marca y convertir visitantes.',
+    icon: 'ic:outline-dashboard',
+    accent: '#1c1c1c',
+    tint: '#ffffff',
+  },
+];
+
+const sliderItems = [...services, ...services.slice(0, 3)];
+---
+
+<section class="services-section overflow-hidden bg-[#f5f5f5] py-20 sm:py-24 lg:py-32" aria-labelledby="services-slider-title" data-services-slider>
+  <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-4">
+    <div class="services-intro flex flex-col items-start px-5 sm:px-8 lg:col-[2/6] lg:px-0 lg:pt-8">
+      <h5 class="services-kicker">Soluciones Servistream</h5>
+      <h2 id="services-slider-title" class="text-[var(--h-negro)]">
+        Tecnología para hacer crecer tus ideas
+      </h2>
+      <p class="mt-8 max-w-[18rem] text-xl leading-snug">
+        Más rendimiento.<br /><strong>Más tiempo contigo.</strong>
+      </p>
+      <div class="mt-10">
+        <BotonUno href="#" title="Conocer los Servicios" />
+      </div>
+    </div>
+
+    <div class="min-w-0 overflow-hidden pl-5 sm:pl-8 lg:col-[6/-1] lg:pl-0">
+      <div class="services-track" data-services-track>
+        {sliderItems.map((service, index) => (
+          <article
+            class="service-card"
+            style={`--service-accent: ${service.accent}; --service-tint: ${service.tint}`}
+            aria-hidden={index >= services.length ? 'true' : undefined}
+          >
+            <div class="service-top">
+              <span class="service-number">{service.number}</span>
+              <span class="service-icon-shell" aria-hidden="true">
+                <MaterialIcon name={service.icon} size={30} class="service-icon" />
+              </span>
+            </div>
+
+            <div class="service-copy">
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="services-navigation mt-8 flex items-center gap-6 pr-5 sm:pr-8 lg:pr-20">
+        <div class="services-dots flex items-center gap-3" role="group" aria-label="Seleccionar servicio">
+          {services.map((service, index) => (
+            <button class:list={['service-dot', { 'is-active': index === 0 }]} type="button" aria-label={`Mostrar ${service.title}`} aria-current={index === 0 ? 'true' : 'false'} data-service-dot={index}></button>
+          ))}
+        </div>
+        <span class="services-progress" aria-hidden="true"></span>
+        <button class="services-next" type="button" aria-label="Siguiente servicio" data-services-next>
+          <MaterialIcon name="arrow_forward" size={22} />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('[data-services-slider]').forEach((slider) => {
+    if (!(slider instanceof HTMLElement) || slider.dataset.ready) return;
+    slider.dataset.ready = 'true';
+    const track = slider.querySelector('[data-services-track]');
+    const next = slider.querySelector('[data-services-next]');
+    const dots = [...slider.querySelectorAll('[data-service-dot]')];
+    const total = 4;
+    let index = 0;
+    let timer;
+
+    const updateDots = () => dots.forEach((dot, dotIndex) => {
+      const active = dotIndex === index % total;
+      dot.classList.toggle('is-active', active);
+      dot.setAttribute('aria-current', String(active));
+    });
+
+    const move = (animate = true) => {
+      if (!(track instanceof HTMLElement)) return;
+      track.classList.toggle('without-transition', !animate);
+      track.style.setProperty('--slide-index', String(index));
+      updateDots();
+    };
+
+    const goNext = () => {
+      index += 1;
+      move();
+      if (index === total) window.setTimeout(() => { index = 0; move(false); }, 760);
+    };
+
+    const restart = () => {
+      window.clearInterval(timer);
+      timer = window.setInterval(goNext, 5000);
+    };
+
+    next?.addEventListener('click', () => { goNext(); restart(); });
+    dots.forEach((dot, dotIndex) => dot.addEventListener('click', () => { index = dotIndex; move(); restart(); }));
+    restart();
+  });
+</script>
+
+<style>
+  .services-kicker { margin-bottom: 2.25rem; text-align: left; }
+  .services-track { --slide-index: 0; --track-gap: 1rem; display: flex; width: calc(700% / 3); gap: var(--track-gap); transform: translate3d(calc(var(--slide-index) * (-100% / 7 - var(--track-gap) / 7)),0,0); transition: transform 750ms cubic-bezier(.22,.75,.2,1); }
+  .services-track.without-transition { transition: none; }
+  .service-card {
+    position: relative;
+    display: flex;
+    width: calc((100% - 6 * var(--track-gap)) / 7);
+    min-height: 30rem;
+    flex: 0 0 calc((100% - 6 * var(--track-gap)) / 7);
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    border: 1px solid #e1e3e200;
+    border-radius: 2rem 2rem 2rem 2rem;
+    background: #fff;
+    padding: clamp(1.5rem,2.25vw,2.5rem);
+    transition: border-color 280ms ease, box-shadow 280ms ease;
+  }
+  .service-card::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 0 0 0 100%;
+    background: var(--service-tint);
+    content: '';
+    transition: width 350ms ease, height 350ms ease;
+  }
+
+  .service-card:hover { z-index: 1; border-color: color-mix(in srgb, #ffffff); box-shadow: 0 1.5rem 3.5rem rgb(25 35 31 / 10%); }
+  .service-card:hover::before { width: 9rem; height: 9rem; }
+  .service-top { position: relative; z-index: 1; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+  .service-number { color: #1c1c1c; font: 400 .72rem/1 var(--fuente-principal); letter-spacing: .12em; }
+  .service-icon-shell { display: grid; width: 3.5rem; height: 3.5rem; place-items: center; border-radius: 1.15rem 1.15rem 1.15rem 1.15rem; background: #e5e5e5; color: #17161a; }
+  .service-icon { transition: transform 280ms ease; }
+  .service-card:hover .service-icon { transform: rotate(-6deg) scale(1.08); }
+  .service-copy { position: relative; z-index: 1; }
+  .service-line { display: block; width: 2.75rem; height: .18rem; margin-bottom: 1.5rem; border-radius: 1rem; background: var(--service-accent); }
+  .service-card h3 { color: var(--parrafo-negro); font-family: var(--fuente-principal); font-size: clamp(1.2rem,1.2vw,1.4rem); font-weight: 500; line-height: 1.15; }
+  .service-card p { max-width: 18rem; margin-top: 1.25rem; font-size: 14px; line-height: 1.6; }
+  .service-dot { width: .5rem; height: .5rem; padding: 0; border: 0; border-radius: 50%; background: #b9bdbb; cursor: pointer; transition: width 220ms ease, border-radius 220ms ease, background 180ms ease; }
+  .service-dot.is-active { width: 1.8rem; border-radius: 1rem; background: #171a19; }
+  .services-progress { height: 1px; flex: 1; background: #d2d5d3; }
+  .services-next { display: grid; width: 3.25rem; height: 3.25rem; flex: 0 0 3.25rem; place-items: center; border: 1px solid #c9cdcb; border-radius: 50%; background: #fff; color: #171a19; cursor: pointer; transition: border-color 200ms ease, background 200ms ease, color 200ms ease, transform 200ms ease; }
+  .services-next:hover { border-color: #171a19; background: #171a19; color: #fff; transform: translateX(.2rem); }
+  .services-next:focus-visible, .service-dot:focus-visible { outline: 2px solid #00a77e; outline-offset: 3px; }
+
+  @media (max-width: 1023px) {
+    .services-track { --track-gap: .75rem; width: 700%; }
+    .service-card { min-height: 27rem; border-radius: 1.75rem .5rem 1.75rem .5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .services-track, .service-card, .service-card::before, .service-icon, .services-next { transition: none; }
+  }
+</style>

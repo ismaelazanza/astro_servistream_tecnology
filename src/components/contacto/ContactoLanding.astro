@@ -1,0 +1,511 @@
+---
+import MaterialIcon from "../MaterialIcon.astro";
+
+const benefits = [
+  {
+    icon: "forum",
+    title: "Asesoría para tu proyecto",
+    text: "Cuéntanos lo que quieres crear y te orientamos hacia la solución adecuada.",
+  },
+  {
+    icon: "rocket_launch",
+    title: "Implementación clara",
+    text: "Te ayudamos a definir los siguientes pasos para poner tu servicio en marcha.",
+  },
+  {
+    icon: "support_agent",
+    title: "Equipo de soporte",
+    text: "También puedes escribirnos si necesitas ayuda con un servicio existente.",
+  },
+];
+---
+
+<main class="contact-page min-h-screen overflow-hidden bg-[#171717] text-white">
+  <section
+    class="contact-hero relative isolate overflow-hidden px-5 pb-20 pt-32 sm:px-8 sm:pb-28 sm:pt-40"
+    aria-labelledby="contact-title"
+  >
+    <div class="contact-grid" aria-hidden="true"></div><div
+      class="contact-glow glow-a"
+      aria-hidden="true"
+    >
+    </div><div class="contact-glow glow-b" aria-hidden="true"></div><div
+      class="contact-orbit orbit-a"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="relative mx-auto grid max-w-[80rem] gap-14 lg:grid-cols-[.88fr_1.12fr] lg:gap-10"
+    >
+      <div data-reveal class="flex flex-col justify-between lg:min-h-[43rem]">
+        <div>
+          <p class="contact-kicker"><span></span> Hablemos de tu proyecto</p><h2 class="text-6xl mt-10 text-white">
+            Estamos listos para ayudarte
+          </h2><p class="text-white mt-10">
+            Cuéntanos qué necesitas. Nuestro equipo revisará tu mensaje y te
+            responderá con una orientación clara para avanzar.
+          </p>
+        </div>
+        <div class="mt-14 grid gap-8">
+          {
+            benefits.map((benefit) => (
+              <article class="contact-benefit">
+                <>
+                  <span>
+                    <MaterialIcon name={benefit.icon} size={27} />
+                  </span>
+                  <div>
+                    <>
+                      <h2>{benefit.title}</h2>
+                      <p>{benefit.text}</p>
+                    </>
+                  </div>
+                </>
+              </article>
+            ))
+          }
+        </div>
+        <div class="contact-direct mt-12">
+          <p>¿Ya eres cliente o necesitas soporte técnico?</p><a
+            href="mailto:soporte@servistream.net"
+            >Escribir a soporte@servistream.net <MaterialIcon
+              name="arrow_forward"
+              size={18}
+            /></a>
+        </div>
+      </div>
+
+      <div data-reveal class="contact-form-shell relative">
+        <div class="form-accent" aria-hidden="true"></div>
+        <form
+          class="contact-form"
+          action="https://formsubmit.co/soporte@servistream.net"
+          method="POST"
+          data-contact-form
+        >
+          <input
+            type="hidden"
+            name="_subject"
+            value="Nuevo contacto desde ServiStream.net"
+          />
+          <input type="hidden" name="_template" value="table" />
+          <input
+            type="hidden"
+            name="_next"
+            value="https://www.servistream.net/contacto?enviado=1"
+          />
+          <input
+            type="text"
+            name="_honey"
+            class="contact-honeypot"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+          />
+          <div class="form-heading">
+            <span class="form-status"><i></i> Formulario seguro</span
+            ><h2 class="">
+              Cuéntanos cómo podemos ayudarte
+            </h2><p>Completa los datos y te responderemos por correo.</p>
+          </div>
+          <p
+            class="contact-success"
+            role="status"
+            aria-live="polite"
+            data-contact-success
+          >
+            Gracias, recibimos tu mensaje. Te responderemos pronto.
+          </p>
+          <div class="form-grid">
+            <label
+              >Nombre completo<input
+                required
+                name="nombre"
+                autocomplete="name"
+                placeholder="Tu nombre"
+              /></label
+            ><label
+              >Correo electrónico<input
+                required
+                type="email"
+                name="email"
+                autocomplete="email"
+                placeholder="tu@email.com"
+              /></label
+            ><label
+              >Teléfono (opcional)<input
+                name="telefono"
+                autocomplete="tel"
+                placeholder="Tu número de contacto"
+              /></label
+            ><label
+              >Servicio de interés<select required name="servicio"
+                ><option value="" selected disabled
+                  >Selecciona una opción</option
+                ><option>Hosting web</option><option>Radio streaming</option
+                ><option>TV streaming</option><option>Servidor VPS</option
+                ><option>Otro servicio</option></select
+              ></label>
+          </div>
+          <label class="form-message"
+            >Detalles de tu consulta<textarea
+              required
+              name="mensaje"
+              rows="5"
+              placeholder="Describe brevemente qué necesitas..."
+            ></textarea></label
+          >
+          <label class="contact-consent"
+            ><input
+              required
+              type="checkbox"
+              name="consentimiento"
+              value="aceptado"
+            /><span
+              >Autorizo que Servistream use estos datos para responder mi
+              consulta.</span
+            ></label
+          >
+          <button type="submit"
+            >Enviar mensaje <MaterialIcon name="send" size={18} /></button
+          >
+          <p class="form-foot">
+            Tus datos se usan únicamente para atender esta solicitud.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  const form = document.querySelector("[data-contact-form]");
+  const success = document.querySelector("[data-contact-success]");
+  if (form instanceof HTMLFormElement && success instanceof HTMLElement) {
+    const query = new URLSearchParams(window.location.search);
+    if (query.get("enviado") === "1") success.classList.add("is-visible");
+    form.addEventListener("submit", () => {
+      const button = form.querySelector('button[type="submit"]');
+      if (button instanceof HTMLButtonElement && form.checkValidity()) {
+        button.disabled = true;
+        button.textContent = "Enviando…";
+      }
+    });
+  }
+</script>
+
+<style>
+  .contact-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.28;
+    background-image: radial-gradient(#7892ef 1px, transparent 1px);
+    background-size: 2.7rem 2.7rem;
+    mask-image: linear-gradient(90deg, black, transparent 83%);
+  }
+  .contact-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(12px);
+  }
+  .glow-a {
+    width: 45rem;
+    height: 45rem;
+    left: -25rem;
+    top: -17rem;
+    background: radial-gradient(
+      circle,
+      rgba(72, 101, 255, 0.34),
+      transparent 68%
+    );
+  }
+  .glow-b {
+    width: 33rem;
+    height: 33rem;
+    right: -16rem;
+    bottom: -13rem;
+    background: radial-gradient(
+      circle,
+      rgba(111, 72, 255, 0.26),
+      transparent 70%
+    );
+  }
+  .contact-orbit {
+    position: absolute;
+    border: 1px solid rgba(120, 146, 239, 0.2);
+    border-radius: 50%;
+  }
+  .orbit-a {
+    width: 58rem;
+    height: 24rem;
+    left: -14rem;
+    bottom: 2rem;
+    transform: rotate(-18deg);
+  }
+  .contact-kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #9db1ff;
+    font: 700 0.74rem/1 var(--fuente-principal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .contact-kicker span {
+    width: 0.48rem;
+    height: 0.48rem;
+    border-radius: 50%;
+    background: #77e1bd;
+    box-shadow: 0 0 14px #77e1bd;
+  }
+  .contact-page h1 {
+    max-width: 42rem;
+    margin-top: 1.5rem;
+    font: 500 clamp(3.5rem, 6.5vw, 7.3rem)/0.9 var(--fuente-secundaria);
+    letter-spacing: -0.07em;
+  }
+  .contact-page h1 em {
+    color: #91aaff;
+    font-style: normal;
+  }
+  .contact-intro {
+    max-width: 38rem;
+    margin-top: 2rem;
+    color: #bdc8e8;
+    font: 400 1.15rem/1.65 var(--fuente-principal);
+  }
+  .contact-benefit {
+    display: grid;
+    grid-template-columns: 3.2rem 1fr;
+    gap: 1.15rem;
+    max-width: 35rem;
+  }
+  .contact-benefit > span {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    border: 1px solid rgba(174, 192, 255, 0.28);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.06);
+    color: #aabfff;
+  }
+  .contact-benefit h2 {
+    color: #f6f8ff;
+    font: 600 1.22rem/1.2 var(--fuente-principal);
+    letter-spacing: -0.035em;
+  }
+  .contact-benefit p {
+    margin-top: 0.45rem;
+    color: #aeb9d6;
+    font: 400 1rem/1.55 var(--fuente-principal);
+  }
+  .contact-direct {
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    padding-top: 1.6rem;
+  }
+  .contact-direct p {
+    color: #aeb9d6;
+    font: 400 0.95rem var(--fuente-principal);
+  }
+  .contact-direct a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    color: white;
+    font: 700 0.95rem var(--fuente-principal);
+    text-decoration: none;
+  }
+  .contact-direct a:hover {
+    color: #aabfff;
+  }
+  .contact-form-shell {
+    
+    border-radius: 2rem;
+
+    padding: 1.15rem;
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.25);
+  }
+  .form-accent {
+    position: absolute;
+    inset: 1.15rem;
+    border-radius: 1.35rem;
+    background: radial-gradient(
+      circle at 90% 0,
+      rgba(89, 101, 255, 0.17),
+      transparent 30%
+    );
+    pointer-events: none;
+  }
+  .contact-form {
+    position: relative;
+
+    border-radius: 1.35rem;
+
+    padding: clamp(1.5rem, 4vw, 3.6rem);
+    backdrop-filter: blur(16px);
+  }
+  .form-heading h2 {
+    margin-top: 1.1rem;
+    color: #fff;
+    font: 500 clamp(2rem, 3vw, 2.25rem)/0.98 var(--fuente-secundaria);
+    
+  }
+  .form-heading p {
+    margin-top: 0.85rem;
+    color: #aeb9d6;
+    font: 400 1rem/1.55 var(--fuente-principal);
+  }
+  .form-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border-radius: 999px;
+    background: rgba(117, 145, 255, 0.12);
+    padding: 0.45rem 0.7rem;
+    color: #b7c7ff;
+    font: 700 0.67rem/1 var(--fuente-principal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .form-status i {
+    width: 0.38rem;
+    height: 0.38rem;
+    border-radius: 50%;
+    background: #77e1bd;
+    box-shadow: 0 0 12px #77e1bd;
+  }
+  .contact-success {
+    display: none;
+    margin-top: 1.5rem;
+    border: 1px solid rgba(107, 224, 173, 0.32);
+    border-radius: 0.9rem;
+    background: rgba(73, 194, 133, 0.1);
+    padding: 0.85rem 1rem;
+    color: #a6f1c9;
+    font: 600 0.9rem/1.4 var(--fuente-principal);
+  }
+  .contact-success.is-visible {
+    display: block;
+  }
+  .form-grid {
+    display: grid;
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+  .contact-form label {
+    display: grid;
+    gap: 0.65rem;
+    color: #edf1ff;
+    font: 600 0.9rem/1.2 var(--fuente-principal);
+  }
+  .contact-form label span {
+    color: #8e9aba;
+    font-weight: 400;
+  }
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    width: 100%;
+    border: 1px solid rgba(178, 193, 240, 0.18);
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.055);
+    padding: 0.85rem 0.95rem;
+    color: #fff;
+    outline: none;
+    font: 400 1rem var(--fuente-principal);
+    transition:
+      border-color 0.2s,
+      background 0.2s;
+  }
+  .contact-form select {
+    appearance: auto;
+  }
+  .contact-form option {
+    color: #111827;
+  }
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 8rem;
+  }
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    color: #77829d;
+  }
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus {
+    border-color: #718fff;
+    background: rgba(114, 143, 255, 0.09);
+  }
+  .form-message {
+    margin-top: 1.2rem;
+  }
+  .contact-consent {
+    grid-template-columns: 1rem 1fr;
+    align-items: start;
+    margin-top: 1.35rem;
+    color: #aeb9d6 !important;
+    font-size: 0.78rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+  }
+  .contact-consent input {
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0.1rem;
+    accent-color: #6685ff;
+  }
+  .contact-form button {
+    display: flex;
+    width: 100%;
+    min-height: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    margin-top: 1.5rem;
+    border: 0;
+    border-radius: 0.8rem;
+    background: linear-gradient(90deg, #5b68ff, #6d4cf5);
+    color: #fff;
+    font: 700 1rem var(--fuente-principal);
+    cursor: pointer;
+    box-shadow: 0 12px 28px rgba(90, 93, 255, 0.24);
+    transition:
+      transform 0.2s,
+      filter 0.2s;
+  }
+  .contact-form button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+  }
+  .contact-form button:disabled {
+    cursor: wait;
+    opacity: 0.75;
+  }
+  .form-foot {
+    margin-top: 1rem;
+    text-align: center;
+    color: #77829d;
+    font: 400 0.74rem/1.4 var(--fuente-principal);
+  }
+  .contact-honeypot {
+    position: absolute !important;
+    left: -9999px !important;
+    opacity: 0 !important;
+  }
+  @media (min-width: 700px) {
+    .form-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .contact-form label:has(input[name="telefono"]) {
+    grid-column: auto;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .contact-form button {
+      transition: none;
+    }
+  }
+</style>

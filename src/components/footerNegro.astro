@@ -1,0 +1,105 @@
+---
+const tickerItems = ['HOSTING', 'RADIO Y TV', 'STREAMING', 'DOMINIOS', 'SERVIDORES', 'VPS'];
+
+const aboutLinks = [
+  ['Hosting', '/web-hosting'],
+  ['VPS Hosting', '/vps-hosting'],
+  ['Wordpress', '/wordpress'],
+  ['Dominios', '/dominios'],
+  ['Páginas Web', '/paginas-web'],
+];
+
+const serviceLinks = [
+  ['Radio Streaming', '/radio-streaming'],
+  ['TV Streaming', '/tv-streaming'],
+  ['Azuracast', '/azuracast'],
+  ['Reseller Radio', '/reseller-radio'],
+  ['SRT Server', '/srt-server'],
+];
+---
+
+<footer data-reveal-ignore class="footer-negro overflow-hidden bg-(--bg-footer) font-[var(--fuente-principal)] text-white">
+  <div class="py-6 sm:py-8" aria-label="Nuestros servicios destacados">
+    <div class="ticker flex w-max" data-footer-ticker>
+      {[0, 1].map((copy) => (
+        <div class="flex shrink-0 items-center" aria-hidden={copy === 1 ? 'true' : undefined}>
+          {tickerItems.map((item) => (
+            <>
+              <span class="whitespace-nowrap px-5 text-[clamp(1.45rem,3vw,2rem)] font-bold tracking-[0.035em] sm:px-9">{item}</span>
+              <span class="grid size-9 shrink-0 place-items-center rounded-full border border-white/65 text-lg font-light text-white/80 sm:size-4" aria-hidden="true"></span>
+            </>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="mx-auto w-[min(100%-2rem,102rem)] px-2 pb-7 pt-14 sm:px-6 sm:pb-10 sm:pt-20 lg:px-10 lg:pt-28">
+    <div class="grid gap-14 lg:grid-cols-[minmax(13rem,1.15fr)_2.2fr] lg:gap-20">
+      <div>
+        <img class="h-auto w-36 brightness-0 invert sm:w-40" src="/img/LOGO-SERVISTREAM-NUEVO_black-01.svg" alt="Servistream Technology" loading="lazy" />
+      </div>
+
+      <div>
+        <div class="grid gap-10 sm:grid-cols-2 xl:grid-cols-[1fr_1fr_1.25fr] xl:gap-14">
+          <section>
+            <p class="mb-6 text-sm text-white/30">Hosting</p>
+            <ul class="space-y-3.5 text-[1rem] text-white/75">
+              {aboutLinks.map(([label, href]) => <li><a class="footer-link" href={href}>{label}</a></li>)}
+            </ul>
+          </section>
+
+          <section>
+            <p class="mb-6 text-sm text-white/30">Streaming</p>
+            <ul class="space-y-3.5 text-[1rem] text-white/75">
+              {serviceLinks.map(([label, href]) => <li><a class="footer-link" href={href}>{label}</a></li>)}
+            </ul>
+          </section>
+
+          <section class="sm:col-span-2 xl:col-span-1">
+            <p class="mb-6 text-sm text-white/30">Información de contacto</p>
+            <address class="space-y-4 text-[1rem] not-italic leading-7 text-white/70">
+              <p class="flex gap-3 text-white/75"><span>D:</span><span>Loja, Ecuador<br />Dir.: Estancia Norte</span></p>
+              <p class="flex gap-3 text-white/75"><span>C:</span><a class="footer-link" href="mailto:info@example.com">soporte@servistream.net</a></p>
+              <p class="flex gap-3 text-white/75"><span>T:</span><a class="footer-link border-b border-dashed border-white/20 pb-1" href="tel:+84123456789">(+593) 0991220769</a></p>
+            </address>
+          </section>
+        </div>
+
+        <div class="mt-16 max-w-4xl sm:mt-20">
+          <h2 class="font-[var(--fuente-principal)] text-[var(--h-negro)] text-lg font-medium">Quiere realizar una llamada</h2>
+          <p class="mt-1 text-sm text-white/30">Llámanos de lunes a viernes, de 9:00 a 18:00.</p>
+          <a class="group mt-7 flex items-center border-b border-white/20 pb-3 text-2xl font-light text-white/30 transition-colors hover:border-white/50 hover:text-white sm:text-3xl" href="tel:+593991220769">
+            <span>(+593) 0991220769</span>
+            <span class="ml-auto text-3xl transition-transform duration-300 group-hover:translate-x-2" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-20 grid items-end gap-10 sm:mt-28 lg:grid-cols-[1.15fr_1fr_auto]">
+      <a class="font-[var(--fuente-secundaria)] text-[clamp(3.5rem,8vw,8rem)] leading-[.72] tracking-[-.065em] text-white" href="/" aria-label="Servistream, página de inicio">Servistream</a>
+      <p class="text-sm text-white/30 lg:text-center">© Servistream 2014 - {new Date().getFullYear()}. Todos los derechos reservados</p>
+      <div class="flex gap-7 text-sm text-white/70">
+        <a class="footer-link" href="https://facebook.com" rel="noreferrer">Facebook</a>
+        <a class="footer-link" href="https://linkedin.com" rel="noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ticker {
+    will-change: transform;
+    animation: footer-marquee 32s linear infinite;
+  }
+  .footer-link { transition: color 180ms ease; }
+  .footer-link:hover, .footer-link:focus-visible { color: #fff; }
+  .footer-link:focus-visible { outline: 1px solid #fff; outline-offset: 4px; }
+
+  @keyframes footer-marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+
+</style>

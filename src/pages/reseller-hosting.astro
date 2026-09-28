@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MenuNegro from '../components/menuGlobal.astro';
+import HeroResellerHosting from '../components/reseller-hosting/HeroResellerHosting.astro';
+import PreciosResellerHosting from '../components/reseller-hosting/PreciosResellerHosting.astro';
+import SoporteResellerHosting from '../components/reseller-hosting/SoporteResellerHosting.astro';
+import CaracteristicasResellerHosting from '../components/reseller-hosting/CaracteristicasResellerHosting.astro';
+import ClientesResellerCarrusel from '../components/reseller-hosting/ClientesResellerCarrusel.astro';
+import Footer from '../components/footerNegro.astro';
+---
+
+<Layout title="Reseller Hosting | Servistream Technology" description="Crea y administra tu propio negocio de hosting con marca blanca, SSL y soporte técnico especializado." bodyClass="bg-white">
+  <MenuNegro variant="blanco" />
+  <HeroResellerHosting />
+  <PreciosResellerHosting />
+  <SoporteResellerHosting />
+  <CaracteristicasResellerHosting />
+  <ClientesResellerCarrusel />
+  <Footer />
+</Layout>

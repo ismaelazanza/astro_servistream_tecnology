@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MenuNegro from '../components/menuGlobal.astro';
+import HeroTvStreaming from '../components/tv-streaming/HeroTvStreaming.astro';
+import ImpactoTvStreaming from '../components/tv-streaming/ImpactoTvStreaming.astro';
+import DistribucionTvStreaming from '../components/tv-streaming/DistribucionTvStreaming.astro';
+import IntegracionesTvStreaming from '../components/tv-streaming/IntegracionesTvStreaming.astro';
+import ControlTvStreaming from '../components/tv-streaming/ControlTvStreaming.astro';
+import ComentariosTvStreaming from '../components/tv-streaming/ComentariosTvStreaming.astro';
+import ContactoTvStreaming from '../components/tv-streaming/ContactoTvStreaming.astro';
+import PlanesTvStreaming from '../components/tv-streaming/PlanesTvStreaming.astro';
+import Footer from '../components/footerNegro.astro';
+import DarkStreamingAtmosphere from '../components/DarkStreamingAtmosphere.astro';
+---
+
+<Layout title="TV Streaming con StreamCP Pro | Servistream Technology" description="Emite y administra tu canal de TV online con StreamCP Pro: canales en vivo, RTMP, VOD, simulcast y analíticas." bodyClass="bg-[#030713]">
+  <div class="dark-streaming-experience relative isolate overflow-hidden bg-[#030713]">
+    <DarkStreamingAtmosphere />
+    <div class="relative z-10">
+    <MenuNegro variant="transparente" />
+    <HeroTvStreaming />
+    <ImpactoTvStreaming />
+    <PlanesTvStreaming />
+    <div class="flex justify-center">
+      <iframe src="https://canalsur.streamseguro.com/player?channel=1&autoplay=false&muted=false" class="border rounded-3xl" width="940" height="460" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+    </div>
+
+    <section class="contenido_tv_sec mx-auto">
+      <DistribucionTvStreaming />
+    </section>
+    
+    <IntegracionesTvStreaming />
+
+    <section class="contenido_tv_sec mx-auto">
+      <ControlTvStreaming />
+    </section>
+    <ComentariosTvStreaming />
+    <ContactoTvStreaming />
+    </div>
+  </div>
+  <Footer />
+</Layout>
+
+<style is:global>
+  html.tv-motion-ready [data-tv-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible { opacity: 1; transform: translateY(0); }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-message { animation: tv-message-in .55s .2s both cubic-bezier(.2,.8,.2,1); }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-message-delay { animation-delay: .42s; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-chart-line { stroke-dasharray: 460; stroke-dashoffset: 460; animation: tv-draw-line 1.35s .2s forwards ease-out; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-chart-fill { opacity: 0; animation: tv-fade .7s .72s forwards ease-out; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-signal-core { animation: tv-pulse 2.4s .25s infinite ease-in-out; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-signal-path { stroke-dashoffset: 48; animation: tv-path-flow 1.7s linear infinite; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-signal-node { animation: tv-message-in .45s .2s both ease-out; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-signal-node-delay { animation-delay: .5s; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-program-item { animation: tv-message-in .45s both ease-out; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-program-item:nth-child(1) { animation-delay: .14s; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-program-item:nth-child(2) { animation-delay: .28s; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-program-item:nth-child(3) { animation-delay: .42s; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-integration { animation: tv-message-in .4s both ease-out; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-integration:nth-child(3n + 1) { animation-delay: .1s; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-integration:nth-child(3n + 2) { animation-delay: .2s; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-integration:nth-child(3n) { animation-delay: .3s; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-distribution-core, html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-ecosystem-core, html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-vod-core { animation: tv-pulse 2.4s .2s infinite ease-in-out; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-distribution-path { stroke-dashoffset: 48; animation: tv-path-flow 1.7s linear infinite; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-destination { animation: tv-message-in .45s both ease-out; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-destination:nth-of-type(1) { animation-delay: .1s; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-destination:nth-of-type(2) { animation-delay: .22s; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-destination:nth-of-type(3) { animation-delay: .34s; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-destination:nth-of-type(4) { animation-delay: .46s; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-ecosystem-chip, html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-schedule-row, html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-vod-label { animation: tv-message-in .45s both ease-out; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-ecosystem-chip:nth-child(1), html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-schedule-row:nth-child(1) { animation-delay: .16s; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-ecosystem-chip:nth-child(2), html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-schedule-row:nth-child(2) { animation-delay: .3s; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-ecosystem-chip:nth-child(3), html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-schedule-row:nth-child(3) { animation-delay: .44s; }
+  html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-live-status, html.tv-motion-ready [data-tv-reveal].tv-is-visible .tv-recording-indicator { animation: tv-live-blink 1.4s infinite ease-in-out; }
+  .tv-comment, .tv-plan { transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+  .tv-comment:hover, .tv-plan:hover { transform: translateY(-7px); border-color: rgb(129 151 255 / .65); box-shadow: 0 18px 42px rgb(42 58 172 / .22), inset 0 1px 0 rgb(255 255 255 / .12); }
+  @keyframes tv-message-in { from { opacity: 0; transform: translateY(12px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  @keyframes tv-draw-line { to { stroke-dashoffset: 0; } }
+  @keyframes tv-fade { to { opacity: 1; } }
+  @keyframes tv-pulse { 50% { transform: scale(1.07); box-shadow: 0 0 58px rgb(68 107 255 / .58); } }
+  @keyframes tv-path-flow { to { stroke-dashoffset: 0; } }
+  @keyframes tv-live-blink { 50% { opacity: .45; filter: brightness(1.35); } }
+  @media (prefers-reduced-motion: reduce) { html.tv-motion-ready [data-tv-reveal], html.tv-motion-ready [data-tv-reveal].tv-is-visible { opacity: 1; transform: none; transition: none; } .tv-comment, .tv-plan { transition: none; } .tv-comment:hover, .tv-plan:hover { transform: none; } }
+
+
+  .contenido_tv_sec {
+    max-width: 1000px;
+  }
+
+
+</style>
+
+<script>
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('tv-motion-ready');
+    const elements = document.querySelectorAll('[data-tv-reveal]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('tv-is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+    elements.forEach((element) => observer.observe(element));
+  }
+</script>

@@ -1,0 +1,90 @@
+---
+import MaterialIcon from "../MaterialIcon.astro";
+const benefits = [
+    {
+        icon: "account_tree",
+        title: "Panel multi-cliente",
+        text: "Crea y administra cuentas de radio independientes desde un mismo panel de revendedor.",
+    },
+    {
+        icon: "branding_watermark",
+        title: "Tu propia marca",
+        text: "Ofrece el servicio con tu identidad comercial y construye una relación directa con tus clientes.",
+    },
+    {
+        icon: "queue_music",
+        title: "AutoDJ ilimitado",
+        text: "Tus clientes pueden cargar y programar música para mantener sus radios siempre al aire.",
+    },
+    {
+        icon: "lock",
+        title: "Conexiones SSL",
+        text: "Incluye compatibilidad con transmisión segura para reproductores, sitios web y aplicaciones actuales.",
+    },
+    {
+        icon: "bolt",
+        title: "Activación ágil",
+        text: "Obtén tu plataforma lista para empezar a crear cuentas y comercializar tus propios planes.",
+    },
+    {
+        icon: "support_agent",
+        title: "Soporte especializado",
+        text: "Cuenta con nuestro equipo para ayudarte con la infraestructura mientras atiendes a tu audiencia.",
+    },
+    {
+        icon: "devices",
+        title: "Escucha en todo lugar",
+        text: "Reproductor HTML5 y compatibilidad con móviles, Shoutcast e Icecast para cada radio creada.",
+    },
+    {
+        icon: "monitoring",
+        title: "Diseñado para crecer",
+        text: "Empieza con el plan que necesitas y aumenta capacidad a medida que tu cartera de radios crece.",
+    },
+];
+---
+
+<section
+    class="bg-[#03040d] py-20 text-white sm:py-32"
+    aria-labelledby="reseller-benefits-title"
+>
+    <div class="mx-auto container px-5 sm:px-8">
+        <header class="max-w-4xl">
+            <h5 class="text-left text-[#7284ff]">
+                UNA PLATAFORMA PARA VENDER MÁS
+            </h5><h2
+                id="reseller-benefits-title"
+                class="mt-6 text-[var(--h-blanco)]"
+            >
+                Todo lo que necesitas para revender radio streaming
+            </h2><p
+                class="mt-7 max-w-3xl font-[var(--fuente-principal)] text-lg leading-relaxed text-[#bcbccb] sm:text-xl"
+            >
+                Crea una oferta profesional para tus clientes con tecnología
+                SonicPanel y una infraestructura pensada para emisoras online.
+            </p>
+        </header><div
+            class="mt-18 grid gap-x-12 gap-y-14 sm:grid-cols-2 xl:grid-cols-4"
+        >
+            {
+                benefits.map((benefit) => (
+                    <article class="max-w-sm font-[var(--fuente-principal)]">
+                        <>
+                            <MaterialIcon
+                                name={benefit.icon}
+                                size={30}
+                                class="text-[#7f86ff]"
+                            />
+                            <h3 class="mt-5 text-xl font-medium">
+                                {benefit.title}
+                            </h3>
+                            <p class="mt-4 text-base text-[#b6b5c4]">
+                                {benefit.text}
+                            </p>
+                        </>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</section>

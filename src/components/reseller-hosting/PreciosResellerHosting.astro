@@ -1,0 +1,52 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const plans = [
+  { name: 'Lite', discount: '56% DTO.', regular: '$8.99', price: '3.99', accounts: '5', storage: '5 GB SSD NVMe', renewal: '$8.99', href: 'https://clientes.servistream.net/cart.php?a=add&pid=24' },
+  { name: 'Inicial', discount: '54% DTO.', regular: '$12.99', price: '5.99', accounts: '10', storage: '10 GB SSD NVMe', renewal: '$12.99', featured: true, href: 'https://clientes.servistream.net/cart.php?a=add&pid=25' },
+  { name: 'Profesional', discount: '55% DTO.', regular: '$21.99', price: '9.99', accounts: '20', storage: '20 GB SSD NVMe', renewal: '$21.99', href: 'https://clientes.servistream.net/cart.php?a=add&pid=66' },
+  { name: 'Experto', discount: '60% DTO.', regular: '$49.99', price: '19.99', accounts: '50', storage: '50 GB SSD NVMe', renewal: '$49.99', href: '#' },
+];
+
+const sharedFeatures = [
+  'Dominios ilimitados',
+  'Transferencia sin medición',
+  'cPanel + WHM',
+  'SSL gratis ilimitado',
+  'WP Toolkit',
+  'Bases de datos ilimitadas',
+  'Cuentas de correo ilimitadas',
+  'Aceleración WordPress con LiteSpeed',
+  'Copias de seguridad diarias',
+  'Acceso a terminal',
+];
+---
+
+<section id="planes" class="bg-white py-20 sm:py-28" aria-labelledby="reseller-plans-title">
+  <div class="mx-auto container">
+    <header class="mx-auto max-w-5xl text-center">
+      <h2 id="reseller-plans-title" class="text-[var(--h-negro)]">Elige tu plan de reseller hosting</h2>
+      <p class="mt-5 font-[var(--fuente-principal)] leading-relaxed text-[#3f3d43]">Planes con cPanel, WHM, almacenamiento SSD NVMe y herramientas de marca blanca para hacer crecer tu negocio.</p>
+    </header>
+
+    <div class="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-4 xl:gap-6">
+      {plans.map((plan) => (
+        <article class:list={['relative flex min-h-full flex-col rounded-[1.75rem] border bg-white p-7 font-[var(--fuente-principal)] shadow-[0_12px_30px_rgb(21_31_51_/_4%)] sm:p-6', plan.featured ? 'border-[#1769ef] ring-1 ring-[#1769ef]' : 'border-[#d9dbe1]']}>
+          {plan.featured && <span class="absolute -top-5 left-1/2 -translate-x-1/2 rounded-full bg-[#1769ef] px-2 py-1 text-sm font-medium text-white shadow-lg">MÁS ELEGIDO</span>}
+          <h3 class="text-3xl font-base text-[var(--h-negro)]">{plan.name}</h3>
+          <div class="mt-6 flex items-center gap-3"><span class="rounded border border-[#ffba9d] bg-[#fff0e9] px-2.5 py-1 text-sm font-bold text-[#ff4b1b]">{plan.discount}</span><span class="text-sm text-[#85858a] line-through">{plan.regular}</span></div>
+          <p class="mt-7 text-[clamp(2.25rem,3vw,4.5rem)] leading-none font-bold text-[var(--h-negro)]"><span class="mr-1 text-[.45em] align-top">$</span>{plan.price}<span class="ml-1 text-[.35em] font-medium tracking-normal">/mes</span></p>
+          <p class="mt-5 text-sm font-medium text-[#86868a]">En plan de 3 años</p>
+          <a href={plan.href} class:list={['mt-8 flex min-h-12 items-center justify-center rounded-full border-2 text-lg font-bold no-underline transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1769ef]', plan.featured ? 'border-[#1769ef] bg-[#1769ef] text-white hover:bg-[#0959d9]' : 'border-[#2877f5] text-[#1769ef] hover:bg-[#eef5ff]']}>Elegir plan</a>
+          <p class="mt-6 text-sm leading-relaxed text-[#85858a]">Renueva a {plan.renewal}/mes. Cancela cuando quieras.</p>
+          <div class="my-8 border-t border-[#e2e9f7]"></div>
+          <ul class="grid gap-2 text-[15px] leading-[1.35] text-[#1f2026]" aria-label={`Características del plan ${plan.name}`}>
+            <li class="flex gap-2"><MaterialIcon name="check" size={20} class="shrink-0 text-[#21b962]" /><span><strong>{plan.accounts}</strong> cuentas cPanel</span></li>
+            <li class="flex gap-2"><MaterialIcon name="check" size={20} class="shrink-0 text-[#21b962]" /><span><strong>{plan.storage}</strong></span></li>
+            {sharedFeatures.map((feature) => <li class="flex gap-1"><MaterialIcon name="check" size={20} class="shrink-0 text-[#21b962]" /><span>{feature}</span></li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

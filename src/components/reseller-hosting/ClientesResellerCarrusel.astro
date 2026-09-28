@@ -1,0 +1,47 @@
+---
+const reviews = [
+  { time: 'Hace 2 días', title: 'Configuración de dominio sin complicaciones', text: 'El acompañamiento fue inmediato. Configuramos el dominio y las cuentas de mi primer cliente en pocos minutos.', name: 'Andrés M.', initials: 'AM' },
+  { time: 'Hace 3 días', title: 'Herramientas muy fáciles de usar', text: 'WHM y cPanel hacen que administrar varios sitios sea claro, rápido y mucho más profesional.', name: 'Carolina R.', initials: 'CR' },
+  { time: 'Hace 5 días', title: 'Soporte que realmente responde', text: 'Me ayudaron a crear mis paquetes y resolver una duda de migración. Atención muy cercana.', name: 'Daniel P.', initials: 'DP' },
+  { time: 'Hace 8 días', title: 'Ideal para empezar a vender hosting', text: 'Pude lanzar mi marca sin invertir en infraestructura propia. Todo llegó listo para trabajar.', name: 'María J.', initials: 'MJ' },
+  { time: 'Hace 12 días', title: 'Excelente profesionalismo', text: 'Como nueva en el servicio, recibí orientación en cada paso y ya administro varios clientes.', name: 'Sofía V.', initials: 'SV' },
+  { time: 'Hace 6 días', title: 'Una experiencia sin inconvenientes', text: 'La velocidad, la estabilidad y la gestión desde el panel han superado mis expectativas.', name: 'Luis G.', initials: 'LG' },
+];
+const topReviews = reviews.slice(0, 4);
+const bottomReviews = reviews.slice(2);
+---
+
+<section class="overflow-hidden bg-white py-20 sm:py-28" aria-labelledby="clients-title">
+  <header class="mx-auto w-[min(100%-2.5rem,62rem)] text-center sm:w-[min(100%-4rem,62rem)]">
+    <h2 id="clients-title" class="text-[var(--h-negro)]">Mira cómo crecen nuestros clientes</h2>
+    <p class="mt-5 text-[#3f3e44]">Conoce las experiencias de quienes ya hacen crecer su negocio con Reseller Hosting de Servistream.</p>
+  </header>
+
+  <div class="mt-14 grid gap-8" aria-label="Testimonios de clientes">
+    <div class="marquee" data-marquee>
+      <div class="marquee-track marquee-right">
+        {[...topReviews, ...topReviews].map((review) => <article class="review-card"><p class="text-sm text-[#8a8b91]">{review.time}</p><h3>{review.title}</h3><p class="review-text">{review.text}</p><div class="mt-auto flex items-center gap-3"><span class="grid size-12 place-items-center rounded-full bg-[#e5f3ff] font-[var(--fuente-principal)] text-sm font-medium text-[#1769ef]">{review.initials}</span><div><p class="font-[var(--fuente-principal)] text-sm font-medium text-[#34343b]">{review.name}</p><p class="mt-1 text-sm tracking-[.12em] text-[#1ab35c]">★★★★★</p></div></div></article>)}
+      </div>
+    </div>
+    <div class="marquee" data-marquee>
+      <div class="marquee-track marquee-left">
+        {[...bottomReviews, ...bottomReviews].map((review) => <article class="review-card"><p class="text-sm text-[#8a8b91]">{review.time}</p><h3>{review.title}</h3><p class="review-text">{review.text}</p><div class="mt-auto flex items-center gap-3"><span class="grid size-12 place-items-center rounded-full bg-[#eef8ef] font-[var(--fuente-principal)] text-sm font-medium text-[#16a85c]">{review.initials}</span><div><p class="font-[var(--fuente-principal)] text-sm font-medium text-[#34343b]">{review.name}</p><p class="mt-1 text-sm tracking-[.12em] text-[#1ab35c]">★★★★★</p></div></div></article>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee { overflow: hidden; width: 100%; }
+  .marquee-track { display: flex; width: max-content; gap: 1.5rem; padding: .15rem .75rem; animation-duration: 38s; animation-timing-function: linear; animation-iteration-count: infinite; will-change: transform; }
+  .marquee-right { animation-name: move-right; transform: translateX(-50%); }
+  .marquee-left { animation-name: move-left; }
+  .marquee:hover .marquee-track, .marquee-track:focus-within { animation-play-state: paused; }
+  .review-card { display: flex; width: min(28rem, calc(100vw - 3rem)); min-height: 20rem; flex-direction: column; border: 1px solid #e5e5e8; border-radius: 1.75rem; background: #fff; padding: 2rem; box-shadow: 0 8px 25px rgb(26 47 76 / 4%); font-family: var(--fuente-principal); }
+  .review-card h3 { margin-top: 1.7rem; color: #14151a; font-size: 1.5rem; font-weight: 700; line-height: 1.16; }
+  .review-text { margin-top: 1.3rem; color: #34353b; font-size: 1rem; line-height: 1.55; }
+  @keyframes move-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes move-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; transform: none; flex-wrap: wrap; width: auto; justify-content: center; } .marquee-track > :nth-child(n + 5) { display: none; } }
+  @media (max-width: 640px) { .marquee-track { gap: 1rem; } .review-card { min-height: 18rem; padding: 1.5rem; } }
+</style>

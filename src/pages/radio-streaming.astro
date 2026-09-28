@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MenuNegro from '../components/menuGlobal.astro';
+import PlanesRadioStreaming from '../components/radio-streaming/PlanesRadioStreaming.astro';
+import BeneficiosRadioStreaming from '../components/radio-streaming/BeneficiosRadioStreaming.astro';
+import PlayerRadioStreaming from '../components/radio-streaming/PlayerRadioStreaming.astro';
+import PreguntasRadioStreaming from '../components/radio-streaming/PreguntasRadioStreaming.astro';
+import Footer from '../components/footerNegro.astro';
+import DarkStreamingAtmosphere from '../components/DarkStreamingAtmosphere.astro';
+---
+
+<Layout title="Radio Streaming | Servistream Technology" description="Lleva tu emisora a internet con radio streaming estable, rápida y lista para crecer." bodyClass="bg-[#03040d]">
+  <div class="dark-streaming-experience relative isolate overflow-hidden bg-[#03040d]">
+    <DarkStreamingAtmosphere tone="violet" />
+    <div class="relative z-10">
+    <MenuNegro variant="transparente" />
+    <PlanesRadioStreaming />
+    <BeneficiosRadioStreaming />
+    <PlayerRadioStreaming />
+    <PreguntasRadioStreaming />
+    </div>
+  </div>
+  <Footer />
+</Layout>

@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MenuNegro from '../components/menuGlobal.astro';
+import HeaderWordpress from '../components/wordpress/HeaderWordpress.astro';
+import PreciosWordpress from '../components/wordpress/PreciosWordpress.astro';
+import GestionWordpress from '../components/wordpress/GestionWordpress.astro';
+import CaracteristicasWordpress from '../components/wordpress/CaracteristicasWordpress.astro';
+import FooterNegroAstroComponent from '../components/footerNegro.astro';
+---
+
+<Layout
+  title="Hosting WordPress Optimizado | Servistream Technology"
+  description="Hosting WordPress administrado con rendimiento garantizado, Cloudflare, VPS y discos SSD NVMe."
+  bodyClass="bg-white"
+>
+  <MenuNegro variant="blanco" />
+  <HeaderWordpress />
+  <PreciosWordpress />
+  <GestionWordpress />
+  <CaracteristicasWordpress />
+  <FooterNegroAstroComponent />
+</Layout>

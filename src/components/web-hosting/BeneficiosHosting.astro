@@ -1,0 +1,62 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+export interface HostingBenefit {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface Props {
+  benefits?: HostingBenefit[];
+}
+
+const defaultBenefits: HostingBenefit[] = [
+  {
+    title: 'Rendimiento superior',
+    description: 'Discos NVMe, LiteSpeed y recursos optimizados para que tu sitio cargue rápido incluso en momentos de alta demanda.',
+    icon: 'speed',
+  },
+  {
+    title: 'Seguridad administrada',
+    description: 'SSL, protección contra malware y copias de seguridad diarias para mantener tu información siempre protegida.',
+    icon: 'shield_lock',
+  },
+  {
+    title: 'Soporte especializado',
+    description: 'Acompañamiento técnico para migraciones, configuración y resolución de incidencias durante todo el año.',
+    icon: 'support_agent',
+  },
+];
+
+const { benefits = defaultBenefits } = Astro.props;
+---
+
+<section class="bg-[#ededed] px-5 py-16 text-[#171717] sm:px-8 sm:py-12 lg:px-12 lg:py-12" aria-label="Beneficios de nuestro web hosting">
+  <div class="mx-auto grid w-full max-w-384 md:grid-cols-3">
+    {benefits.map((benefit) => (
+      <article class="benefit-item border-[#171717]/15 py-9 first:pt-0 last:pb-0 md:min-h-52 md:border-l md:px-8 md:py-0 md:first:pt-0 lg:min-h-5 lg:px-12">
+        <div class="flex items-center gap-5">
+          <span class="grid size-14 shrink-0 place-items-center rounded-[1.15rem] bg-[#151515] text-white" aria-hidden="true">
+            <MaterialIcon name={benefit.icon} size={38} />
+          </span>
+          <p class="max-w-52 font-[var(--fuente-principal)] text-[24px] leading-[1.05] text-[#171717]">
+            {benefit.title}
+          </p>
+        </div>
+
+        <p class="mt-8 max-w-md font-[var(--fuente-principal)] text-[clamp(.95rem,1vw,1.08rem)] leading-[1.65] text-[#3f4140]">
+          {benefit.description}
+        </p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  @media (max-width: 767px) {
+    .benefit-item + .benefit-item {
+      border-top-width: 1px;
+    }
+  }
+</style>

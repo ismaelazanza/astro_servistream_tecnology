@@ -1,0 +1,272 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const baseWhmcsUrl = 'https://clientes.servistream.net/cart.php?a=add&domain=register';
+---
+
+<header
+  class="relative overflow-hidden bg-[#171717] px-5 pb-16 pt-36 text-white sm:px-8 lg:px-12 lg:pb-20 lg:pt-40"
+  data-domain-search
+  data-whmcs-url={baseWhmcsUrl}
+  data-availability-url="https://clientes.servistream.net/domain-availability.php"
+>
+  <div class="container mx-auto">
+    <section class="mx-auto max-w-[54rem] text-center">
+      <h2 class="font-[var(--fuente-principal)] leading-[.95] text-[var(--h-blanco)]">
+        Busca tu nombre de dominio
+      </h2>
+
+      <form class="mx-auto mt-14 flex max-w-[46rem] items-center gap-2 rounded-full bg-white p-2 shadow-[0_25px_80px_rgb(0_0_0_/_18%)]" data-domain-form>
+        <MaterialIcon name="search" size={28} class="ml-4 shrink-0 text-[#4b4b53]" />
+        <input
+          class="min-h-13 min-w-0 flex-1 border-0 bg-transparent font-[var(--fuente-principal)] text-[14px] font-normal text-[#24242a] outline-none placeholder:text-[#676770]"
+          type="text"
+          name="domain"
+          inputmode="url"
+          autocomplete="off"
+          placeholder="Escribe el dominio que deseas"
+          data-domain-input
+        />
+        <button class="grid size-12 shrink-0 place-items-center rounded-full bg-[#7657ff] text-white transition-colors duration-200 hover:bg-[#5b39ff] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7657ff]" type="submit" aria-label="Buscar dominio">
+          <MaterialIcon name="arrow_forward" size={28} />
+        </button>
+      </form>
+    </section>
+
+    <section class="mt-16 grid gap-5 lg:grid-cols-[minmax(0,2fr)_minmax(18rem,1fr)_minmax(18rem,1fr)]">
+      <article class="flex min-h-[18rem] flex-col rounded-[1.4rem] bg-[#7a63ff] p-8 lg:p-10">
+        <span class="grid size-16 place-items-center rounded-lg bg-[#c8ff00] text-[#120d28]">
+          <MaterialIcon name="percent" size={40} />
+        </span>
+        <div class="mt-auto">
+          <h2 class="max-w-[37rem] font-[var(--fuente-principal)] text-[38px] text-white">
+            Consigue ofertas especiales en dominios seleccionados
+          </h2>
+          <p class="mt-7 max-w-[37rem] font-[var(--fuente-principal)] text-lg font-normal leading-[1.45] text-white">
+            Disponible con dominios .tech, .org, .net, .io y .ai registrados por 2 años o más.
+          </p>
+        </div>
+      </article>
+
+      <article class="relative min-h-[18rem] overflow-hidden rounded-[1.4rem] bg-[#2c244f]">
+        <img class="absolute inset-0 h-full w-full object-cover" src="/img/dominios/domains-customer.avif" alt="Cliente buscando dominios desde su teléfono" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#120d28]/85 via-[#120d28]/15 to-transparent"></div>
+        <div class="absolute bottom-8 left-8 right-8">
+          <strong class="block font-[var(--fuente-principal)] text-[clamp(2.3rem,3.2vw,3.8rem)] leading-none font-medium text-white">+9M</strong>
+          <p class="mt-2 font-[var(--fuente-principal)] text-lg font-normal text-white">dominios registrados</p>
+          <strong class="mt-10 block font-[var(--fuente-principal)] text-[clamp(2.1rem,3vw,3.4rem)] leading-none font-medium text-white">+400</strong>
+          <p class="mt-2 font-[var(--fuente-principal)] text-lg font-normal text-white">extensiones de dominio</p>
+        </div>
+      </article>
+
+      <article class="relative flex min-h-[18rem] flex-col rounded-[1.4rem] bg-[#2a1f57] p-8 lg:p-10">
+        
+        <div class="mt-auto">
+          <div class="mb-10 flex items-center rounded-xl bg-white p-3 shadow-[14px_14px_0_rgb(255_255_255_/_12%)]">
+            <span class="grid size-12 place-items-center rounded-lg bg-[#ece8ff] text-[#7657ff]">
+              <MaterialIcon name="swap_horiz" size={29} />
+            </span>
+            <span class="ml-4 h-3 flex-1 rounded-full bg-[#e9e7f4]"></span>
+            <strong class="ml-4 font-[var(--fuente-principal)] text-2xl text-[#2a1f57]">.com</strong>
+          </div>
+          <h2 class="font-[var(--fuente-principal)] text-[clamp(1.8rem,2.3vw,2.6rem)] leading-tight font-medium text-white">
+            Transferencia de dominio
+          </h2>
+          <p class="mt-6 font-[var(--fuente-principal)] text-lg font-normal leading-[1.45] text-white">
+            Hemos simplificado la transferencia de dominios: .com desde $16,00
+          </p>
+        </div>
+      </article>
+    </section>
+  </div>
+</header>
+
+<section class="hidden bg-white px-5 py-12 sm:px-8 lg:px-12" data-domain-results>
+  <div class="container mx-auto">
+    <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <h2 class="text-[#24242a]">Resultados disponibles</h2>
+        <p class="mt-2 font-[var(--fuente-principal)] text-lg text-[#666a72]">Selecciona una extensión y finaliza el registro en nuestro sistema de facturación.</p>
+        <p class="mt-3 hidden font-[var(--fuente-principal)] text-base font-bold text-[#7657ff]" data-domain-loading>Consultando disponibilidad...</p>
+      </div>
+      <button class="rounded-full border border-[#7657ff] px-6 py-3 font-[var(--fuente-principal)] font-bold text-[#7657ff]" type="button" data-domain-edit>
+        Cambiar búsqueda
+      </button>
+    </div>
+
+    <div class="divide-y divide-[#dedfe4] border-y border-[#dedfe4]" data-results-list></div>
+  </div>
+</section>
+
+<script>
+  const cleanDomainQuery = (value) => {
+    return value
+      .trim()
+      .toLowerCase()
+      .replace(/^https?:\/\//, '')
+      .replace(/^www\./, '')
+      .replace(/[/?#].*$/, '')
+      .replace(/:\d+$/, '')
+      .replace(/[^a-z0-9.-]/g, '')
+      .replace(/\.{2,}/g, '.')
+      .replace(/^[.-]+|[.-]+$/g, '') || 'tudominio';
+  };
+
+  const initDomainSearch = () => {
+    const header = document.querySelector('[data-domain-search]');
+    const results = document.querySelector('[data-domain-results]');
+    if (!(header instanceof HTMLElement) || !(results instanceof HTMLElement) || header.dataset.ready) return;
+    header.dataset.ready = 'true';
+
+    const form = header.querySelector('[data-domain-form]');
+    const input = header.querySelector('[data-domain-input]');
+    const edit = results.querySelector('[data-domain-edit]');
+    const loading = results.querySelector('[data-domain-loading]');
+    const list = results.querySelector('[data-results-list]');
+    const baseUrl = header.dataset.whmcsUrl;
+    const availabilityUrl = header.dataset.availabilityUrl;
+
+    const getRegisterUrl = (domain, period = 1) => {
+      const url = new URL(baseUrl);
+      url.searchParams.append('domains[]', domain);
+      url.searchParams.set(`domainsregperiod[${domain}]`, String(period || 1));
+      return url.toString();
+    };
+
+    const getSearchUrl = (domain) => `${baseUrl}&query=${encodeURIComponent(domain)}`;
+
+    const setLoadingMessage = (message, isVisible = true) => {
+      if (!(loading instanceof HTMLElement)) return;
+      loading.textContent = message;
+      loading.classList.toggle('hidden', !isVisible);
+    };
+
+    const createResultRow = (item) => {
+      const row = document.createElement('article');
+      row.className = 'grid gap-5 py-7 md:grid-cols-[1fr_auto_auto] md:items-center';
+
+      const details = document.createElement('div');
+      details.className = 'flex flex-wrap items-center gap-4';
+
+      const title = document.createElement('h3');
+      title.className = "font-[var(--fuente-principal)] text-[clamp(1.5rem,1vw,1rem)] font-black tracking-[-.03em] text-[#24242a]";
+      title.textContent = item.domain || '';
+      details.append(title);
+
+      const status = document.createElement('span');
+      status.className = "rounded-full px-4 py-2 font-[var(--fuente-principal)] text-sm";
+      if (item.available) {
+        status.textContent = 'Disponible';
+        status.classList.add('bg-[#e8f5ed]', 'text-[#0c8b4a]');
+      } else if (item.status === 'registered') {
+        status.textContent = 'No disponible';
+        status.classList.add('bg-[#fff0f3]', 'text-[#df1642]');
+      } else {
+        status.textContent = 'Consultar';
+        status.classList.add('bg-[#eeeaff]', 'text-[#7657ff]');
+      }
+      details.append(status);
+
+      if (item.isPremium) {
+        const premium = document.createElement('span');
+        premium.className = "rounded-full bg-[#120d28] px-4 py-2 font-[var(--fuente-principal)] text-sm font-black text-white";
+        premium.textContent = 'Premium';
+        details.append(premium);
+      }
+
+      const priceWrap = document.createElement('div');
+      priceWrap.className = 'text-left md:text-right';
+
+      const price = document.createElement('p');
+      price.className = "font-[var(--fuente-principal)] text-lg text-[#24242a]";
+
+      const priceStrong = document.createElement('strong');
+      priceStrong.className = 'text-[clamp(1.5rem,1vw,1rem)] font-black';
+      priceStrong.textContent = item.price || 'Ver precio';
+      price.append(priceStrong);
+
+      if (item.period) {
+        const period = document.createElement('span');
+        period.className = 'ml-2 text-base font-semibold text-[#666a72]';
+        period.textContent = `/${item.period} año`;
+        price.append(period);
+      }
+
+      priceWrap.append(price);
+
+      const link = document.createElement('a');
+      link.className = "inline-flex min-h-15 items-center justify-center rounded-[1rem] border-2 border-[#7657ff] px-8 font-[var(--fuente-principal)] text-lg font-black text-[#7657ff] no-underline transition-colors duration-200 hover:bg-[#7657ff] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7657ff]";
+      link.href = item.available
+        ? getRegisterUrl(item.domain || '', item.period)
+        : getSearchUrl(item.domain || '');
+      link.textContent = item.available ? 'Obtener' : 'Ver en WHMCS';
+
+      row.append(details, priceWrap, link);
+      return row;
+    };
+
+    const renderResults = (items) => {
+      if (!(list instanceof HTMLElement)) return;
+      list.replaceChildren();
+
+      if (!items.length) {
+        const empty = document.createElement('p');
+        empty.className = "py-8 font-[var(--fuente-principal)] text-lg font-semibold text-[#666a72]";
+        empty.textContent = 'No se encontraron sugerencias. Intenta con otro nombre.';
+        list.append(empty);
+        return;
+      }
+
+      items.forEach((item) => list.append(createResultRow(item)));
+    };
+
+    const showResults = async () => {
+      if (!(input instanceof HTMLInputElement) || !baseUrl) return;
+      const domain = cleanDomainQuery(input.value);
+      input.value = domain;
+
+      results.classList.remove('hidden');
+      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      renderResults([]);
+
+      if (!availabilityUrl) return;
+      setLoadingMessage('Consultando disponibilidad...');
+
+      try {
+        const response = await fetch(`${availabilityUrl}?query=${encodeURIComponent(domain)}`, {
+          headers: { Accept: 'application/json' },
+        });
+        if (!response.ok) throw new Error('Availability request failed');
+
+        const payload = await response.json();
+        if (payload?.result !== 'success' || !Array.isArray(payload.results)) {
+          throw new Error('Invalid availability payload');
+        }
+
+        const orderedResults = [...payload.results].sort((first, second) => {
+          const firstIsExact = first?.domain === domain ? 1 : 0;
+          const secondIsExact = second?.domain === domain ? 1 : 0;
+          return secondIsExact - firstIsExact;
+        });
+
+        renderResults(orderedResults);
+        setLoadingMessage('Disponibilidad y precios consultados desde WHMCS Namespinning.', false);
+      } catch {
+        setLoadingMessage('No se pudo consultar WHMCS en este momento. Intenta nuevamente.');
+        renderResults([]);
+      }
+    };
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      showResults();
+    });
+
+    header.querySelector('[data-domain-preview]')?.addEventListener('click', showResults);
+    edit?.addEventListener('click', () => header.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  };
+
+  document.addEventListener('astro:page-load', initDomainSearch);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initDomainSearch, { once: true });
+  else initDomainSearch();
+</script>

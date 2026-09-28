@@ -1,0 +1,119 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const testimonials = [
+  {
+    tag: 'Soporte administrado',
+    quote: 'Migraron nuestro WordPress al VPS y dejaron CyberPanel listo. El sitio quedó más rápido y el soporte respondió cada detalle sin complicarnos.',
+    name: 'María Fernanda C.',
+    role: 'Cliente VPS S',
+  },
+  {
+    tag: 'Rendimiento VPS',
+    quote: 'Pasamos de hosting compartido a VPS administrado y la diferencia fue inmediata: mejor estabilidad, LiteSpeed optimizado y menos tiempos de carga.',
+    name: 'Diego Andrade',
+    role: 'Cliente VPS M',
+  },
+  {
+    tag: 'Gestión técnica',
+    quote: 'Nos ayudaron con seguridad, Cloudflare y configuración del panel. Tener el servidor administrado nos permite enfocarnos en el negocio.',
+    name: 'Carolina Ruiz',
+    role: 'Cliente VPS L',
+  },
+];
+---
+
+<section
+  class="bg-[#151519] px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-22"
+  aria-label="Testimonios de clientes VPS"
+  data-vps-testimonials
+  data-testimonial-count={testimonials.length}
+>
+  <div class="mx-auto grid max-w-[118rem] gap-14 lg:grid-cols-[minmax(18rem,30rem)_1fr] lg:gap-24">
+    <div>
+      <h5 class="text-left text-[var(--h-blanco)]">Testimonios</h5>
+      <h2 class="mt-6 text-[var(--h-blanco)]">
+        Clientes que confían en nuestros VPS administrados.
+      </h2>
+      <a
+        class="mt-10 inline-flex min-h-12 items-center gap-4 rounded-[1.25rem] bg-[#e90f3d] px-7 font-[var(--fuente-principal)] text-base font-black text-white no-underline transition-colors duration-200 hover:bg-white hover:text-[#151519] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#e90f3d]"
+        href="#"
+      >
+        Más opiniones
+        <MaterialIcon name="arrow_forward" size={24} />
+      </a>
+    </div>
+
+    <div class="min-w-0">
+      <div class="overflow-hidden" data-testimonial-viewport>
+        <div class="flex transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] will-change-transform motion-reduce:transition-none" data-testimonial-track>
+          {testimonials.map((testimonial, index) => (
+            <article class="min-w-full gap-10 lg:grid-cols-2" aria-hidden={index === 0 ? 'false' : 'true'} data-testimonial-slide>
+              <div>
+                <span class="inline-flex rounded-full bg-white/8 px-4 py-2 font-[var(--fuente-principal)] text-sm font-semibold text-white/50">
+                  {testimonial.tag}
+                </span>
+                <blockquote class="mt-7 w-full font-[var(--fuente-principal)] text-[28px] leading-[1.45] text-[var(--h-blanco)]">
+                  “{testimonial.quote}”
+                </blockquote>
+                <footer class="mt-7">
+                  <p class="font-[var(--fuente-principal)] text-lg font-black text-white">{testimonial.name}</p>
+                  <p class="mt-1 font-[var(--fuente-principal)] text-base text-white/42">{testimonial.role}</p>
+                </footer>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-10 flex items-center justify-between gap-6">
+        <div class="grid grid-cols-2 overflow-hidden rounded-full bg-white/6">
+          <button class="grid size-16 place-items-center text-white transition-colors duration-200 hover:bg-[#e90f3d] focus-visible:bg-[#e90f3d] focus-visible:outline-none" type="button" aria-label="Testimonio anterior" data-testimonial-prev>
+            <MaterialIcon name="arrow_back" size={25} />
+          </button>
+          <button class="grid size-16 place-items-center text-white transition-colors duration-200 hover:bg-[#e90f3d] focus-visible:bg-[#e90f3d] focus-visible:outline-none" type="button" aria-label="Siguiente testimonio" data-testimonial-next>
+            <MaterialIcon name="arrow_forward" size={25} />
+          </button>
+        </div>
+
+        <p class="flex items-center gap-4 font-[var(--fuente-principal)] text-lg font-black text-white" aria-live="polite">
+          <span data-testimonial-current>1</span>
+          <span class="h-px w-12 bg-white/55" aria-hidden="true"></span>
+          <span>{testimonials.length}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const initVpsTestimonials = () => {
+    document.querySelectorAll('[data-vps-testimonials]').forEach((section) => {
+      if (!(section instanceof HTMLElement) || section.dataset.ready) return;
+      section.dataset.ready = 'true';
+
+      const track = section.querySelector('[data-testimonial-track]');
+      const slides = [...section.querySelectorAll('[data-testimonial-slide]')];
+      const currentLabel = section.querySelector('[data-testimonial-current]');
+      const previous = section.querySelector('[data-testimonial-prev]');
+      const next = section.querySelector('[data-testimonial-next]');
+      const total = Number(section.dataset.testimonialCount ?? slides.length);
+      let current = 0;
+
+      const show = (index) => {
+        current = (index + total) % total;
+        if (track instanceof HTMLElement) track.style.transform = `translate3d(-${current * 100}%, 0, 0)`;
+        if (currentLabel) currentLabel.textContent = String(current + 1);
+        slides.forEach((slide, slideIndex) => slide.setAttribute('aria-hidden', String(slideIndex !== current)));
+      };
+
+      previous?.addEventListener('click', () => show(current - 1));
+      next?.addEventListener('click', () => show(current + 1));
+      show(0);
+    });
+  };
+
+  document.addEventListener('astro:page-load', initVpsTestimonials);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initVpsTestimonials, { once: true });
+  else initVpsTestimonials();
+</script>

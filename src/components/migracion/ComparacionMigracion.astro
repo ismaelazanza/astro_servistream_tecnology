@@ -1,0 +1,59 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const comparisonRows = [
+  { feature: 'Migración de sitio web', servistream: 'Incluida', market: 'Servicio con coste variable' },
+  { feature: 'Almacenamiento NVMe', servistream: '8 GB a 40 GB según el plan', market: 'Depende del proveedor y plan' },
+  { feature: 'SSL para tus sitios', servistream: 'Incluido', market: 'Puede tener coste adicional' },
+  { feature: 'Backups diarios', servistream: 'Incluidos', market: 'Puede tener coste adicional' },
+  { feature: 'LiteSpeed y Cloudflare', servistream: 'Incluidos', market: 'Depende del proveedor' },
+  { feature: 'cPanel e Imunify360', servistream: 'Incluidos', market: 'Depende del proveedor' },
+  { feature: 'Soporte técnico', servistream: 'Incluido', market: 'Varía según el servicio' },
+];
+---
+
+<section class="bg-[#f8f8f9] px-5 py-18 sm:px-8 sm:py-24 lg:px-12 lg:py-32" aria-labelledby="comparacion-migracion-title">
+  <div class="mx-auto container">
+    <header class="mx-auto text-center">
+      <h2 id="comparacion-migracion-title" class="text-center text-[var(--h-negro)]">Con servistream, <br> más servicios incluidos</h2>
+      <p class="mx-auto mt-6 max-w-4xl font-[var(--fuente-principal)] text-base leading-[1.55] text-[#5a5860] sm:text-xl">Compara las funciones incluidas en nuestros planes de web hosting con lo que normalmente se contrata por separado.</p>
+    </header>
+
+    <div class="mx-auto mt-12 flex max-w-250 flex-col items-center justify-center overflow-x-auto pb-2 sm:mt-16" tabindex="0" aria-label="Tabla comparativa de servicios">
+      <div class="min-w-190 overflow-hidden rounded-[1.8rem] border border-[#d9d9df] bg-white sm:min-w-0">
+        <div class="grid grid-cols-[1.15fr_1fr] border-b border-[#d9d9df]">
+          <div class="border-r-2 border-[#00a77e] bg-[#effaf5] px-6 py-7 sm:px-10 sm:py-9">
+            <div class="flex items-center gap-3">
+              <span class="grid size-10 place-items-center rounded-lg bg-[#151515] text-white"><MaterialIcon name="dns" size={24} /></span>
+              <p class="font-[var(--fuente-principal)] text-xl font-bold tracking-[-.03em] text-[#151515] sm:text-2xl">SERVISTREAM</p>
+            </div>
+          </div>
+          <div class="flex items-center px-6 py-7 sm:px-10 sm:py-9">
+            <p class="font-[var(--fuente-principal)] text-xl font-bold tracking-[-.03em] text-[#26242a] sm:text-2xl">Costo del mercado</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-[1.15fr_1fr]">
+          <div class="border-r-2 border-[#00a77e] bg-[#f5fcf8] px-6 py-6 sm:px-10 sm:py-8">
+            <p class="font-[var(--fuente-principal)] text-[clamp(1.35rem,2.3vw,2.2rem)] font-bold tracking-[-.04em] text-[#171717]">Incluido en todos los planes</p>
+          </div>
+          <div class="flex items-center px-6 py-6 sm:px-10 sm:py-8">
+            <p class="font-[var(--fuente-principal)] text-[clamp(1.25rem,2vw,2rem)] font-semibold tracking-[-.04em] text-[#29272e]">Funciones y precios variables</p>
+          </div>
+        </div>
+
+        {comparisonRows.map((row) => (
+          <div class="grid grid-cols-[1.15fr_1fr] border-t border-[#dedee3]">
+            <div class="grid grid-cols-[minmax(13rem,1.25fr)_minmax(12rem,.9fr)] items-center gap-5 border-r-2 border-[#00a77e] bg-[#f5fcf8] px-6 py-5 sm:px-10 sm:py-6">
+              <p class="font-[var(--fuente-principal)] text-base font-semibold text-[#2c2a30] sm:text-lg">{row.feature}</p>
+              <p class="flex items-center justify-end gap-2 text-right font-[var(--fuente-principal)] text-base text-[#2c2a30] sm:text-lg"><MaterialIcon name="check_circle" size={22} class="shrink-0 text-[#00a77e]" />{row.servistream}</p>
+            </div>
+            <div class="flex items-center px-6 py-5 font-[var(--fuente-principal)] text-base text-[#4f4d55] sm:px-10 sm:py-6 sm:text-lg">{row.market}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <p class="mt-5 text-center font-[var(--fuente-principal)] text-xs leading-relaxed text-[#73717a] sm:text-sm">Características verificadas según los planes de Web Hosting de Servistream. Las condiciones de terceros pueden variar según proveedor, configuración y periodo de contratación.</p>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const capabilities = [
+  { icon: 'settings_input_antenna', title: 'Canales en vivo', text: 'Crea y administra tus señales desde un panel central.' },
+  { icon: 'videocam', title: 'RTMP para OBS', text: 'Conecta tu encoder mediante URL y clave de transmisión.' },
+  { icon: 'movie', title: 'VOD automático', text: 'Convierte tus emisiones en contenido disponible bajo demanda.' },
+  { icon: 'hub', title: 'Simulcast', text: 'Distribuye tu programación a más destinos desde un solo lugar.' },
+];
+---
+
+<main class="relative overflow-hidden bg-[#030713] text-white" aria-labelledby="tv-title">
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-[58rem] bg-[radial-gradient(ellipse_at_50%_12%,rgba(51,109,255,.5),transparent_42%),radial-gradient(circle_at_74%_44%,rgba(100,63,255,.32),transparent_25%),linear-gradient(180deg,#07132e_0%,#030713_82%)]"></div>
+  <div class="pointer-events-none absolute inset-0 opacity-35 [background-image:radial-gradient(rgba(158,190,255,.8)_1px,transparent_1.5px)] [background-size:4rem_4rem] [mask-image:linear-gradient(180deg,black,transparent_55%)]"></div>
+  <section class="relative mx-auto w-[min(100%-2.5rem,116rem)] py-38 sm:w-[min(100%-4rem,116rem)] sm:py-44">
+    <header class="mx-auto container text-center">
+      <h5 class="inline-flex rounded-full border mb-0 border-white/15 bg-white/10 px-5 py-1  text-[#c6d4ff] ">STREAMCP PRO</h5>
+      <h1 id="tv-title" class="mt-[-40px] text-[clamp(3.2rem,4vw,7rem)] leading-[.9]">Tu señal de TV,<br />en todas partes.</h1>
+      <p class="mx-auto mt-7 font-[var(--fuente-principal)]  leading-relaxed text-[#c5cee8]">Emite en vivo, programa contenido y administra tu canal profesional con StreamCP Pro.</p>
+      <div class="mt-10 flex flex-wrap justify-center gap-4"><a href="#funciones" class="inline-flex min-h-10 items-center justify-center rounded-full bg-[#4a74ff] px-8 font-[var(--fuente-principal)] font-bold text-white no-underline shadow-[0_14px_34px_rgb(74_116_255_/_30%)] transition hover:-translate-y-0.5 hover:bg-[#3c66ed]">Conoce StreamCP Pro</a><a href="https://clientes.servistream.net/cart.php" class="inline-flex min-h-10 items-center justify-center rounded-full border border-white/25 bg-white/8 px-8 font-[var(--fuente-principal)] font-bold text-white no-underline backdrop-blur transition hover:bg-white/15">Ver planes</a></div>
+    </header>
+
+    <div class="relative mx-auto mt-20 max-w-4xl">
+      <div class="absolute -inset-10 rounded-[3rem] bg-[#476aff]/20 blur-3xl"></div>
+      <div class="relative overflow-hidden rounded-[1.8rem] border border-white/20 bg-[#0e1528]/70 p-2 shadow-[0_32px_90px_rgb(0_0_0_/_40%),inset_0_1px_0_rgb(255_255_255_/_13%)] backdrop-blur-md sm:p-3">
+        <img src="/img/tv-streaming/Captura de pantalla 2026-09-13 a las 6.32.09 p. m..png" alt="Panel StreamCP Pro con canales, espectadores, ancho de banda y estado de emisión" class="w-full rounded-[1.3rem]" loading="eager" fetchpriority="high" />
+      </div>
+      <div class="absolute -bottom-8 right-[4%] hidden items-center gap-4 rounded-2xl border border-white/20 bg-[#111936]/85 p-5 shadow-xl backdrop-blur-xl lg:flex"><span class="grid size-12 place-items-center rounded-xl bg-[#38c98b] text-white"><MaterialIcon name="wifi" size={27} /></span><div><p class="font-[var(--fuente-principal)] text-sm text-[#aeb9d8]">Estado de emisión</p><p class="font-[var(--fuente-principal)] text-lg font-bold text-white">Señal activa</p></div></div>
+    </div>
+  </section>
+</main>
+

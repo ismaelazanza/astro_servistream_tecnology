@@ -1,0 +1,99 @@
+---
+interface ClientLogo {
+  name: string;
+  src: string;
+}
+
+interface Props {
+  title?: string;
+  logos?: ClientLogo[];
+  interval?: number;
+}
+
+const defaultLogos: ClientLogo[] = [
+  { name: 'Acólita', src: '/img/clientes/acolita.svg' },
+  { name: 'Corporación', src: '/img/clientes/corporacion.svg' },
+  { name: 'El Deportivo', src: '/img/clientes/eldeportivo.svg' },
+  { name: 'Gonet', src: '/img/clientes/gonet.svg' },
+  { name: 'La Verdad', src: '/img/clientes/laverdad.svg' },
+  { name: 'Más Periodismo', src: '/img/clientes/masperiodismo.svg' },
+  { name: 'Meganet', src: '/img/clientes/meganet.svg' },
+  { name: 'Simar', src: '/img/clientes/simar.svg' },
+];
+
+const {
+  title = 'Orgullosos de colaborar con:',
+  logos = defaultLogos,
+  interval = 3600,
+} = Astro.props;
+
+const sliderLogos = [...logos, ...logos];
+---
+
+<section class="overflow-hidden bg-[#f5f5f5] px-5 py-14 sm:px-8 sm:py-1 lg:py-2" aria-label="Clientes que confían en Servistream" data-hosting-clients data-logo-count={logos.length} data-interval={interval}>
+  <div class="mx-auto grid w-full max-w-3xl items-center gap-8 pt-12 sm:py-10 lg:grid-cols-[minmax(15rem,.8fr)_2.2fr] lg:gap-10">
+    <p class="text-center font-[var(--fuente-principal)] text-[12px] font-normal text-[#526577] lg:text-left">{title}</p>
+
+    <div class="relative mx-auto w-full max-w-304 overflow-hidden mask-[linear-gradient(90deg,transparent_0%,black_7%,black_93%,transparent_100%)]">
+      <div class="flex will-change-transform" data-clients-track>
+        {sliderLogos.map((logo, index) => (
+          <div
+            class="flex h-20 shrink-0 basis-full items-center justify-center px-8 sm:basis-1/2 lg:basis-1/4 lg:px-5"
+            aria-hidden={index >= logos.length ? 'true' : undefined}
+          >
+            <img
+              class="max-h-13 w-full max-w-36 object-contain grayscale opacity-75 transition-opacity duration-300 hover:opacity-100"
+              src={logo.src}
+              alt={index < logos.length ? logo.name : ''}
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const initHostingClientSliders = () => {
+    document.querySelectorAll('[data-hosting-clients]').forEach((slider) => {
+      if (!(slider instanceof HTMLElement) || slider.dataset.ready) return;
+      slider.dataset.ready = 'true';
+
+      const track = slider.querySelector('[data-clients-track]');
+      const firstItem = track?.firstElementChild;
+      const total = Number(slider.dataset.logoCount ?? 0);
+      const interval = Number(slider.dataset.interval ?? 3600);
+      if (!(track instanceof HTMLElement) || !(firstItem instanceof HTMLElement) || total < 2) return;
+
+      let index = 0;
+      let resetTimer;
+
+      const move = (animated = true) => {
+        track.style.transition = animated ? 'transform 720ms cubic-bezier(.22,1,.36,1)' : 'none';
+        track.style.transform = `translate3d(${-index * firstItem.getBoundingClientRect().width}px, 0, 0)`;
+      };
+
+      const next = () => {
+        index += 1;
+        move(true);
+
+        if (index === total) {
+          window.clearTimeout(resetTimer);
+          resetTimer = window.setTimeout(() => {
+            index = 0;
+            move(false);
+            void track.offsetWidth;
+          }, 760);
+        }
+      };
+
+      window.setInterval(next, Math.max(interval, 1800));
+      window.addEventListener('resize', () => move(false), { passive: true });
+    });
+  };
+
+  document.addEventListener('astro:page-load', initHostingClientSliders);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initHostingClientSliders, { once: true });
+  else initHostingClientSliders();
+</script>

@@ -1,0 +1,71 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const features = [
+  'WordPress optimizado',
+  'Cloudflare incluido',
+  'VPS administrado',
+  'Discos SSD NVMe',
+];
+---
+
+<header class="relative isolate overflow-hidden bg-white px-5 pb-20 pt-32 text-[#26333d] sm:px-8 lg:px-12 lg:pb-10 lg:pt-3">
+  <div class="mx-auto grid w-full container items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(34rem,.92fr)]">
+    <div class="max-w-[56rem]">
+      <a href="#wordpress-hosting" class="inline-flex items-center gap-3 rounded-full bg-[#f0f3f5] p-1 pr-4 font-[var(--fuente-principal)] text-sm text-[#44515b] no-underline sm:text-[12px]">
+        <span class="rounded-full bg-[#40505c] px-4 py-2 text-white">Nuevo</span>
+        Hosting WordPress administrado
+        <MaterialIcon name="chevron_right" size={22} />
+      </a>
+
+      <h2 class="mt-8 max-w-[58rem] text-[76px] leading-[71px] text-[#26333d]">
+        Hosting WordPress con rendimiento
+        <span class="block text-[#5a11ff]">garantizado.</span>
+      </h2>
+
+      <p class="mt-8">
+        Potencia tu sitio con Cloudflare, VPS administrado y discos SSD NVMe preparados para WordPress rápido, estable y seguro.
+      </p>
+
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a
+          class="inline-flex min-h-12 items-center gap-1 rounded-full bg-[#5614ff] px-7 font-[var(--fuente-principal)] text-base text-white no-underline shadow-[0_18px_45px_rgb(86_20_255_/_22%)] transition-colors duration-200 hover:bg-[#26333d] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5614ff]"
+          href="#wordpress-hosting"
+        >
+          <span class="grid size-5 place-items-center rounded-full border border-white/55">
+            <MaterialIcon name="north_east" size={18} />
+          </span>
+          Empezar ahora
+        </a>
+        <a
+          class="inline-flex min-h-12 items-center gap-1 rounded-full bg-[#eef2f4] px-7 font-[var(--fuente-principal)] text-base text-[#26333d] no-underline transition-colors duration-200 hover:bg-[#26333d] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#26333d]"
+          href="https://walink.co/4f797c"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <MaterialIcon name="support_agent" size={27} />
+          Hablar con soporte
+        </a>
+      </div>
+
+      <ul class="mt-9 flex flex-wrap gap-x-5 gap-y-3 p-0">
+        {features.map((feature) => (
+          <li class="flex items-center gap-2 font-[var(--fuente-principal)] text-sm font-bold text-[#51606b]">
+            <MaterialIcon name="ic:baseline-check" size={20} class="text-[#5a11ff]" />
+            {feature}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="relative flex min-h-[30rem] items-center justify-center lg:min-h-[43rem]">
+      <img
+        class="w-full max-w-[25rem] object-contain drop-shadow-[0_35px_80px_rgb(86_20_255_/_12%)] lg:max-w-[28rem]"
+        src="/img/wordpress/hero-wordpress-hosting.avif"
+        alt="Ilustración de hosting WordPress optimizado con servidores VPS, Cloudflare y discos NVMe"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+  </div>
+</header>

@@ -1,0 +1,132 @@
+---
+import MaterialIcon from "../MaterialIcon.astro";
+
+const comentarios = [
+  {
+    text: "La transición a StreamCP Pro fue muy sencilla. Ahora tenemos el canal, la programación y las métricas en un solo lugar.",
+    author: "Cliente de TV streaming",
+    context: "Canal digital",
+    icon: "live_tv",
+  },
+  {
+    text: "Configurar nuestra señal RTMP tomó pocos minutos. El panel es claro y el equipo puede seguir la emisión en tiempo real sin complicaciones.",
+    author: "Equipo de producción",
+    context: "Transmisiones en vivo",
+    icon: "settings_input_antenna",
+  },
+  {
+    text: "Las listas y los spots nos permiten mantener una programación ordenada durante todo el día, incluso cuando no hay un operador conectado.",
+    author: "Cliente StreamCP Pro",
+    context: "Canal temático",
+    icon: "playlist_play",
+  },
+  {
+    text: "Las analíticas nos ayudan a entender mejor cuándo se conecta nuestra audiencia y a tomar decisiones para la siguiente emisión.",
+    author: "Administrador de canal",
+    context: "TV online",
+    icon: "analytics",
+  },
+  {
+    text: "Tener nuestras transmisiones grabadas como VOD fue clave para ampliar el alcance del contenido después de cada programa en vivo.",
+    author: "Creador de contenido",
+    context: "Producción audiovisual",
+    icon: "video_library",
+  },
+  {
+    text: "Nos da tranquilidad saber que la señal, el consumo y los espectadores se pueden revisar desde el mismo panel.",
+    author: "Operador técnico",
+    context: "Emisora digital",
+    icon: "monitoring",
+  },
+];
+---
+
+<section
+  class="relative overflow-hidden bg-[#030713] py-20 text-white sm:py-32"
+  aria-labelledby="comments-title"
+>
+  <div
+    class="pointer-events-none absolute inset-x-0 top-35 h-60 opacity-70"
+    aria-hidden="true"
+  >
+    <svg
+      viewBox="0 0 1600 300"
+      class="size-full"
+      preserveAspectRatio="none"
+      fill="none"
+      ><path
+        d="M-80 20C180 210 370 280 690 174C995 74 1170 174 1680 90"
+        stroke="#4169ff"
+        stroke-opacity=".65"
+        stroke-width="2"></path><path
+        d="M-30 55C200 240 420 255 690 195C1020 125 1235 220 1650 112"
+        stroke="#5d7eff"
+        stroke-opacity=".42"
+        stroke-width="2"></path><path
+        d="M-40 0C270 185 505 230 750 145C1010 55 1260 165 1660 55"
+        stroke="#7390ff"
+        stroke-opacity=".32"
+        stroke-width="1.5"></path></svg
+    >
+  </div>
+  <div
+    class="pointer-events-none absolute left-1/2 top-0 h-100 w-[min(100%,105rem)] -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,rgba(57,88,255,.27),transparent_66%)]"
+  >
+  </div>
+  <div
+    class="relative mx-auto w-[min(100%-2.5rem,106rem)] sm:w-[min(100%-4rem,106rem)]"
+  >
+    <header data-tv-reveal class="mx-auto max-w-4xl text-center">
+      <h5 class="text-[#6490ff]">EXPERIENCIAS STREAMCP PRO</h5><h2
+        id="comments-title"
+        class="mt-6 text-white leading-[.94]"
+      >
+        Una comunidad que sigue transmitiendo
+      </h2><p class="mx-auto mt-6 max-w-3xl leading-relaxed text-[#bbc5df]">
+        Conoce lo que los equipos de producción valoran al administrar sus
+        canales de TV online.
+      </p>
+    </header>
+    <div class="mt-16 columns-1 gap-7 md:columns-2 xl:columns-3">
+      {
+        comentarios.map((comentario, index) => (
+          <article
+            data-tv-reveal
+            class:list={[
+              "tv-comment mb-7 break-inside-avoid rounded-[1.5rem] border border-white/12  p-7  backdrop-blur-md sm:p-9",
+              index === 1 || index === 4
+                ? ""
+                : "",
+            ]}
+          >
+            <MaterialIcon
+              name="format-quote-rounded"
+              size={28}
+              class="text-[#7393ff]"
+            />
+            <blockquote class="mt-5 text-[0.9rem] leading-relaxed tracking-[-.025em] text-[#e4e8ff]">
+              {comentario.text}
+            </blockquote>
+            <footer class="mt-8 flex items-center gap-3 border-t border-white/10 pt-6">
+              <>
+                <span class="grid size-10 place-items-center rounded-full border border-[#7e97ff]/35 text-[#aac0ff]">
+                  <MaterialIcon name={comentario.icon} size={20} />
+                </span>
+                <div>
+                  <>
+                    <p class="font-[var(--fuente-principal)] text-[0.7rem] text-white font-extrabold">
+                      {comentario.author}
+                    </p>
+                    <p class="mt-0.5 font-[var(--fuente-principal)] text-sm text-[#aeb9d8]">
+                      {comentario.context}
+                    </p>
+                  </>
+                </div>
+              </>
+            </footer>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

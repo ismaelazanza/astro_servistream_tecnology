@@ -1,0 +1,82 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const benefits = [
+  {
+    icon: 'speed',
+    title: 'Máxima velocidad',
+    content: 'Al migrar, revisamos la configuración de tu sitio para que aproveche una infraestructura rápida y estable. Tu web queda lista para ofrecer mejores tiempos de carga a cada visitante.',
+  },
+  {
+    icon: 'auto_awesome',
+    title: 'Herramientas inteligentes',
+    content: 'Después de la migración tendrás acceso a herramientas simples para administrar dominios, correos, archivos, copias de seguridad y certificados SSL desde un solo lugar.',
+  },
+  {
+    icon: 'trending_up',
+    title: 'Todo listo para triunfar',
+    content: 'Dejamos todo preparado para que puedas crecer: configuración segura, recursos escalables y una base sólida para tu tienda, blog o página corporativa.',
+  },
+  {
+    icon: 'forum',
+    title: 'Asistencia de expertos las 24 horas',
+    content: 'Nuestro equipo técnico te acompaña antes, durante y después del traslado. Si necesitas ayuda, puedes contactarnos las 24 horas del día.',
+  },
+  {
+    icon: 'check_circle',
+    title: 'Migración gratis',
+    content: 'El traslado de tu sitio está incluido sin costo. Solo completa el formulario con los accesos necesarios y nosotros nos ocupamos del proceso.',
+  },
+];
+---
+
+<section class="bg-white px-5 py-18 sm:px-8 sm:py-24 lg:px-12 lg:py-32" aria-labelledby="beneficios-migracion-title" data-migration-benefits>
+  <div class="mx-auto container">
+    <h2 id="beneficios-migracion-title" class="text-center text-[var(--h-negro)]">¿Por qué migrar a Servistream?</h2>
+
+    <div class="mt-12 grid items-center gap-10 lg:mt-18 lg:grid-cols-[minmax(20rem,.88fr)_minmax(30rem,1fr)] lg:gap-20 xl:gap-28">
+      <div class="mx-auto w-full max-w-2xl overflow-hidden rounded-[1.7rem] bg-[#beb4ff] shadow-[0_24px_55px_rgb(87_54_190_/_12%)] sm:rounded-[2rem]">
+        <img class="block aspect-[.92] w-full object-cover sm:aspect-[.95]" src="/img/migracion/beneficios-migracion.png" alt="Vista de una tienda web creada y gestionada con herramientas inteligentes" loading="lazy" />
+      </div>
+
+      <div class="divide-y divide-[#e3e3e6] border-y border-[#e3e3e6]" data-benefits-accordion>
+        {benefits.map((benefit, index) => (
+          <details open={index === 0} data-benefit-detail>
+            <summary class="flex w-full cursor-pointer list-none items-center gap-4 py-5 text-left marker:content-none sm:py-6">
+              <MaterialIcon name={benefit.icon} size={29} class="shrink-0 text-[#24242a]" />
+              <span class="flex-1 text-[clamp(1.2rem,1.65vw,1.8rem)] leading-[1.15] font-medium tracking-[-.04em] text-[var(--h-negro)]">{benefit.title}</span>
+              <MaterialIcon name="add" size={26} class="shrink-0 text-[#24242a]" />
+            </summary>
+            <div>
+              <p class="max-w-3xl pb-6 font-[var(--fuente-principal)] text-base leading-[1.55] text-[#59575f] sm:text-lg">{benefit.content}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const initBenefitsAccordion = () => {
+    document.querySelectorAll('[data-benefits-accordion]').forEach((accordion) => {
+      if (!(accordion instanceof HTMLElement) || accordion.dataset.ready) return;
+      accordion.dataset.ready = 'true';
+
+      const details = [...accordion.querySelectorAll('[data-benefit-detail]')];
+      details.forEach((detail) => {
+        if (!(detail instanceof HTMLDetailsElement)) return;
+        detail.addEventListener('toggle', () => {
+          if (!detail.open) return;
+          details.forEach((other) => {
+            if (other instanceof HTMLDetailsElement && other !== detail) other.open = false;
+          });
+        });
+      });
+    });
+  };
+
+  document.addEventListener('astro:page-load', initBenefitsAccordion);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initBenefitsAccordion, { once: true });
+  else initBenefitsAccordion();
+</script>

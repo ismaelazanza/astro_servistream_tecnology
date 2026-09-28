@@ -1,0 +1,115 @@
+---
+import MaterialIcon from "../MaterialIcon.astro";
+
+const plans = [
+  {
+    name: "VPS S",
+    subtitle: "Panel totalmente optimizado,\npara dar mejor rendimiento",
+    price: "$10",
+    href: "#",
+    storage: "Disco 80 GB NVMe SSD",
+    resources: "2 Cores, 4 de RAM",
+  },
+  {
+    name: "VPS M",
+    subtitle: "Panel totalmente optimizado,\npara dar mejor rendimiento",
+    price: "$49",
+    href: "#",
+    storage: "Disco 120 GB NVMe SSD",
+    resources: "4 Cores, 8 de RAM",
+  },
+  {
+    name: "VPS L",
+    subtitle: "Panel totalmente optimizado,\npara dar mejor rendimiento",
+    price: "$69",
+    href: "https://www.google.com",
+    storage: "Disco 180 GB NVMe SSD",
+    resources: "6 Cores, 12 de RAM",
+  },
+];
+
+const features = [
+  "IP propia",
+  "Ubicación USA",
+  "Infraestructura Propia",
+  "Panel: CyberPanel",
+  "Cloudflare: SI",
+  "WordPress Optimizado",
+  "Transferencia Ilimitada",
+  "Servidores Alma con LiteSpeed",
+];
+---
+
+<section
+  id="precios-vps"
+  class="bg-white px-4 py-8 text-[#111114] sm:px-6 lg:px-12 lg:py-13"
+  aria-label="Precios de VPS administrados"
+>
+  <section class="mb-8 mt-16 text-center">
+    <h2 class="text-center">Precios de VPS administrados</h2>
+    <p class="text-center">Plan mensual, sin compromiso</p>
+  </section>
+
+  <div
+    class="mx-auto grid w-full max-w-[70rem] gap-6 rounded-[1.6rem] border border-dashed border-[#dedede] p-4 sm:rounded-[2.4rem] sm:p-5 md:grid-cols-3 lg:gap-6 lg:p-7"
+  >
+    {
+      plans.map((plan) => (
+        <article class="flex min-h-auto flex-col rounded-[1.1rem] bg-[#f4f4f4] px-9 py-9 sm:rounded-[1.45rem] lg:min-h-[41.2rem] lg:px-8 lg:py-12">
+          <header class="grid gap-2.5">
+            <h2 class="m-0 font-[var(--fuente-principal)] text-[clamp(0.8rem,2vw,2rem)] leading-[1.05] font-extrabold tracking-normal text-[#111114]">
+              {plan.name}
+            </h2>
+            <p class="m-0 whitespace-pre-line font-[var(--fuente-principal)] text-[14px] leading-tight text-[#242428]">
+              {plan.subtitle}
+            </p>
+          </header>
+
+          <div class="mt-10 grid justify-items-start gap-5 lg:mt-16">
+            <strong class="block font-[var(--fuente-principal)] text-[clamp(3.35rem,1vw,4.6rem)] leading-[.78] font-bold tracking-normal text-[#09090b]">
+              {plan.price}
+            </strong>
+            <span class="inline-flex rounded-full bg-[#e9e9e9] px-3 py-2.5 font-[var(--fuente-principal)] text-[clamp(0.5rem,0.9vw,1rem)] leading-none text-[#242428]">
+              Pago mensual
+            </span>
+          </div>
+
+          <p class="mt-9 max-w-lg font-[var(--fuente-principal)] text-[clamp(1rem,1vw,1rem)] leading-[1.55] text-[#242428] lg:mt-12">
+            Servidor VPS administrado con CyberPanel, LiteSpeed y recursos
+            dedicados para tu proyecto.
+          </p>
+
+          <ul class="mt-10 grid list-none gap-1 p-0 lg:mt-12">
+            {[plan.storage, plan.resources].map((feature) => (
+              <li class="flex items-start gap-1 font-[var(--fuente-principal)] text-[14px] leading-tight text-[#242428]">
+                <MaterialIcon
+                  name="ic:baseline-check"
+                  size="1.22rem"
+                  class="shrink-0 leading-none text-[#ff2f5f]"
+                />
+                {feature}
+              </li>
+            ))}
+            {features.map((feature) => (
+              <li class="flex items-start gap-1 font-[var(--fuente-principal)] text-[14px] leading-tight text-[#242428]">
+                <MaterialIcon
+                  name="ic:baseline-check"
+                  size="1.22rem"
+                  class="shrink-0 leading-none text-[#ff2f5f]"
+                />
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            class="mt-12 inline-flex min-h-12 w-full items-center justify-center rounded-[1rem] bg-[#111114] px-8 font-[var(--fuente-principal)]  leading-none  text-white no-underline transition-colors duration-200 hover:bg-[#df1642] focus-visible:bg-[#df1642] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#df1642] sm:w-fit lg:mt-12"
+            href={plan.href}
+          >
+            Contratar ahora
+          </a>
+        </article>
+      ))
+    }
+  </div>
+</section>

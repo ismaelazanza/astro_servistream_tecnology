@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300,0,0&display=block');
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import "tailwindcss";
+
+
+  :root {
+    --color-primario: #00b285;
+    --color-hover: #bebebe;
+    --color-hover-icon: #3d3d3ddb;
+    --color-hover-submenu: #f4f4fe;
+    --color-primario-transparencia: #22b57382;
+    --color-secundario: #9e2cdc;
+    --color-azul: #4766ce;
+    --color-morado: #1e1b3d;
+    --color-span: #00ffff;
+    --color-subrayado: #e9e9fd;
+    --color-oscuro: #0f141a;
+    --gradient-text: #7186ff;
+    --gradient-color-1: #7286ff;
+    --gradient-color-2: #fe7587;
+    --dropdown-border: rgba(255, 255, 255, 0.1);
+    --texto-color-titulios: #020618;
+    --texto-color-descripcion: #838383;
+    --texto-color-titulos-arriba: #5f636d;
+    --bg-iconos: #ecedf0;
+    --bg-footer: #19181b;
+    --parrafo-negro: #161518;
+    --parrafo-blanco: #ffffffbf;
+    --h-negro: #1c1c1c;
+    --h-blanco: #efe8dc;
+    --color-amarillo: #f5c248;
+    --fuente-principal: 'Manrope', sans-serif;
+    --fuente-secundaria: 'Apfel Grotezk', sans-serif;
+  }
+
+@font-face {
+  font-family: 'Apfel Grotezk';
+  src: url('/font/apfel-grotezk-latin-400-normal.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Apfel Grotezk';
+  src: url('/font/apfel-grotezk-latin-700-normal.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+.material-symbols-outlined {
+  display: inline-block;
+  width: var(--material-icon-size, 24px);
+  height: var(--material-icon-size, 24px);
+  overflow: hidden;
+  font-family: 'Material Symbols Outlined';
+  font-size: var(--material-icon-size, 24px);
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer base {
+  :root,
+  html,
+  body {
+    min-height: 100%;
+    background-color: #f5f5f5;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--fuente-secundaria);
+  }
+
+  h5 {
+    margin-bottom: 3.5rem;
+    color: var(--h-negro);
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    color: var(--h-negro);
+    font-size: 58px;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.1rem;
+  }
+
+  p {
+    font-family: var(--fuente-principal);
+    font-weight: 300;
+    color: var(--parrafo-negro);
+  }
+
+  .parrafos_negro{
+    font-family: var(--fuente-principal);
+    font-weight: 300;
+    color: var(--parrafo-negro);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .parrafos_blanco{
+    font-family: 'Google Sans', sans-serif;
+    font-weight: 300;
+    color: var(--parrafo-blanco);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+}
+
+@media (min-width: 640px) {
+  h5 {
+    margin-bottom: 5rem;
+    font-size: 12px;
+  }
+}
+
+/* Movimiento de lectura: preciso y silencioso para dar prioridad al contenido. */
+.reveal-enabled .reveal-item {
+  opacity: 0;
+  transform: translate3d(0, .9rem, 0) scale(.992);
+  transition:
+    opacity 560ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+    transform 680ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+.reveal-enabled .reveal-item.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  will-change: auto;
+}
+
+/* Superficies para planes y módulos de producto: halo contextual, no decorativo. */
+.interface-surface {
+  position: relative;
+  isolation: isolate;
+  /* Las insignias de los planes se elevan por encima de la tarjeta. */
+  overflow: visible;
+}
+
+.interface-surface::after {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  content: '';
+  opacity: 0;
+  background: radial-gradient(16rem circle at var(--surface-x, 50%) var(--surface-y, 50%), rgb(143 174 255 / .12), transparent 62%);
+  mix-blend-mode: screen;
+  transition: opacity 260ms ease;
+  border-radius: inherit;
+}
+
+/* Mantiene legibles las insignias flotantes sobre las superficies interactivas. */
+.dark-streaming-experience .interface-surface > span[class*="-top-"] {
+  z-index: 20;
+}
+
+/* El sistema broadcast prioriza lectura sobre un fondo oscuro: blanco frío y azul de señal. */
+.dark-streaming-experience {
+  color-scheme: dark;
+  --streaming-ink: #f6f8ff;
+  --streaming-muted: #bdc8e2;
+  --streaming-line: rgb(148 175 255 / .18);
+}
+
+/* Permite que la señal ambiental recorra la página completa sin borrar los gradientes propios. */
+.dark-streaming-experience :is(main, section)[class*="bg-[#030713]"],
+.dark-streaming-experience :is(main, section)[class*="bg-[#03040d]"] {
+  background-color: transparent !important;
+}
+
+.dark-streaming-experience h1,
+.dark-streaming-experience h2,
+.dark-streaming-experience h3,
+.dark-streaming-experience h4 {
+  color: var(--streaming-ink);
+}
+
+.dark-streaming-experience :is(.vps-card, .vps-plan, .vps-control-card, .tv-plan, .tv-comment, [data-radio-plans] article) {
+  border-color: var(--streaming-line);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .12), 0 1.5rem 4rem rgb(0 0 0 / .2);
+}
+
+.dark-streaming-experience :is(.vps-card, .vps-plan, .vps-control-card, .tv-plan, .tv-comment, [data-radio-plans] article)::before {
+  position: absolute;
+  top: 0;
+  right: 12%;
+  left: 12%;
+  height: 1px;
+  pointer-events: none;
+  content: '';
+  opacity: .82;
+  background: linear-gradient(90deg, transparent, rgb(213 226 255 / .65), transparent);
+}
+
+.dark-streaming-experience :is(.vps-card, .vps-plan, .vps-control-card, .tv-plan, .tv-comment, [data-radio-plans] article) {
+  position: relative;
+  backdrop-filter: blur(16px) saturate(1.18);
+}
+
+.dark-streaming-experience :is(a, button, summary):focus-visible {
+  outline: 2px solid #a6c2ff;
+  outline-offset: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .interface-surface:hover::after { opacity: 1; }
+  .interface-surface:hover { border-color: rgb(132 157 255 / .55); }
+}
+
+[data-reading-progress] {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  pointer-events: none;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(90deg, #4979ff, #9d75ff 58%, #63d7ff);
+  box-shadow: 0 0 16px rgb(77 126 255 / .65);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-enabled .reveal-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  [data-reading-progress] { display: none; }
+}

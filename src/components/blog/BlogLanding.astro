@@ -1,0 +1,513 @@
+---
+import MaterialIcon from "../MaterialIcon.astro";
+import { blogPosts, featuredPost } from "../../data/blog";
+---
+
+<main class="blog-page bg-[#fbfcff] text-[#17213e]">
+  <section
+    class="blog-hero relative overflow-hidden pt-32 sm:pt-40"
+    aria-labelledby="blog-title"
+  >
+    <div class="blog-grid" aria-hidden="true"></div><div
+      class="blog-sphere"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="relative mx-auto w-[min(100%-2.5rem,76rem)] pb-16 sm:pb-24">
+      <header data-reveal class="max-w-4xl">
+        <p class="blog-kicker"><span></span> Blog Servistream</p>
+        <h1 id="blog-title" class="">
+          Ideas claras para <em>construir</em> en internet.
+        </h1>
+        <p>
+          Guías, novedades y consejos prácticos sobre hosting, radio y
+          televisión streaming para hacer crecer tus proyectos digitales.
+        </p>
+      </header>
+      <nav
+        data-reveal
+        class="blog-categories mt-10"
+        aria-label="Categorías del blog"
+      >
+        <a class="is-active" href="#articulos">Todos</a><a href="#hosting"
+          >Hosting</a
+        ><a href="#radio">Radio online</a><a href="#video">Video streaming</a><a
+          href="#seguridad">Seguridad</a>
+      </nav>
+    </div>
+  </section>
+
+  <section
+    id="articulos"
+    class="px-5 pb-20 sm:px-8 sm:pb-28"
+    aria-labelledby="featured-title"
+  >
+    <div
+      data-reveal
+      class="blog-feature mx-auto max-w-[76rem] overflow-hidden rounded-[2rem] border border-[#dce6ff] bg-white shadow-[0_24px_65px_rgba(45,74,142,.1)]"
+    >
+      <div
+        class="featured-art relative min-h-[19rem] overflow-hidden p-8 sm:p-12"
+      >
+        <div class="featured-art-grid" aria-hidden="true"></div><div
+          class="featured-art-orbit orbit-a"
+          aria-hidden="true"
+        >
+        </div><div class="featured-art-orbit orbit-b" aria-hidden="true">
+        </div><div class="featured-art-mark">
+          <MaterialIcon name="hub" size={48} />
+        </div><span class="featured-pulse one"></span><span
+          class="featured-pulse two"></span>
+      </div>
+      <article class="flex flex-col justify-center p-8 sm:p-12">
+        <p class="blog-tag">ARTÍCULO DESTACADO</p><p
+          class="mt-4 font-[var(--fuente-principal)] text-sm text-[#62708e]"
+        >
+          {featuredPost.category} · Lectura de {featuredPost.readingTime}
+        </p><h2 id="featured-title">{featuredPost.title}</h2><p
+          class="mt-6 max-w-xl font-[var(--fuente-principal)] leading-relaxed text-[#5e6b87]"
+        >
+          {featuredPost.excerpt}
+        </p><a href={`/blog/${featuredPost.slug}`} class="blog-read-link mt-8"
+          >Leer artículo <MaterialIcon name="arrow_forward" size={18} /></a>
+      </article>
+    </div>
+  </section>
+
+  <section
+    class="border-y border-[#e3eaf8] bg-[#f4f7ff] py-20 sm:py-28"
+    aria-labelledby="recent-title"
+  >
+    <div class="mx-auto w-[min(100%-2.5rem,76rem)]">
+      <header
+        data-reveal
+        class="flex flex-wrap items-end justify-between gap-6"
+      >
+        <div>
+          <p class="blog-kicker">ÚLTIMAS PUBLICACIONES</p><h2 id="recent-title">
+            Para leer con calma.
+          </h2>
+        </div><a class="blog-all-link" href="#"
+          >Ver todos los artículos <MaterialIcon
+            name="arrow_forward"
+            size={17}
+          /></a>
+      </header>
+      <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {
+          blogPosts.map((post) => (
+            <article
+              data-reveal
+              class:list={["blog-post", `post-${post.tone}`]}
+            >
+              <>
+                <div class="post-visual">
+                  <>
+                    <MaterialIcon name={post.icon} size={33} />
+                    <span />
+                  </>
+                </div>
+                <div class="p-6">
+                  <>
+                    <p class="post-meta">
+                      <span>{post.category}</span>
+                      {post.date}
+                    </p>
+                    <h3>{post.title}</h3>
+                    <p>{post.excerpt}</p>
+                    <a
+                      href={`/blog/${post.slug}`}
+                      aria-label={`Leer ${post.title}`}
+                      class="post-link"
+                    >
+                      <MaterialIcon name="arrow_forward" size={19} />
+                    </a>
+                  </>
+                </div>
+              </>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="px-5 py-20 sm:px-8 sm:py-28"
+    aria-labelledby="newsletter-title"
+  >
+    <div
+      data-reveal
+      class="blog-newsletter mx-auto max-w-[76rem] overflow-hidden rounded-[2rem] p-8 sm:p-14"
+    >
+      <div class="newsletter-ring" aria-hidden="true"></div><div
+        class="relative grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end"
+      >
+        <div>
+          <p class="blog-tag text-[#4b68bd]">MANTENTE AL DÍA</p><h2
+            id="newsletter-title"
+          >
+            Recibe novedades útiles, no ruido.
+          </h2><p>
+            Una selección ocasional de guías y novedades para gestionar tu
+            presencia digital con más confianza.
+          </p>
+        </div><form class="newsletter-form">
+          <label class="sr-only" for="blog-email">Tu correo electrónico</label
+          ><input
+            id="blog-email"
+            type="email"
+            placeholder="tu@email.com"
+          /><button type="submit"
+            >Suscribirme <MaterialIcon
+              name="arrow_forward"
+              size={17}
+            /></button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<style>
+  .blog-hero {
+    background: linear-gradient(112deg, #f7faff 0%, #fff 55%, #f3f7ff 100%);
+  }
+  .blog-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.65;
+    background-image:
+      linear-gradient(#dce7ff 1px, transparent 1px),
+      linear-gradient(90deg, #dce7ff 1px, transparent 1px);
+    background-size: 4.5rem 4.5rem;
+    mask-image: linear-gradient(90deg, black, transparent 80%);
+  }
+  .blog-sphere {
+    position: absolute;
+    right: -12rem;
+    top: -16rem;
+    width: 38rem;
+    height: 38rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, #9bb8ff44, transparent 67%);
+  }
+  .blog-kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: #4668c7;
+    font: 700 0.72rem/1 var(--fuente-principal);
+    letter-spacing: 0.13em;
+  }
+  .blog-kicker span {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: #5a84f1;
+    box-shadow: 0 0 12px #86a6ff;
+  }
+  .blog-hero h1,
+  .blog-feature h2,
+  .blog-page h2 {
+    margin-top: 1.25rem;
+    font: 500 clamp(2.6rem, 5.6vw, 6.1rem)/0.94 var(--fuente-secundaria);
+    color: #17213e;
+  }
+  .blog-hero h1 em {
+    color: #4d75e8;
+    font-style: normal;
+  }
+  .blog-hero header > p:last-child {
+    max-width: 42rem;
+    margin-top: 1.6rem;
+    font: 400 1.12rem/1.6 var(--fuente-principal);
+    color: #5e6b87;
+  }
+  .blog-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+  .blog-categories a {
+    border: 1px solid #d7e1f6;
+    border-radius: 999px;
+    background: #fff;
+    padding: 0.6rem 1rem;
+    color: #52617f;
+    font: 600 0.82rem/1 var(--fuente-principal);
+    text-decoration: none;
+    transition: 0.2s;
+  }
+  .blog-categories a:hover,
+  .blog-categories .is-active {
+    border-color: #4d75e8;
+    background: #4d75e8;
+    color: #fff;
+  }
+  .blog-feature {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .featured-art {
+    background: linear-gradient(135deg, #3b69dc, #7b9cff);
+  }
+  .featured-art-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.26;
+    background-image:
+      linear-gradient(#fff 1px, transparent 1px),
+      linear-gradient(90deg, #fff 1px, transparent 1px);
+    background-size: 2.8rem 2.8rem;
+  }
+  .featured-art-orbit {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.36);
+    border-radius: 50%;
+  }
+  .orbit-a {
+    width: 19rem;
+    height: 19rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .orbit-b {
+    width: 29rem;
+    height: 12rem;
+    left: 13%;
+    top: 30%;
+    transform: rotate(-28deg);
+  }
+  .featured-art-mark {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: grid;
+    width: 6rem;
+    height: 6rem;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 1.6rem;
+    background: rgba(255, 255, 255, 0.18);
+    color: white;
+    box-shadow: 0 0 0 14px rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%) rotate(-8deg);
+  }
+  .featured-pulse {
+    position: absolute;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: #dff7ff;
+    box-shadow: 0 0 15px #fff;
+    animation: blog-pulse 5s ease-in-out infinite;
+  }
+  .featured-pulse.one {
+    left: 23%;
+    top: 30%;
+  }
+  .featured-pulse.two {
+    right: 19%;
+    bottom: 24%;
+    animation-delay: -2s;
+  }
+  .blog-tag {
+    color: #4969c8;
+    font: 700 0.68rem/1 var(--fuente-principal);
+    letter-spacing: 0.13em;
+  }
+  .blog-feature h2 {
+    font-size: clamp(2.2rem, 4vw, 4.4rem);
+  }
+  .blog-read-link,
+  .blog-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: #315dc7;
+    font: 700 0.9rem/1 var(--fuente-principal);
+    text-decoration: none;
+  }
+  .blog-read-link:hover,
+  .blog-all-link:hover {
+    color: #19367e;
+  }
+  .blog-page h2 {
+    font-size: clamp(2.25rem, 4vw, 4.3rem);
+  }
+  .blog-post {
+    overflow: hidden;
+    border: 1px solid #dbe4f5;
+    border-radius: 1.3rem;
+    background: #fff;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+  .blog-post:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 38px rgba(39, 67, 126, 0.13);
+  }
+  .post-visual {
+    position: relative;
+    display: grid;
+    height: 10.5rem;
+    place-items: center;
+    overflow: hidden;
+    color: #416de0;
+    background: #eaf1ff;
+  }
+  .post-visual::before {
+    content: "";
+    position: absolute;
+    width: 13rem;
+    height: 13rem;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    opacity: 0.25;
+  }
+  .post-visual span {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.9rem;
+    background: currentColor;
+    opacity: 0.13;
+    transform: rotate(24deg);
+  }
+  .post-mint .post-visual {
+    color: #249e86;
+    background: #e3f8f2;
+  }
+  .post-coral .post-visual {
+    color: #dc6075;
+    background: #fff0f2;
+  }
+  .post-violet .post-visual {
+    color: #7058d6;
+    background: #f0edff;
+  }
+  .post-amber .post-visual {
+    color: #bd7e15;
+    background: #fff7df;
+  }
+  .post-meta {
+    display: flex;
+    gap: 0.55rem;
+    color: #7a869f;
+    font: 600 0.73rem/1.3 var(--fuente-principal);
+  }
+  .post-meta span {
+    color: #426bd5;
+  }
+  .blog-post h3 {
+    margin-top: 1rem;
+    font: 600 1.35rem/1.12 var(--fuente-principal);
+    letter-spacing: -0.04em;
+    color: #1c2948;
+  }
+  .blog-post p:not(.post-meta) {
+    margin-top: 0.85rem;
+    color: #64718c;
+    font: 400 0.94rem/1.55 var(--fuente-principal);
+  }
+  .post-link {
+    display: inline-grid;
+    width: 2.3rem;
+    height: 2.3rem;
+    place-items: center;
+    margin-top: 1.4rem;
+    border: 1px solid #ccd9f5;
+    border-radius: 50%;
+    color: #3964cf;
+    transition: 0.2s;
+    text-decoration: none;
+  }
+  .post-link:hover {
+    background: #3964cf;
+    color: #fff;
+  }
+  .blog-newsletter {
+    position: relative;
+    background: linear-gradient(110deg, #eaf1ff, #f7f9ff);
+    border: 1px solid #d4e0fb;
+  }
+  .newsletter-ring {
+    position: absolute;
+    right: -7rem;
+    top: -12rem;
+    width: 29rem;
+    height: 29rem;
+    border: 1px solid #a9bef1;
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 4rem rgba(255, 255, 255, 0.22),
+      0 0 0 8rem rgba(255, 255, 255, 0.18);
+  }
+  .blog-newsletter h2 {
+    font-size: clamp(2.2rem, 4vw, 4.3rem);
+  }
+  .blog-newsletter p:not(.blog-tag) {
+    max-width: 42rem;
+    margin-top: 1rem;
+    color: #5e6b87;
+    font: 400 1rem/1.6 var(--fuente-principal);
+  }
+  .newsletter-form {
+    display: flex;
+    min-width: min(100%, 25rem);
+    overflow: hidden;
+    border: 1px solid #bdcced;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: 0 12px 28px rgba(53, 91, 172, 0.1);
+  }
+  .newsletter-form input {
+    min-width: 0;
+    flex: 1;
+    border: 0;
+    background: transparent;
+    padding: 0.85rem 1rem;
+    outline: 0;
+    color: #243151;
+    font: 400 0.9rem var(--fuente-principal);
+  }
+  .newsletter-form button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: 0;
+    background: #426de1;
+    padding: 0.85rem 1.1rem;
+    color: #fff;
+    font: 700 0.82rem var(--fuente-principal);
+    cursor: pointer;
+  }
+  .newsletter-form button:hover {
+    background: #3156ba;
+  }
+  @keyframes blog-pulse {
+    50% {
+      transform: scale(1.8);
+      opacity: 0.55;
+    }
+  }
+  @media (min-width: 760px) {
+    .blog-feature {
+      grid-template-columns: 0.92fr 1.08fr;
+    }
+    .featured-art {
+      min-height: 32rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .featured-pulse {
+      animation: none;
+    }
+    .blog-post {
+      transition: none;
+    }
+  }
+</style>

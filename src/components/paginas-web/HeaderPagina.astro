@@ -1,0 +1,112 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+---
+
+<header class="bg-[#ffffff]">
+  <div class="container mx-auto grid grid-cols-1 items-center gap-4 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-2 lg:px-12">
+    <div class="hidden lg:block"></div>
+    <div class="max-w-3xl lg:justify-self-end">
+      <p class="font-[var(--fuente-principal)] text-[clamp(1.65rem,4.5vw,2.65rem)] leading-[1.14] font-medium text-[var(--parrafo-negro)]">
+        Somos un estudio creativo que se especializa en brindar soluciones de diseño y marca de alta calidad a personas y empresas.
+      </p>
+    </div>
+  </div>
+</header>
+
+<section>
+  <img class="block min-h-64 w-full object-cover sm:min-h-80 lg:min-h-112" src="/img/pagina-web/backweb.avif" alt="Equipo desarrollando una solución web" loading="lazy">
+</section>
+
+<section class="bg-[#23252a]">
+  <div class="container mx-auto grid grid-cols-1 gap-10 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-2 lg:gap-x-20 lg:gap-y-14 lg:px-12 lg:py-25">
+    <p class="text-[clamp(1.25rem,3vw,4rem)] leading-[1.02] text-[var(--parrafo-blanco)]">
+      Si está buscando un especialista para construir un proyecto digital significativo, puede comunicarse con nosotros.
+    </p>
+    <p class="max-w-2xl font-[var(--fuente-principal)] leading-[1.65] text-[var(--parrafo-blanco)] sm:text-lg">
+      Si usted es una agencia de desarrollo que busca subcontratar el trabajo de diseño, una empresa que busca un diseñador o un equipo de trabajo, una agencia de marketing que necesita una página de destino, una startup que quiere lanzar una aplicación o una empresa que planea cambiar su marca o rediseñar su sitio web, realizamos cualquier reto con los brazos abiertos.
+    </p>
+    <div class="flex items-end gap-3">
+      <p class="text-6xl leading-none font-semibold tracking-[-.07em] text-[var(--parrafo-blanco)] sm:text-8xl">
+        15
+      </p>
+      <p class="flex max-w-28 items-end pb-1 font-[var(--fuente-principal)] text-sm leading-tight text-[var(--parrafo-blanco)] sm:pb-2.5 sm:text-base">
+        Años de Experiencia
+      </p>
+    </div>
+    <article class="min-w-0 overflow-hidden lg:self-end" aria-label="Agencia de desarrollo online">
+      <div class="scroll text4" aria-hidden="true">
+        <div>
+          Online <span>Desarrollo * </span> Agencia <span>Desarrollo * </span> Agencia <span>Desarrollo * </span> Agencia <span>Desarrollo * </span>
+        </div>
+        <div>
+          Online <span>Desarrollo * </span> Agencia <span>Desarrollo * </span> Agencia <span>Desarrollo * </span> Agencia <span>Desarrollo * </span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<style>
+  .scroll {
+  display: flex;
+  width: 100%;
+
+  
+  > div {
+    font-weight: 900;
+    font-size: clamp(2rem, 7vw, 4em);
+    white-space: nowrap;
+    color: #fff;
+    animation: animate 40s -40s linear infinite;
+    will-change: transform;
+    
+    &:nth-child(2) {
+      animation: animate2 40s -20s linear infinite;
+    }
+  }
+  
+  span {
+    -webkit-text-stroke: 4px #fff;
+    color: #00000000;
+  }
+}
+
+.text1 {
+  transform: rotate(30deg) translate(-200px, 200px);
+}
+
+.text2 {
+  transform: rotate(-25deg) translate(-200px, 120px);
+}
+
+.text3 {
+  transform: rotate(25deg) translate(-200px, 300px);
+}
+
+.text3 {
+  transform: rotate(-2deg) translate(-200px, -150px);
+}
+
+.text5 {
+  transform: rotate(5deg) translate(-200px, 250px);
+}
+
+@keyframes animate {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes animate2 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+</style>

@@ -1,0 +1,280 @@
+---
+import Layout from "../layouts/Layout.astro";
+import MenuNegro from "../components/menuGlobal.astro";
+import PreciosAzuracast from "../components/azuracast/PreciosAzuracast.astro";
+import GestionAzuracast from "../components/azuracast/GestionAzuracast.astro";
+import FooterNegro from "../components/footerNegro.astro";
+---
+
+<Layout
+    title="Hosting WordPress Optimizado | Servistream Technology"
+    description="Hosting WordPress administrado con rendimiento garantizado, Cloudflare, VPS y discos SSD NVMe."
+    bodyClass="bg-white"
+>
+    <div class="azura-page overflow-hidden">
+    <MenuNegro variant="blanco" />
+
+    <section class="azura-hero container relative mx-auto px-5 py-14 text-center sm:px-8 sm:py-20" data-reveal>
+        <h1 class="text-4xl leading-tight sm:text-6xl">AzuraCast Server Cloud para Stream Radio</h1>
+        <p class="mt-4 text-base sm:text-xl">
+            Servidores con recursos dedicados y totalmente administrado por
+            nosotros. <br /> Para que usted se solo se proucupe por lo importante,
+            su estación de radio.
+        </p>
+    </section>
+
+    <section class="azura-features container mx-auto grid grid-cols-1 gap-4 px-5 pb-14 sm:grid-cols-2 sm:gap-6 sm:px-8 sm:pb-20 xl:grid-cols-4">
+        <div class="flex gap-4 back p-6 rounded-xl" data-reveal>
+            <div>
+                <p class="text-2xl font-bold">1.</p>
+            </div>
+            <div>
+                <p class="text-sm">
+                    Emisión/Transmisión directamente desde el navegador. No es
+                    necesario encoders, ni programas adicionales. Mucho más
+                    fácil de conecarse sus DJ en VIVO.
+                </p>
+            </div>
+        </div>
+        <div class="flex gap-4 back p-6 rounded-xl" data-reveal>
+            <div>
+                <p class="text-2xl font-bold">2.</p>
+            </div>
+            <div>
+                <p class="text-sm">
+                    Fundidos suaves entre AUTODJ y LIVE DJ. El cambio entre el
+                    AUTODJ y la conexión LIVE, se efectua con un suave fundido
+                </p>
+            </div>
+        </div>
+        <div class="flex gap-4 back p-6 rounded-xl" data-reveal>
+            <div>
+                <p class="text-2xl font-bold">3.</p>
+            </div>
+            <div>
+                <p class="text-sm">
+                    Subida y edición de los archivos de audio directamente desde
+                    el navegador. Editar metadatos, vista previa de las
+                    canciones. Organizar los audios música en carpetas.
+                </p>
+            </div>
+        </div>
+        <div class="flex gap-4 back p-6 rounded-xl" data-reveal>
+            <div>
+                <p class="text-2xl font-bold">4.</p>
+            </div>
+            <div>
+                <p class="text-sm">
+                    Web Hooks, que permiten integrar su estación con envío de
+                    Email, Telegram, Twitter, TuneIn AIR, Mastodom, Slack,
+                    Discord y más. Sencilla configuración de los Web Hooks.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex gap-4 back p-6 rounded-xl" data-reveal>
+            <div>
+                <p class="text-2xl font-bold">5.</p>
+            </div>
+            <div>
+                <p class="text-sm">
+                    Nosotros nos encargamos de mantener su servidor al día y
+                    actualizado a las últimas versiones de AzuraCast.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex gap-4 back p-6 rounded-xl" data-reveal>
+            <div>
+                <p class="text-2xl font-bold">6.</p>
+            </div>
+            <div>
+                <p class="text-sm">
+                    Servidor en Cloud, con recursos dedicados y en exclusiva,
+                    sin compartir con otros usuarios
+                </p>
+            </div>
+        </div>
+
+        <div class="flex gap-4 back p-6 rounded-xl" data-reveal>
+            <div>
+                <p class="text-2xl font-bold">7.</p>
+            </div>
+            <div>
+                <p class="text-sm">
+                    Emisión en HLS (protocolo de bitrate adaptivo). Su Streaming
+                    se adapta a la calidad y recursos de cada usuario, con un
+                    bitrate adaptable.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex gap-4 back p-6 rounded-xl" data-reveal>
+            <div>
+                <p class="text-2xl font-bold">8.</p>
+            </div>
+            <div>
+                <p class="text-sm">
+                    Su emisión en TLS/SSL y mediante puerto PROXY. Sin necesitad
+                    de puertos. El puerto solo será necesario para enviar su
+                    audio LIVE
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="azura-pricing flex flex-col gap-4 px-5 pb-14 sm:px-8 sm:pb-20">
+
+        <PreciosAzuracast
+            title="Azure Cloud S"
+            core="1 vCore CPU"
+            ram="2 GB RAM"
+            disco="60 GB NVMe"
+            gbit="1 Gbit/s"
+            precio="10"
+            link="#"
+        />
+
+        <PreciosAzuracast
+            title="Azure Cloud M"
+            core="2 vCore CPU"
+            ram="4 GB RAM"
+            disco="120 GB NVMe"
+            gbit="1 Gbit/s"
+            precio="20"
+            link="#"
+        />
+
+        <PreciosAzuracast
+            title="Azure Cloud L"
+            core="4 vCore CPU"
+            ram="8 GB RAM"
+            disco="240 GB NVMe"
+            gbit="1 Gbit/s"
+            precio="40"
+            link="#"
+        />
+
+        <PreciosAzuracast
+            title="Azure Cloud XL"
+            core="8 vCore CPU"
+            ram="16 GB RAM"
+            disco="480 GB NVMe"
+            gbit="1 Gbit/s"
+            precio="70"
+            link="#"
+        />
+
+        <PreciosAzuracast
+            title="Azure Cloud XXL"
+            core="12 vCore CPU"
+            ram="24 GB RAM"
+            disco="720 GB NVMe"
+            gbit="1 Gbit/s"
+            precio="110"
+            link="#"
+        />
+
+    </section>
+
+    <section class="azura-management">
+        <GestionAzuracast />
+    </section>
+
+<section class="azura_demo container mx-5 flex min-h-90 w-auto items-end rounded-2xl sm:mx-auto sm:h-100 sm:min-h-0 sm:w-full" data-reveal>
+
+    <div class="w-full px-6 pb-8 sm:px-12">
+        <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+
+            <div>
+                <h2 class="text-3xl text-white sm:text-5xl">
+                    Quieres explorar <br>
+                    el sistema Azuracast
+                </h2>
+            </div>
+
+            <div>
+                <a target="_blank" href="https://demo.azuracast.com/login"
+                   class="inline-block rounded-full bg-white px-6 py-2 text-center text-black">
+                    Panel demo Azuracast
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<footer class="mt-20">
+    <FooterNegro />
+</footer>
+</div>
+
+
+    
+</Layout>
+
+<style>
+    .azura-page {
+        --azura-blue: #1e1e1e;
+        --azura-indigo: #6446ee;
+        --azura-ink: #101a38;
+        background: linear-gradient(180deg, #fff 0%, #f6f9ff 48%, #fff 100%);
+    }
+
+    .azura-features > .back {
+        position: relative;
+        min-height: 15rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+        overflow: hidden;
+        border: 1px solid rgb(87 117 199 / .12);
+        background: rgb(255 255 255 / .76);
+        box-shadow: 0 12px 32px rgb(47 74 142 / .07);
+        transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+    }
+    .azura-features > .back::before { display: none; }
+    .azura-features > .back:hover { transform: translateY(-5px); border-color: rgb(76 110 243 / .38); box-shadow: 0 20px 40px rgb(47 74 142 / .15); }
+    .azura-features > .back > :first-child { display: flex; align-items: center; min-height: 2.5rem; }
+    .azura-features > .back > :first-child p { font-size: clamp(2.15rem, 3vw, 3rem); line-height: 1; color: var(--azura-blue); letter-spacing: -.06em; }
+    .azura-features > .back > :last-child { width: 100%; border-top: 1px solid rgb(87 117 199 / .13); padding-top: 1.1rem; }
+    .azura-features > .back > :last-child p { max-width: 30ch; font-size: .95rem; line-height: 1.68; }
+
+    .azura-management :global(img) { box-shadow: 0 18px 44px rgb(38 65 140 / .14); transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease; }
+    .azura-management :global(img):hover { transform: perspective(1000px) rotateY(-1.5deg) translateY(-5px); box-shadow: 0 28px 54px rgb(38 65 140 / .2); }
+
+    .grid_20 {
+        display: grid;
+        grid-template-columns: 30px repeat(6, minmax(0, 1fr));
+    }
+
+    .contenedor_planes{
+        max-width: 850px;
+    }
+
+    .bg_cuadro{
+        background-color: #77fb53;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-left: 8px;
+        margin-top: 12px;
+    }
+    .azura_demo{
+        position: relative;
+        overflow: hidden;
+        background-image: url('/img/server-azuracast/abstract-luxury-gradient.avif');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .azura_demo > div { position: relative; z-index: 1; }
+    .azura_demo a { transition: transform .25s ease, box-shadow .25s ease; }
+    .azura_demo a:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgb(10 22 70 / .25); }
+
+    @media (prefers-reduced-motion: reduce) {
+        .azura-features > .back, .azura-management :global(img), .azura_demo a { transition: none; }
+    }
+
+</style>

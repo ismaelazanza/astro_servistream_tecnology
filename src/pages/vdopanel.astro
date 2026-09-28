@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MenuNegro from '../components/menuGlobal.astro';
+import VdoPanelLanding from '../components/vdopanel/VdoPanelLanding.astro';
+import DarkStreamingAtmosphere from '../components/DarkStreamingAtmosphere.astro';
+import Footer from '../components/footerNegro.astro';
+---
+
+<Layout title="VDO Panel VPS | ServiStream" description="Servidores VPS con VDO Panel para administrar canales, programación y distribución de video streaming." bodyClass="bg-[#030713]">
+  <div class="dark-streaming-experience relative isolate overflow-hidden bg-[#030713]"><DarkStreamingAtmosphere /><div class="relative z-10"><MenuNegro variant="transparente" /><VdoPanelLanding /></div></div>
+  <Footer />
+</Layout>

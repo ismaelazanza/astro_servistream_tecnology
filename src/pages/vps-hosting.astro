@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MenuNegro from '../components/menuGlobal.astro';
+import HeaderVps from '../components/vps/HeaderVps.astro';
+import PreciosVps from '../components/vps/PreciosVps.astro';
+import OfertasVpsSlider from '../components/vps/OfertasVpsSlider.astro';
+import EquipoVps from '../components/vps/EquipoVps.astro';
+import TestimoniosVps from '../components/vps/TestimoniosVps.astro';
+import ClientesVpsLogos from '../components/vps/ClientesVpsLogos.astro';
+import FooterNegroAstroComponent from '../components/footerNegro.astro';
+---
+
+<Layout
+  title="VPS Administrado con CyberPanel | Servistream Technology"
+  description="Hosting VPS administrado con CyberPanel, LiteSpeed, discos NVMe y recursos de alto rendimiento."
+  bodyClass="bg-[#f8e7ea]"
+>
+  <div class="vps-menu">
+    <MenuNegro variant="transparente" />
+  </div>
+  <HeaderVps />
+  <PreciosVps />
+  <OfertasVpsSlider />
+  <EquipoVps />
+  <TestimoniosVps />
+  <ClientesVpsLogos />
+  <FooterNegroAstroComponent />
+</Layout>
+
+<style is:global>
+  body .vps-menu .site-header.menu-transparente {
+    --menu-text: #211d20 !important;
+    --menu-muted: rgb(33 29 32 / 62%) !important;
+    --menu-rule: rgb(33 29 32 / 18%) !important;
+  }
+
+  /* El menú transparente invierte el logo por defecto; en este hero claro
+     mantenemos el archivo en su tinta original sin afectar otros menús. */
+  body .vps-menu .site-header.menu-transparente .brand-logo {
+    filter: none !important;
+  }
+
+  body .vps-menu .site-header.menu-transparente .button-transparente {
+    border-color: rgb(33 29 32 / 28%);
+    background: rgb(255 255 255 / 45%);
+    color: #211d20;
+    box-shadow: 0 18px 42px rgb(125 27 49 / 10%);
+  }
+
+  body .vps-menu .site-header.menu-transparente .button-transparente:hover,
+  body .vps-menu .site-header.menu-transparente .button-transparente:focus-visible {
+    border-color: #211d20;
+    background: #211d20;
+    color: #fff;
+  }
+
+  body .vps-menu .site-header.menu-transparente .mega-menu {
+    --menu-text: #fff;
+    --menu-muted: rgb(255 255 255 / 65%);
+    --menu-rule: rgb(255 255 255 / 16%);
+  }
+
+  @media (max-width: 960px) {
+    body .vps-menu .site-header.menu-transparente .main-navigation {
+      --menu-text: #fff;
+      --menu-muted: rgb(255 255 255 / 65%);
+      --menu-rule: rgb(255 255 255 / 16%);
+    }
+  }
+</style>

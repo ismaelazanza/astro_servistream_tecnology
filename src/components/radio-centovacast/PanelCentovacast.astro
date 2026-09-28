@@ -1,0 +1,29 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+---
+
+<section class="relative overflow-hidden bg-[#03040d] py-20 text-white sm:py-32" aria-labelledby="centova-panel-title">
+  <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(37,99,235,.18),transparent_35%)]"></div>
+  <div class="relative mx-auto container grid items-center gap-12 lg:grid-cols-[.9fr_1.1fr]">
+    <header>
+      <h5 class="text-[#71a3ff]">PANEL CENTOVACAST V3</h5>
+      <h2 id="centova-panel-title" class="mt-6 text-[var(--h-blanco)]">Tu estación bajo control</h2>
+      <p class="mt-6 max-w-xl font-[var(--fuente-principal)] text-lg leading-relaxed text-[#bcbccb]">Administra tu transmisión en vivo, programa el AutoDJ, revisa estadísticas y comparte reproductores desde un único panel.</p>
+      <ul class="mt-8 grid gap-4 font-[var(--fuente-principal)] text-[#d1d3df]">
+        <li class="flex gap-3"><MaterialIcon name="check_circle" size={20} class="text-[#71a3ff]" />Programación musical y listas de reproducción</li>
+        <li class="flex gap-3"><MaterialIcon name="check_circle" size={20} class="text-[#71a3ff]" />Datos de conexión para Shoutcast e Icecast</li>
+        <li class="flex gap-3"><MaterialIcon name="check_circle" size={20} class="text-[#71a3ff]" />Estadísticas de audiencia en tiempo real</li>
+      </ul>
+    </header>
+    <div class="rounded-[2rem] border border-[#70a2ff]/25 bg-[linear-gradient(135deg,rgba(22,44,93,.65),rgba(11,14,38,.68))] p-4 shadow-[0_30px_80px_rgba(0,0,0,.42)] backdrop-blur-xl sm:p-7">
+      <div class="flex items-center justify-between border-b border-white/10 pb-5 font-[var(--fuente-principal)]"><div class="flex items-center gap-3"><span class="grid size-10 place-items-center rounded-xl bg-[#3479ed]"><MaterialIcon name="graphic_eq" size={22} /></span><div><p class="font-semibold">CentovaCast</p><p class="text-xs text-[#aeb8d3]">Panel de control</p></div></div><span class="rounded-full bg-emerald-400/15 px-3 py-1 text-xs text-emerald-300">EN LÍNEA</span></div>
+      <div class="mt-5 grid gap-4 sm:grid-cols-3"><div class="rounded-2xl border border-white/10 bg-white/[.06] p-4"><MaterialIcon name="people" size={22} class="text-[#75a8ff]"/><p class="mt-6 text-2xl font-semibold">248</p><p class="text-xs text-[#aeb8d3]">Oyentes ahora</p></div><div class="rounded-2xl border border-white/10 bg-white/[.06] p-4"><MaterialIcon name="equalizer" size={22} class="text-[#75a8ff]"/><p class="mt-6 text-2xl font-semibold">320</p><p class="text-xs text-[#aeb8d3]">KBPS de calidad</p></div><div class="rounded-2xl border border-white/10 bg-white/[.06] p-4"><MaterialIcon name="playlist_play" size={22} class="text-[#75a8ff]"/><p class="mt-6 text-2xl font-semibold">AutoDJ</p><p class="text-xs text-[#aeb8d3]">Programación activa</p></div></div>
+      <div class="mt-5 rounded-2xl border border-white/10 bg-[#061126]/65 p-5"><div class="flex items-end justify-between"><div><p class="font-[var(--fuente-principal)] text-sm text-[#cbd5ee]">Audiencia de hoy</p><p class="mt-1 font-[var(--fuente-principal)] text-3xl font-semibold">3,842</p></div><span class="text-sm text-emerald-300">+18.4%</span></div><svg class="mt-5 h-20 w-full" viewBox="0 0 400 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 68 C35 64 55 48 88 55 S138 67 165 38 S220 53 249 29 S309 45 337 17 S374 23 400 4" fill="none" stroke="#61a1ff" stroke-width="3"/><path d="M0 68 C35 64 55 48 88 55 S138 67 165 38 S220 53 249 29 S309 45 337 17 S374 23 400 4 V80 H0Z" fill="url(#chart-fill)" opacity=".35"/><defs><linearGradient id="chart-fill" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#4f8fff"/><stop offset="1" stop-color="#4f8fff" stop-opacity="0"/></linearGradient></defs></svg></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Los valores y el nombre del panel no deben heredar el negro global de los párrafos. */
+  section[aria-labelledby="centova-panel-title"] p.font-semibold { color: #f7f9ff; }
+</style>

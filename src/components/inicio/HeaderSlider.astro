@@ -1,0 +1,159 @@
+---
+const slides = [
+  {
+    image: '/img/hero/hero1.avif',
+    alt: 'Formas de cristal líquido iluminadas en azul',
+  },
+  {
+    image: '/img/hero/hero2.avif',
+    alt: 'Flujos luminosos de datos en azul eléctrico',
+  },
+  {
+    image: '/img/hero/hero3.avif',
+    alt: 'Red de partículas y cristales azules',
+  },
+];
+
+const features = [
+  'Hosting web de alto rendimiento',
+  'Dominios para impulsar tu marca',
+  'Streaming estable y profesional',
+  'Servidores seguros y escalables',
+  'Soporte técnico especializado',
+];
+---
+
+<section data-reveal-ignore class="hero-slider" aria-roledescription="carrusel" aria-label="Servicios destacados" data-hero-slider>
+  <div class="hero-title-stage" aria-hidden="true">
+    <svg class="hero-mask" viewBox="0 0 1800 320" preserveAspectRatio="none" role="presentation">
+      <defs>
+        <mask id="hosting-premium-mask">
+          <rect width="1800" height="320" fill="white" />
+          <text x="900" y="240" text-anchor="middle" fill="black">Hosting Premium</text>
+        </mask>
+      </defs>
+      <rect width="1800" height="320" fill="white" mask="url(#hosting-premium-mask)" />
+    </svg>
+  </div>
+
+  <div class="slides-stage">
+    {slides.map((slide, index) => (
+      <article
+        class:list={['hero-slide', { 'is-active': index === 0 }]}
+        aria-hidden={index === 0 ? 'false' : 'true'}
+        data-hero-slide={index}
+      >
+        <img src={slide.image} alt={slide.alt} loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : 'auto'} />
+        <div class="hero-shade"></div>
+      </article>
+    ))}
+
+    <div class="features-grid">
+      {features.map((feature, index) => (
+        <div class="feature-item">
+          <span>#{index + 1}.</span>
+          <p>{feature}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="slider-controls">
+      <button type="button" class="arrow-control" aria-label="Diapositiva anterior" data-slider-prev>←</button>
+      <div class="slider-dots" role="group" aria-label="Seleccionar diapositiva">
+        {slides.map((_, index) => (
+          <button
+            type="button"
+            class:list={['slider-dot', { 'is-active': index === 0 }]}
+            aria-label={`Mostrar diapositiva ${index + 1}`}
+            aria-current={index === 0 ? 'true' : 'false'}
+            data-slider-dot={index}
+          ></button>
+        ))}
+      </div>
+      <button type="button" class="arrow-control" aria-label="Siguiente diapositiva" data-slider-next>→</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const sliders = document.querySelectorAll('[data-hero-slider]');
+
+  sliders.forEach((slider) => {
+    if (!(slider instanceof HTMLElement) || slider.dataset.ready) return;
+    slider.dataset.ready = 'true';
+
+    const slides = [...slider.querySelectorAll('[data-hero-slide]')];
+    const dots = [...slider.querySelectorAll('[data-slider-dot]')];
+    const previous = slider.querySelector('[data-slider-prev]');
+    const next = slider.querySelector('[data-slider-next]');
+    let current = 0;
+    let autoplay;
+
+    const showSlide = (index) => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, slideIndex) => {
+        const active = slideIndex === current;
+        slide.classList.toggle('is-active', active);
+        slide.setAttribute('aria-hidden', String(!active));
+      });
+      dots.forEach((dot, dotIndex) => {
+        const active = dotIndex === current;
+        dot.classList.toggle('is-active', active);
+        dot.setAttribute('aria-current', String(active));
+      });
+    };
+
+    const startAutoplay = () => {
+      window.clearInterval(autoplay);
+      autoplay = window.setInterval(() => showSlide(current + 1), 7000);
+    };
+
+    previous?.addEventListener('click', () => { showSlide(current - 1); startAutoplay(); });
+    next?.addEventListener('click', () => { showSlide(current + 1); startAutoplay(); });
+    dots.forEach((dot, index) => dot.addEventListener('click', () => { showSlide(index); startAutoplay(); }));
+    startAutoplay();
+  });
+</script>
+
+<style>
+  .hero-slider { position: relative; width: 100%; overflow: hidden; background: #01071a; }
+  .hero-title-stage { position: absolute; top: 0; right: 0; left: 0; z-index: 5; height: clamp(10rem, 21vw, 20rem); overflow: hidden; pointer-events: none; }
+  .hero-mask { display: block; width: 100%; height: 100%; }
+  .hero-mask text { font-family: var(--fuente-secundaria); font-size: 260px; font-weight: 700; letter-spacing: -15px; }
+  .slides-stage { position: relative; height: clamp(32rem, 50vw, 52rem); background: #01071a; }
+  .hero-slide { position: absolute; inset: 0; z-index: 1; opacity: 0; pointer-events: none; transition: opacity 1400ms ease-in-out; }
+  .hero-slide.is-active { z-index: 2; opacity: 1; }
+  .hero-slide > img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.03); }
+  .hero-slide.is-active > img { animation: hero-zoom-cycle 7s ease-in-out both; }
+  .hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(0 5 24 / 12%), transparent 55%, rgb(0 5 24 / 10%)); }
+  .features-grid { position: absolute; right: 0; bottom: 0; left: 0; z-index: 3; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(1rem, 3vw, 4rem); padding: 5rem 3vw 2rem; color: #fff; background: linear-gradient(180deg, transparent, rgb(0 3 14 / 88%)); }
+  .feature-item span { font: 700 clamp(1rem, 1.5vw, 1.4rem)/1 var(--fuente-principal); }
+  .feature-item p { margin-top: .7rem; color: rgb(255 255 255 / 78%); font-size: clamp(.72rem, 1vw, .95rem); line-height: 1.35; }
+  .slider-controls { position: absolute; top: 1.5rem; right: clamp(1.5rem, 3vw, 3.5rem); z-index: 4; display: flex; align-items: center; gap: 1rem; color: #fff; }
+  .arrow-control { display: grid; width: 2.6rem; height: 2.6rem; place-items: center; border: 1px solid rgb(255 255 255 / 35%); border-radius: 50%; background: rgb(0 0 0 / 18%); color: #fff; cursor: pointer; transition: background 180ms ease, border-color 180ms ease; }
+  .arrow-control:hover, .arrow-control:focus-visible { border-color: #fff; background: rgb(255 255 255 / 16%); }
+  .slider-dots { display: flex; gap: .55rem; }
+  .slider-dot { width: .45rem; height: .45rem; border: 0; border-radius: 50%; background: rgb(255 255 255 / 35%); cursor: pointer; transition: width 250ms ease, border-radius 250ms ease, background 250ms ease; }
+  .slider-dot.is-active { width: 1.8rem; border-radius: 1rem; background: #fff; }
+
+  @keyframes hero-zoom-cycle {
+    0% { transform: scale(1.03); }
+    52% { transform: scale(1.1); }
+    100% { transform: scale(1.03); }
+  }
+
+  @media (max-width: 720px) {
+    .hero-title-stage { height: 8.5rem; }
+    .hero-mask { width: 100%; transform: none; }
+    .slides-stage { height: 39.5rem; }
+    .features-grid { grid-template-columns: 1fr; gap: .55rem; padding: 6rem 1rem 3.8rem; }
+    .feature-item { display: grid; grid-template-columns: 2.7rem 1fr; align-items: baseline; border-top: 1px solid rgb(255 255 255 / 16%); padding-top: .45rem; }
+    .feature-item p { margin-top: 0; }
+    .slider-controls { top: 1rem; right: 1rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-slide { transition-duration: .01ms; }
+    .hero-slide.is-active > img { animation: none; transform: scale(1); }
+  }
+</style>

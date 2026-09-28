@@ -1,0 +1,124 @@
+---
+const clientsTop = [
+  { src: '/img/clientes/acolita.svg', name: 'Acolita' },
+  { src: '/img/clientes/corporacion.svg', name: 'Corporación' },
+  { src: '/img/clientes/eldeportivo.svg', name: 'El Deportivo' },
+  { src: '/img/clientes/gonet.svg', name: 'GoNet' },
+    { src: '/img/clientes/acolita.svg', name: 'Acolita' },
+  { src: '/img/clientes/corporacion.svg', name: 'Corporación' },
+  { src: '/img/clientes/eldeportivo.svg', name: 'El Deportivo' },
+  { src: '/img/clientes/gonet.svg', name: 'GoNet' },
+];
+
+const clientsBottom = [
+  { src: '/img/clientes/laverdad.svg', name: 'La Verdad' },
+  { src: '/img/clientes/masperiodismo.svg', name: 'Más Periodismo' },
+  { src: '/img/clientes/meganet.svg', name: 'Meganet' },
+  { src: '/img/clientes/simar.svg', name: 'Simar' },
+  { src: '/img/clientes/laverdad.svg', name: 'La Verdad' },
+  { src: '/img/clientes/masperiodismo.svg', name: 'Más Periodismo' },
+  { src: '/img/clientes/meganet.svg', name: 'Meganet' },
+  { src: '/img/clientes/simar.svg', name: 'Simar' },
+];
+---
+
+<section class="clients-section overflow-hidden bg-[#f5f5f5] py-16 sm:py-24" aria-labelledby="clients-title">
+  <h5 id="clients-title">
+    Marcas y empresas que confían en nosotros
+  </h5>
+
+  <div class="clients-viewport">
+    <div class="clients-row clients-row--right" aria-label="Clientes destacados">
+      {[0, 1].map((copy) => (
+        <div class="clients-track" aria-hidden={copy === 1 ? 'true' : undefined}>
+          {clientsTop.map((client) => (
+            <div class="client-logo"><img src={client.src} alt={copy === 0 ? client.name : ''} loading="lazy" /></div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="clients-viewport mt-12 sm:mt-16">
+    <div class="clients-row clients-row--left" aria-label="Más clientes destacados">
+      {[0, 1].map((copy) => (
+        <div class="clients-track" aria-hidden={copy === 1 ? 'true' : undefined}>
+          {clientsBottom.map((client) => (
+            <div class="client-logo"><img src={client.src} alt={copy === 0 ? client.name : ''} loading="lazy" /></div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .clients-viewport {
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  }
+
+  .clients-row {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .clients-row--right {
+    animation: clients-to-right 38s linear infinite;
+    transform: translateX(-50%);
+  }
+
+  .clients-row--left {
+    animation: clients-to-left 42s linear infinite;
+  }
+
+  .clients-track {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+  }
+
+  .client-logo {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 1.5rem;
+    filter: grayscale(1);
+    opacity: .62;
+    transition: opacity 200ms ease, transform 200ms ease;
+  }
+
+  .client-logo:hover {
+    opacity: 1;
+    transform: scale(1.035);
+  }
+
+  .client-logo img {
+    width: min(100%, 8.5rem);
+    height: 3.5rem;
+    object-fit: contain;
+  }
+
+  @keyframes clients-to-right {
+    from { transform: translate3d(-50%, 0, 0); }
+    to { transform: translate3d(0, 0, 0); }
+  }
+
+  @keyframes clients-to-left {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+
+  @media (max-width: 640px) {
+    .client-logo { width: 12rem; padding-inline: 1rem; }
+    .client-logo img { width: 7rem; height: 3rem; }
+    .clients-viewport {
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%);
+    }
+  }
+</style>

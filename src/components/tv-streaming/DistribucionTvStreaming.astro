@@ -1,0 +1,190 @@
+---
+import MaterialIcon from "../MaterialIcon.astro";
+---
+
+<section
+  class="relative overflow-hidden bg-[#030713] py-20 text-white sm:py-32"
+  aria-labelledby="distribution-title"
+>
+  <div
+    class="pointer-events-none absolute left-1/2 top-1/2 size-170 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#315aff]/10"
+  >
+  </div>
+  <div
+    class="relative mx-auto w-[min(100%-2.5rem,106rem)] sm:w-[min(100%-4rem,70rem)]"
+  >
+    <header data-tv-reveal class="mx-auto max-w-4xl text-center">
+      <h5 class="text-[#6490ff]">DISTRIBUCIÓN INTELIGENTE</h5><h2
+        id="distribution-title"
+        class="mt-6 leading-[.94] text-white"
+      >
+        Amplifica tu señal
+      </h2><p class="mt-6 leading-relaxed text-[#bbc5df]">
+        Envía tu programación a los destinos que necesitas y conserva el control
+        de toda tu emisión en un solo panel.
+      </p>
+    </header>
+    <div class="mt-16 grid gap-7 lg:grid-cols-[1.1fr_.9fr]">
+      <article
+        data-tv-reveal
+        class="overflow-hidden rounded-[1.75rem] border border-white/1 bg-[linear-gradient(145deg,rgba(33,57,127,.45),rgba(13,16,42,.5))] p-6  backdrop-blur-md sm:p-6"
+      >
+        <div
+          class="relative h-62 overflow-hidden rounded-2xl  sm:h-70"
+        >
+          <div
+            class="tv-distribution-core absolute left-1/2 top-[23%] size-18 -translate-x-1/2 rounded-3xl bg-[#5175ff] shadow-[0_0_40px_rgb(81_117_255_/_45%)]"
+          >
+            <span class="grid size-full place-items-center"
+              ><MaterialIcon name="settings_input_antenna" size={36} /></span>
+          </div>
+          <span
+            class="tv-destination absolute left-[13%] top-[21%] rounded-full border border-[#607eff]/50 bg-[#182554]/90 px-4 py-2 font-[var(--fuente-principal)] text-sm"
+            >Señal RTMP</span
+          ><span
+            class="tv-destination absolute right-[10%] top-[21%] rounded-full border border-[#607eff]/50 bg-[#182554]/90 px-4 py-2 font-[var(--fuente-principal)] text-sm"
+            >Destino 01</span
+          ><span
+            class="tv-destination absolute left-[20%] bottom-[18%] rounded-full border border-[#607eff]/50 bg-[#182554]/90 px-4 py-2 font-[var(--fuente-principal)] text-sm"
+            >Destino 02</span
+          ><span
+            class="tv-destination absolute right-[17%] bottom-[18%] rounded-full border border-[#607eff]/50 bg-[#182554]/90 px-4 py-2 font-[var(--fuente-principal)] text-sm"
+            >Destino 03</span
+          >
+          <svg
+            class="absolute inset-0 size-full"
+            viewBox="0 0 600 300"
+            fill="none"
+            aria-hidden="true"
+            ><path
+              class="tv-distribution-path"
+              d="M130 78 C250 80 260 100 300 115 M470 78 C350 80 340 100 300 115 M170 238 C250 220 260 188 300 165 M430 238 C350 220 340 188 300 165"
+              stroke="#6f8cff"
+              stroke-opacity=".6"
+              stroke-dasharray="5 7"></path></svg
+          >
+        </div>
+        <h3 class="mt-9 text-2xl">Destinos configurables</h3><p
+          class="mt-4 leading-relaxed text-[#b8c3df]"
+        >
+          Configura plataformas de simulcast para distribuir tu canal a varios
+          destinos desde la misma emisión.
+        </p>
+      </article>
+      <article
+        data-tv-reveal
+        class="rounded-[1.75rem] border border-white/1 bg-[linear-gradient(145deg,rgba(47,27,105,.42),rgba(20,13,42,.52))] p-6 backdrop-blur-md sm:p-6"
+      >
+        <div
+          class="relative grid h-62 place-items-center overflow-hidden rounded-2xl  sm:h-70"
+        >
+          <span
+            class="tv-ecosystem-core relative grid size-20 place-items-center rounded-full bg-[#5677ff] text-white shadow-[0_0_42px_rgb(86_119_255_/_46%)]"
+            ><MaterialIcon name="tv" size={38} /></span
+          ><div class="absolute bottom-9 flex gap-3">
+            <span
+              class="tv-ecosystem-chip rounded-xl bg-white/10 px-4 py-2 font-[var(--fuente-principal)] text-sm"
+              ><MaterialIcon
+                name="live_tv"
+                size={17}
+                class="mr-1 inline text-[#a7b9ff]"
+              />Canal</span
+            ><span
+              class="tv-ecosystem-chip rounded-xl bg-white/10 px-4 py-2 font-[var(--fuente-principal)] text-sm"
+              ><MaterialIcon
+                name="play_circle"
+                size={17}
+                class="mr-1 inline text-[#a7b9ff]"
+              />Player</span
+            ><span
+              class="tv-ecosystem-chip rounded-xl bg-white/10 px-4 py-2 font-[var(--fuente-principal)] text-sm"
+              ><MaterialIcon
+                name="analytics"
+                size={17}
+                class="mr-1 inline text-[#a7b9ff]"
+              />Analíticas</span>
+          </div>
+        </div>
+        <h3 class="mt-9 text-2xl">Un ecosistema para tu canal</h3><p
+          class="mt-4 leading-relaxed text-[#b8c3df]"
+        >
+          Combina emisión en vivo, VOD, reproductor y analíticas para ofrecer
+          una experiencia completa a tu audiencia.
+        </p>
+      </article>
+      <article
+        data-tv-reveal
+        class="rounded-[1.75rem] border border-white/1 bg-[linear-gradient(145deg,rgba(20,71,130,.42),rgba(9,20,43,.52))] p-6 backdrop-blur-md sm:p-6"
+      >
+        <div
+          class="relative h-62 overflow-hidden rounded-2xl p-6 sm:h-70"
+        >
+          <div
+            class="absolute left-6 right-6 top-8 flex items-center justify-between"
+          >
+            <span class="font-[var(--fuente-principal)] text-sm font-bold text-[#b6c8ff]"
+              >LISTA DE PROGRAMACIÓN</span
+            ><span
+              class="tv-live-status rounded-full bg-[#4d75ff]/25 px-3 py-1 text-xs text-[#a9bcff]"
+              >ACTIVA</span>
+          </div><div class="absolute left-6 right-6 top-20 grid gap-3">
+            {
+              ["Noticias en vivo", "Espacio cultural", "Programa musical"].map(
+                (show, index) => (
+                  <div class="tv-schedule-row flex items-center gap-3 rounded-xl border border-white/8 bg-white/5 px-4 py-3">
+                    <>
+                      <span class="grid size-7 place-items-center rounded-lg bg-[#4773ff]/25 text-xs text-[#b7c7ff]">
+                        {index + 1}
+                      </span>
+                      <span class="font-[var(--fuente-principal)] text-sm">{show}</span>
+                      <span class="ml-auto text-xs text-[#9cadca]">
+                        {index === 0 ? "EN VIVO" : "Próximo"}
+                      </span>
+                    </>
+                  </div>
+                ),
+              )
+            }
+          </div>
+        </div>
+        <h3 class="mt-9 text-2xl">Programación organizada</h3><p
+          class="mt-4 leading-relaxed text-[#b8c3df]"
+        >
+          Organiza listas, spots y avances TV para mantener una programación
+          consistente en tu canal.
+        </p>
+      </article>
+      <article
+        data-tv-reveal
+        class="rounded-[1.75rem] border border-white/1 bg-[linear-gradient(145deg,rgba(79,39,111,.42),rgba(23,12,42,.52))] p-6 backdrop-blur-md sm:p-6"
+      >
+        <div
+          class="relative grid h-62 place-items-center overflow-hidden rounded-2xl sm:h-70"
+        >
+          <span
+            class="tv-recording-indicator absolute left-7 top-7 rounded-lg bg-[#ff3d5b] px-3 py-1 font-[var(--fuente-principal)] text-xs font-bold"
+            >REC</span
+          ><div
+            class="tv-vod-core grid size-25 place-items-center rounded-full border border-[#a391ff]/45 bg-[#6a51df]/20 shadow-[0_0_44px_rgb(120_89_255_/_24%)]"
+          >
+            <MaterialIcon name="movie" size={48} class="text-[#b8afff]" />
+          </div><div
+            class="tv-vod-label absolute bottom-8 flex items-center gap-3 rounded-xl border border-white/12 bg-black/20 px-5 py-3 font-[var(--fuente-principal)] text-sm text-[#c4c3d8]"
+          >
+            <MaterialIcon
+              name="cloud_done"
+              size={20}
+              class="text-[#a99bff]"
+            />Contenido disponible bajo demanda
+          </div>
+        </div>
+        <h3 class="mt-9 text-2xl">Tu emisión se convierte en VOD</h3><p
+          class="mt-4 leading-relaxed text-[#b8c3df]"
+        >
+          Activa la grabación automática y conserva tus transmisiones para que
+          tu audiencia las disfrute cuando quiera.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>

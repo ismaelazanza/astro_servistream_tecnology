@@ -1,0 +1,118 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+interface HostingService {
+  label?: string;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  href: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  services?: HostingService[];
+}
+
+const defaultServices: HostingService[] = [
+  {
+    label: 'Rendimiento',
+    title: 'Rendimiento\nNVMe',
+    description: 'Servidores ultrarrápidos y optimizados para ofrecer tiempos de carga excepcionales.',
+    image: '/img/hero/hero-streaming-01.png',
+    imageAlt: 'Infraestructura de alto rendimiento',
+    href: '#rendimiento',
+  },
+  {
+    label: 'Protección',
+    title: 'Seguridad\navanzada',
+    description: 'SSL, protección activa e Imunify360 para mantener cada proyecto seguro y disponible.',
+    image: '/img/hero/hero-streaming-02.png',
+    imageAlt: 'Tecnología de seguridad para hosting',
+    href: '#seguridad',
+  },
+  {
+    label: 'Respaldo',
+    title: 'Backups\ndiarios',
+    description: 'Copias automáticas y restauración sencilla para proteger la información de tu sitio.',
+    image: '/img/slider5.avif',
+    imageAlt: 'Sistema de copias de seguridad',
+    href: '#backups',
+  },
+  {
+    label: 'Asistencia',
+    title: 'Soporte\nespecializado',
+    description: 'Un equipo técnico preparado para ayudarte con migraciones, ajustes y optimización.',
+    image: '/img/inicio/tv-streaming-resultados.png',
+    imageAlt: 'Equipo de soporte y monitoreo',
+    href: '#soporte',
+  },
+];
+
+const {
+  eyebrow = 'Infraestructura administrada',
+  title = 'Tecnología líder para tu hosting',
+  ctaLabel = 'Comprar Plan Ahora',
+  ctaHref = 'https://clientes.servistream.net/index.php?rp=/store/web-hosting-linux/pro-plan',
+  services = defaultServices,
+} = Astro.props;
+---
+
+<section class="bg-[#23252b] px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-10 lg:pb-24 lg:pt-20" aria-labelledby="hosting-services-title">
+  <div class="mx-auto max-w-384">
+    <h5 class="mb-8 text-[var(--h-blanco)] text-left">{eyebrow}</h5>
+
+    <div class="flex flex-col items-start gap-8 lg:flex-row lg:items-end lg:justify-between">
+      <h2
+        id="hosting-services-title"
+        class="max-w-4xl whitespace-pre-line text-[clamp(4rem,4vw,8.5rem)] leading-[.78] font-normal tracking-[-.065em] text-[var(--h-blanco)]"
+      >{title}</h2>
+
+      <a
+        href={ctaHref}
+        class="group mb-1 inline-flex items-center font-[var(--fuente-principal)] text-sm font-medium text-white no-underline sm:text-base"
+      >
+        <span class="rounded-full border border-white/75 px-7 py-3 transition-colors duration-300 group-hover:bg-white group-hover:text-black">{ctaLabel}</span>
+
+      </a>
+    </div>
+
+    <div class="mt-16 grid gap-4 sm:grid-cols-2 lg:mt-24 lg:grid-cols-4">
+      {services.map((service, index) => (
+        <article
+          class:list={[
+            'service-card flex min-h-95 flex-col rounded-[1.5rem] border border-white/[.035] p-7 sm:min-h-95 sm:p-8 lg:min-h-95 lg:p-[clamp(1.75rem,2.2vw,2.5rem)]',
+            index === services.length - 1 ? 'bg-[#17171a]' : 'bg-[#2b2d33]',
+          ]}
+        >
+          <div>
+            <p class="font-[var(--fuente-principal)] text-[15px] font-medium tracking-[.04em] text-white/45 uppercase">
+              {service.label ?? `Servicio ${String(index + 1).padStart(2, '0')}`}
+            </p>
+            <h3 class="mt-4 max-w-64 whitespace-pre-line font-[var(--fuente-principal)] text-[clamp(1.5rem,1.8vw,2rem)] leading-[.96] font-normal text-[var(--h-blanco)]">
+              {service.title}
+            </h3>
+          </div>
+
+          <div class="mt-auto">
+            <p class="max-w-sm font-[var(--fuente-principal)] text-[clamp(1rem,1vw,1.18rem)] leading-[1.65] font-light text-white/62">
+              {service.description}
+            </p>
+
+            <a
+              class="group/link mt-8 grid size-16 place-items-center rounded-full bg-white/[.045] text-[#f0ede7] no-underline transition-colors duration-300 hover:bg-[#00a77e] focus-visible:bg-[#00a77e] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#00a77e]"
+              href={service.href}
+              aria-label={`Explorar ${service.title}`}
+            >
+              <MaterialIcon name="arrow_outward" size={28} class="transition-transform duration-300 group-hover/link:rotate-45" />
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,99 @@
+---
+interface Props {
+    href: string;
+    title: string;
+}
+
+const { href, title } = Astro.props;
+---
+
+<a
+class="textos"
+href={href}
+data-button-one>
+  <span class="button-label">
+    {title}
+    <span class="button-line" aria-hidden="true"></span>
+  </span>
+</a>
+
+<style>
+ .textos{
+    display: inline-flex;
+    min-height: 2.35rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 2rem;
+    background: #ffffff00;
+    border: 1px solid #171717;
+    border-radius: 50px;
+    color: #171717;
+    font-family: var(--fuente-principal);
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+ }
+
+ .button-label {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: hidden;
+ }
+
+ .button-line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #55555500;
+    transform: translateX(0);
+ }
+
+ .textos.is-line-leaving .button-line {
+    animation: line-leave 380ms cubic-bezier(.65, 0, .35, 1) forwards;
+ }
+
+ .textos.is-line-entering .button-line {
+    animation: line-enter 380ms cubic-bezier(.65, 0, .35, 1) forwards;
+ }
+
+ .textos:focus-visible {
+    outline: 2px solid var(--color-primario);
+    outline-offset: 3px;
+ }
+
+ @keyframes line-leave {
+    from { transform: translateX(0); }
+    to { transform: translateX(105%); }
+ }
+
+ @keyframes line-enter {
+    from { transform: translateX(-105%); }
+    to { transform: translateX(0); }
+  }
+
+</style>
+
+<script>
+  document.querySelectorAll('[data-button-one]').forEach((button) => {
+    if (!(button instanceof HTMLElement) || button.dataset.lineReady) return;
+    button.dataset.lineReady = 'true';
+
+    const hideLine = () => {
+      button.classList.remove('is-line-entering');
+      void button.offsetWidth;
+      button.classList.add('is-line-leaving');
+    };
+
+    const showLine = () => {
+      button.classList.remove('is-line-leaving');
+      void button.offsetWidth;
+      button.classList.add('is-line-entering');
+    };
+
+    button.addEventListener('pointerenter', hideLine);
+    button.addEventListener('pointerleave', showLine);
+    button.addEventListener('focus', hideLine);
+    button.addEventListener('blur', showLine);
+  });
+</script>

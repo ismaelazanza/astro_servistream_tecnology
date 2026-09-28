@@ -1,0 +1,614 @@
+---
+import MaterialIcon from "../MaterialIcon.astro";
+
+const product = "srt";
+const isSrt = true;
+const content = {
+      badge: "SERVIDOR SRT VPS",
+      title: "Conecta tu producción,<br />sin perder la señal.",
+      description:
+        "Envía y recibe video profesional con SRT, un protocolo preparado para enlaces remotos y redes variables.",
+      primary: "Conoce SRT",
+      panel: "Control SRT",
+      panelText: "Conexión de contribución activa",
+      heroStats: [
+        ["SRT ARQ", "Recuperación de paquetes"],
+        ["UDP", "Transporte optimizado"],
+        ["24/7", "Soporte técnico"],
+      ],
+      capabilities: [
+        [
+          "settings_input_antenna",
+          "Ingesta SRT",
+          "Conecta tu encoder al servidor en modo caller.",
+        ],
+        [
+          "sync_alt",
+          "Salida profesional",
+          "Recibe tu señal con VLC, FFmpeg o equipos compatibles.",
+        ],
+        [
+          "speed",
+          "Buffer configurable",
+          "Ajusta la latencia de acuerdo con la red y el jitter.",
+        ],
+        [
+          "hub",
+          "RTMP y HLS",
+          "Mantén opciones de entrada y distribución para tu audiencia.",
+        ],
+      ],
+      controlTitle: "Tu enlace profesional bajo control",
+      controlText:
+        "Obtén las credenciales, revisa el estado de la señal y prepara cada conexión antes de salir al aire.",
+      cards: [
+        [
+          "videocam",
+          "Encoders compatibles",
+          "Transmite desde OBS Studio, vMix, Wirecast, FFmpeg o un encoder SRT compatible.",
+        ],
+        [
+          "security",
+          "Enlaces resilientes",
+          "SRT solicita paquetes perdidos dentro de la ventana de buffer configurada.",
+        ],
+        [
+          "fact_check",
+          "Prueba completa",
+          "Comprueba publicación, reproducción y sincronía antes de tu evento.",
+        ],
+        [
+          "satellite_alt",
+          "Producción remota",
+          "Conecta estudios, corresponsales y eventos desde cualquier ubicación.",
+        ],
+      ],
+      faq: [
+        [
+          "¿Qué es SRT?",
+          "SRT es un protocolo de transporte de video diseñado para enlaces profesionales que puede recuperar paquetes perdidos dentro de un buffer configurado.",
+        ],
+        [
+          "¿Puedo usar OBS o vMix?",
+          "Sí. Configura la salida SRT en modo caller y copia la URL y el stream ID que entrega tu panel.",
+        ],
+        [
+          "¿SRT garantiza cero cortes?",
+          "No. La estabilidad depende de la conexión, el bitrate, la pérdida de red y el buffer. Recomendamos realizar pruebas antes del evento.",
+        ],
+      ],
+    };
+
+const plans = [
+  {
+    name: "Live Streaming Small",
+    price: "20",
+    href: "https://clientes.servistream.net/index.php?rp=/store/streaming-tv/live-streaming-small",
+    viewers: "99 televidentes",
+    cpu: "2 vCores CPU",
+    ram: "4 GB RAM",
+    disk: "120 GB NVMe",
+  },
+  {
+    name: "Live Streaming Profesional",
+    price: "30",
+    href: "https://clientes.servistream.net/index.php?rp=/store/streaming-tv/live-streaming-professional",
+    viewers: "499 televidentes",
+    cpu: "4 vCores CPU",
+    ram: "8 GB RAM",
+    disk: "240 GB NVMe",
+    popular: true,
+  },
+  {
+    name: "Streaming Basic",
+    price: "30",
+    href: "https://clientes.servistream.net/index.php?rp=/store/streaming-tv/cloud-streaming-basic",
+    viewers: "99 televidentes",
+    cpu: "8 vCores CPU",
+    ram: "16 GB RAM",
+    disk: "480 GB NVMe",
+  },
+  {
+    name: "Streaming Medium",
+    price: "40",
+    href: "https://clientes.servistream.net/index.php?rp=/store/streaming-tv/cloud-streaming-medium",
+    viewers: "299 televidentes",
+    cpu: "12 vCores CPU",
+    ram: "24 GB RAM",
+    disk: "720 GB NVMe",
+    featured: true,
+  },
+];
+---
+
+<main
+  class="vps-streaming-page overflow-hidden bg-[#030713] text-white"
+  data-vps-streaming
+>
+  <section
+    class="relative isolate overflow-hidden"
+    aria-labelledby={`${product}-title`}
+  >
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-[54rem] bg-[radial-gradient(ellipse_at_50%_10%,rgba(47,105,255,.54),transparent_42%),radial-gradient(circle_at_74%_46%,rgba(87,54,240,.3),transparent_27%),linear-gradient(180deg,#07132e_0%,#030713_88%)]"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute inset-0 opacity-35 [background-image:radial-gradient(rgba(158,190,255,.8)_1px,transparent_1.5px)] [background-size:4rem_4rem] [mask-image:linear-gradient(180deg,black,transparent_55%)]"
+    >
+    </div>
+    <section
+      class="relative mx-auto w-[min(100%-2.5rem,116rem)] py-38 sm:w-[min(100%-4rem,116rem)] sm:py-44"
+    >
+      <header class="mx-auto container text-center" data-vps-reveal>
+        <h5
+          class="inline-flex px-5 py-1 text-[#c6d4ff]"
+        >
+          {content.badge}
+        </h5>
+        <h1
+          id={`${product}-title`}
+          class="mt-7 text-[60px] leading-[.9]"
+          set:html={content.title}
+        />
+        <p
+          class="mx-auto mt-7 max-w-3xl font-[var(--fuente-principal)] leading-relaxed text-[#c5cee8]"
+        >
+          {content.description}
+        </p>
+        <div class="mt-10 flex flex-wrap justify-center gap-4">
+          <a
+            href="#funciones"
+            class="inline-flex min-h-10 items-center justify-center rounded-full bg-[#4a74ff] px-8 font-[var(--fuente-principal)] font-bold text-white no-underline shadow-[0_14px_34px_rgb(74_116_255_/_30%)] transition hover:-translate-y-0.5 hover:bg-[#3c66ed]"
+            >{content.primary}</a
+          ><a
+            href="#planes"
+            class="inline-flex min-h-10 items-center justify-center rounded-full border border-white/25 bg-white/8 px-8 font-[var(--fuente-principal)] font-bold text-white no-underline backdrop-blur transition hover:bg-white/15"
+            >Ver planes</a>
+        </div>
+      </header>
+      <div class="relative mx-auto mt-20 max-w-5xl" data-vps-reveal>
+        <div class="absolute -inset-10 rounded-[3rem] bg-[#476aff]/20 blur-3xl">
+        </div>
+        <div
+          class="relative overflow-hidden rounded-[1.8rem] bg-[#0e1528]/70 p-5 shadow-[0_32px_90px_rgb(0_0_0_/_40%),inset_0_1px_0_rgb(255_255_255_/_13%)] backdrop-blur-md sm:p-8"
+        >
+          <div
+            class="flex items-center justify-between  pb-5"
+          >
+            <div class="flex items-center gap-3">
+              <span
+                class="grid size-11 place-items-center rounded-xl bg-[#4775ff]"
+                ><MaterialIcon
+                  name={isSrt ? "settings_input_antenna" : "live_tv"}
+                  size={25}
+                /></span
+              ><div>
+                <p class="font-[var(--fuente-principal)] font-bold text-white">{content.panel}</p><p
+                  class="font-[var(--fuente-principal)] text-sm text-[#aeb9d8]"
+                >
+                  {content.panelText}
+                </p>
+              </div>
+            </div><span
+              class="vps-live rounded-full bg-[#35ce8e]/15 px-3 py-1 text-xs font-semibold text-[#73e8b9]"
+              >EN LÍNEA</span>
+          </div>
+          <div class="mt-6 grid gap-4 sm:grid-cols-3">
+            {
+              content.heroStats.map(([value, label], index) => (
+                <div class="vps-stat rounded-2xl  bg-white/[.035] p-5">
+                  <>
+                    <MaterialIcon
+                      name={
+                        index === 0
+                          ? isSrt
+                            ? "network_check"
+                            : "memory"
+                          : index === 1
+                            ? isSrt
+                              ? "swap_horiz"
+                              : "tune"
+                            : "support_agent"
+                      }
+                      size={23}
+                      class="text-[#87a3ff]"
+                    />
+                    <p class="mt-7 font-[var(--fuente-principal)] text-3xl font-bold text-white">
+                      {value}
+                    </p>
+                    <p class="mt-1 font-[var(--fuente-principal)] text-sm text-[#afbbdc]">
+                      {label}
+                    </p>
+                  </>
+                </div>
+              ))
+            }
+          </div>
+          <div
+            class="mt-5 rounded-2xl bg-[#081127]/75 p-5"
+          >
+            <div class="flex items-end justify-between">
+              <div>
+                <p class="font-[var(--fuente-principal)] text-sm text-[#b6c6f5]">
+                  Estado de la señal
+                </p><p class="mt-1 font-[var(--fuente-principal)] text-3xl font-bold text-white">
+                  Estable
+                </p>
+              </div><span class="font-[var(--fuente-principal)] text-sm text-[#72e4b2]"
+                >● Activa</span>
+            </div><svg
+              class="mt-5 h-20 w-full"
+              viewBox="0 0 400 80"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+              ><path
+                class="vps-chart"
+                d="M0 66 C33 56 58 60 88 48 S137 62 166 37 S221 50 250 29 S309 43 339 16 S375 21 400 6"
+                fill="none"
+                stroke="#6990ff"
+                stroke-width="3"></path></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section
+    id="funciones"
+    class="relative bg-[#030713] py-20 sm:py-32"
+    aria-labelledby={`${product}-features`}
+  >
+    <div class="mx-auto container">
+      <header class="mx-auto max-w-4xl text-center" data-vps-reveal>
+        <h5 class="text-[#6490ff]">INFRAESTRUCTURA PROFESIONAL</h5><h2
+          id={`${product}-features`}
+          class="mt-6 leading-[.94]"
+        >
+          Tecnología para una emisión confiable
+        </h2><p
+          class="mx-auto mt-6 max-w-3xl font-[var(--fuente-principal)] leading-relaxed text-[#bbc5df]"
+        >
+          Recursos VPS, conectividad y herramientas de operación para que tu
+          señal esté preparada en cada transmisión.
+        </p>
+      </header><div class="mt-16 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        {
+          content.capabilities.map(([icon, title, text]) => (
+            <article
+              data-vps-reveal
+              class="vps-card rounded-[1.6rem] border border-white/1 p-7 backdrop-blur-md"
+            >
+              <>
+                <MaterialIcon name={icon} size={31} class="text-[#83a0ff]" />
+                <h3 class="mt-7 text-xl">{title}</h3>
+                <p class="mt-4 font-[var(--fuente-principal)] leading-relaxed text-[#b7c2df]">
+                  {text}
+                </p>
+              </>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="planes"
+    class="relative overflow-hidden bg-[#030713] py-20 sm:py-32"
+    aria-labelledby={`${product}-plans`}
+  >
+    <div
+      class="pointer-events-none absolute left-1/2 top-[35%] h-120 w-[min(100%,100rem)] -translate-x-1/2 "
+    >
+    </div>
+    <div
+      class="relative mx-auto w-[min(100%-2.5rem,80rem)] sm:w-[min(100%-4rem,80rem)]"
+    >
+      <header data-vps-reveal class="mx-auto max-w-4xl text-center">
+        <h5 class="text-[#6490ff]">PLANES VPS</h5><h2
+          id={`${product}-plans`}
+          class="mt-6 leading-[.94]"
+        >
+          Potencia que acompaña tu señal
+        </h2><p
+          class="mx-auto mt-6 max-w-3xl font-[var(--fuente-principal)] leading-relaxed text-[#bbc5df]"
+        >
+          Cuatro configuraciones VPS para operar tu proyecto de streaming con
+          recursos escalables.
+        </p>
+      </header><div class="mt-16 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        {
+          plans.map((plan) => (
+            <article
+              data-vps-reveal
+              class:list={[
+                "vps-plan relative flex min-h-full flex-col rounded-[1.6rem]  p-6 shadow-[inset_0_1px_0_rgb(255_255_255_/_12%)] backdrop-blur-md sm:p-7",
+                plan.featured
+                  ? "border-[#859cff]/30 bg-[linear-gradient(155deg,rgba(57,67,157,.66),rgba(15,14,42,.86))]"
+                  : "border-white/10 bg-[linear-gradient(155deg,rgba(22,27,64,.58),rgba(7,9,23,.8))]",
+              ]}
+            >
+              {plan.popular && (
+                <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#5a6fff] px-4 py-1 font-[var(--fuente-principal)] text-xs font-bold whitespace-nowrap text-white">
+                  MÁS ELEGIDO
+                </span>
+              )}
+              {plan.featured && (
+                <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#366ee8] px-4 py-1 font-[var(--fuente-principal)] text-xs font-bold whitespace-nowrap text-white">
+                  MAYOR CAPACIDAD
+                </span>
+              )}
+              <>
+                <p class="min-h-12 font-[var(--fuente-principal)] text-xl font-bold leading-tight text-white">
+                  {plan.name}
+                </p>
+                <p class="mt-7 text-6xl leading-none">
+                  ${plan.price}
+                  <span class="ml-1 text-lg text-[#c7cee5]">/mes</span>
+                </p>
+                <p class="mt-3 font-[var(--fuente-principal)] text-sm text-[#c6d1f2]">
+                  Activación en unas horas
+                </p>
+              </>
+              <>
+                <a
+                  href={plan.href}
+                  class:list={[
+                    "mt-7 flex min-h-10 items-center justify-center gap-2 rounded-full border font-[var(--fuente-principal)] text-sm text-white no-underline transition hover:-translate-y-0.5",
+                    plan.featured
+                      ? "border-[#6e85ff] bg-[#566bff] hover:bg-[#6880ff]"
+                      : "border-[#7f91ff]/60 bg-white/8 hover:bg-white/15",
+                  ]}
+                >
+                  Realizar pedido{" "}
+                  <MaterialIcon name="arrow_forward" size={17} />
+                </a>
+                <div class="mt-7 border-t border-white/10 pt-7">
+                  <>
+                    <p class="font-[var(--fuente-principal)] text-sm font-bold text-white">
+                      Recursos VPS:
+                    </p>
+                    <ul class="mt-5 space-y-3 font-[var(--fuente-principal)] text-[.94rem] text-[#c3cae0]">
+                      {[
+                        plan.cpu,
+                        plan.ram,
+                        plan.disk,
+                        plan.viewers,
+                        "Transferencia ilimitada",
+                        isSrt ? "SRT / RTMP / HLS" : "Panel VDO incluido",
+                      ].map((feature) => (
+                        <li class="flex gap-2">
+                          <MaterialIcon
+                            name="check"
+                            size={18}
+                            class="shrink-0 text-[#91a6ff]"
+                          />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                </div>
+              </>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="bg-[#030713] py-20 sm:py-32"
+    aria-labelledby={`${product}-control`}
+  >
+    <div class="mx-auto container">
+      <header class="mx-auto max-w-4xl text-center" data-vps-reveal>
+        <h5 class="text-[#6490ff]">TODO BAJO CONTROL</h5><h2
+          id={`${product}-control`}
+          class="mt-6 leading-[.94]"
+        >
+          {content.controlTitle}
+        </h2><p
+          class="mx-auto mt-6 max-w-3xl font-[var(--fuente-principal)] leading-relaxed text-[#bbc5df]"
+        >
+          {content.controlText}
+        </p>
+      </header><div class="mt-16 grid gap-7 lg:grid-cols-2">
+        {
+          content.cards.map(([icon, title, text], index) => (
+            <article
+              data-vps-reveal
+              class:list={[
+                "vps-control-card overflow-hidden rounded-[1.75rem] p-7 backdrop-blur-md sm:p-9",
+                index % 2 === 0
+                  ? "bg-[linear-gradient(145deg,rgba(36,50,126,.55),rgba(12,15,38,.66))]"
+                  : "bg-[linear-gradient(145deg,rgba(20,43,100,.48),rgba(12,14,33,.66))]",
+              ]}
+            >
+              <>
+                <div class=" relative grid h-32 place-items-center overflow-hidden rounded-2xl sm:h-36">
+                  <>
+                    <span class="vps-orb grid size-20 place-items-center rounded-full text-[#a6bbff] shadow-[0_0_40px_rgb(68_107_255_/_35%)]">
+                      <MaterialIcon name={icon} size={38} />
+                    </span>
+                    <span class="absolute left-[16%] top-[25%] size-2 rounded-full bg-[#84a0ff]" />
+                    <span class="absolute right-[18%] bottom-[26%] size-3 rounded-full bg-[#5d7dff]" />
+                  </>
+                </div>
+                <h3 class="mt-8 text-2xl">{title}</h3>
+                <p class="mt-4 max-w-xl font-[var(--fuente-principal)] leading-relaxed text-[#b8c3df]">
+                  {text}
+                </p>
+              </>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="bg-[#030713] py-20 sm:py-32"
+    aria-labelledby={`${product}-faq`}
+    data-vps-faq
+  >
+    <div class="mx-auto container">
+      <header class="mx-auto max-w-3xl text-center">
+        <h2 id={`${product}-faq`} class="leading-none">
+          Preguntas frecuentes
+        </h2><p class="mt-5 font-[var(--fuente-principal)] text-[#aeb9d8]">
+          ¿Necesitas ayuda con tu proyecto? Estamos listos para orientarte.
+        </p>
+      </header><div class="mx-auto mt-14 max-w-4xl divide-y divide-white/10">
+        {
+          content.faq.map(([question, answer]) => (
+            <details class="vps-faq">
+              <>
+                <summary class="flex cursor-pointer list-none items-center justify-between gap-5 py-6 font-[var(--fuente-principal)] text-lg font-medium">
+                  <>
+                    <span>{question}</span>
+                    <span class="vps-faq-icon text-2xl text-[#91a6ff]">+</span>
+                  </>
+                </summary>
+                <p class="max-w-3xl pb-6 font-[var(--fuente-principal)] leading-relaxed text-[#aeb9d8]">
+                  {answer}
+                </p>
+              </>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  const setupVpsStreaming = () => {
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    document.querySelectorAll("[data-vps-streaming]").forEach((page) => {
+      const revealItems = page.querySelectorAll("[data-vps-reveal]");
+      if (reduced || !("IntersectionObserver" in window))
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+      else {
+        const observer = new IntersectionObserver(
+          (entries) =>
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            }),
+          { threshold: 0.12 },
+        );
+        revealItems.forEach((item) => observer.observe(item));
+      }
+      const faqs = [...page.querySelectorAll(".vps-faq")];
+      faqs.forEach((faq) =>
+        faq.addEventListener("toggle", () => {
+          if (faq.open)
+            faqs.forEach((other) => {
+              if (other !== faq) other.open = false;
+            });
+        }),
+      );
+    });
+  };
+  document.addEventListener("astro:page-load", setupVpsStreaming);
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", setupVpsStreaming, {
+      once: true,
+    });
+  else setupVpsStreaming();
+</script>
+
+<style>
+  [data-vps-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  [data-vps-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .vps-card,
+  .vps-plan,
+  .vps-control-card {
+    transition:
+      transform 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+  .vps-card:hover,
+  .vps-plan:hover,
+  .vps-control-card:hover {
+    transform: translateY(-7px);
+    border-color: rgb(129 151 255 / 0.65);
+    box-shadow:
+      0 18px 42px rgb(42 58 172 / 0.22),
+      inset 0 1px 0 rgb(255 255 255 / 0.12);
+  }
+  /* Módulos de operación: lectura rápida, sin áreas decorativas vacías. */
+  .vps-plan > p.text-6xl { color: #f8faff; }
+  .vps-control-card { background: linear-gradient(145deg, rgb(22 30 70 / .72), rgb(7 11 29 / .9)) !important; }
+  .vps-control-visual { isolation: isolate; border: 1px solid rgb(132 160 255 / .16); background: linear-gradient(118deg, rgb(18 35 82 / .94), rgb(9 18 48 / .58)); }
+  .vps-control-visual::before { position: absolute; z-index: -1; inset: 0; content: ''; opacity: .5; background-image: linear-gradient(rgb(132 160 255 / .13) 1px, transparent 1px), linear-gradient(90deg, rgb(132 160 255 / .13) 1px, transparent 1px); background-size: 2.2rem 2.2rem; mask-image: linear-gradient(90deg, black, transparent 80%); }
+  .vps-control-visual::after { position: absolute; bottom: 1.15rem; left: 1.25rem; width: 38%; height: .3rem; content: ''; border-radius: 99px; background: linear-gradient(90deg, #75a1ff 0 58%, rgb(117 161 255 / .14) 58%); box-shadow: 0 0 .8rem rgb(95 139 255 / .45); }
+  .vps-control-visual .vps-orb { width: 4rem; height: 4rem; background: rgb(69 109 255 / .18); box-shadow: 0 0 0 .65rem rgb(91 128 255 / .06), 0 0 2.5rem rgb(68 107 255 / .28); }
+  .vps-live {
+    animation: vps-blink 1.4s infinite ease-in-out;
+  }
+  .vps-chart {
+    stroke-dasharray: 460;
+    stroke-dashoffset: 460;
+    animation: vps-draw 1.5s 0.3s forwards ease-out;
+  }
+  .vps-orb {
+    animation: vps-pulse 2.5s infinite ease-in-out;
+  }
+  .vps-faq[open] .vps-faq-icon {
+    transform: rotate(45deg);
+  }
+  .vps-faq-icon {
+    transition: transform 0.2s ease;
+  }
+  @keyframes vps-blink {
+    50% {
+      opacity: 0.45;
+      filter: brightness(1.35);
+    }
+  }
+  @keyframes vps-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes vps-pulse {
+    50% {
+      transform: scale(1.08);
+      box-shadow: 0 0 58px rgb(68 107 255 / 0.58);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-vps-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .vps-live,
+    .vps-chart,
+    .vps-orb {
+      animation: none;
+    }
+    .vps-card:hover,
+    .vps-plan:hover,
+    .vps-control-card:hover {
+      transform: none;
+    }
+  }
+</style>

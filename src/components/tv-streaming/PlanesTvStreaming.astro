@@ -1,0 +1,207 @@
+---
+import MaterialIcon from "../MaterialIcon.astro";
+
+const planes = [
+  {
+    name: "Streaming Inicial",
+    price: "20",
+    viewers: "99 televidentes",
+    panel: "Sin panel",
+    storage: null,
+    description: "Transmisión de video profesional",
+    href: "https://clientes.servistream.net/index.php?rp=/store/streaming-tv/live-streaming-small",
+    cloud: false,
+    featured: false,
+  },
+  {
+    name: "Streaming Avanzado",
+    price: "30",
+    viewers: "499 televidentes",
+    panel: "Sin panel",
+    storage: null,
+    description: "Más alcance para tu señal",
+    href: "https://clientes.servistream.net/index.php?rp=/store/streaming-tv/live-streaming-professional",
+    cloud: false,
+    featured: false,
+  },
+  {
+    name: "Cloud Streaming Basic",
+    price: "30",
+    viewers: "99 televidentes",
+    panel: "StreamCP Pro",
+    storage: "160 GB de disco SSL",
+    description: "Transmisión en vivo y con AutoDJ",
+    href: "https://clientes.servistream.net/index.php?rp=/store/streaming-tv/cloud-streaming-basic",
+    cloud: true,
+    featured: false,
+  },
+  {
+    name: "Cloud Streaming Medium",
+    price: "40",
+    viewers: "299 televidentes",
+    panel: "StreamCP Pro",
+    storage: "240 GB de disco SSL",
+    description: "Transmisión en vivo y con AutoDJ",
+    href: "https://clientes.servistream.net/index.php?rp=/store/streaming-tv/cloud-streaming-medium",
+    cloud: true,
+    featured: false,
+  },
+  {
+    name: "Cloud Streaming Large",
+    price: "75",
+    viewers: "499 televidentes",
+    panel: "StreamCP Pro",
+    storage: "320 GB de disco SSL",
+    description: "Transmisión en vivo y con AutoDJ",
+    href: "https://clientes.servistream.net/index.php?rp=/store/streaming-tv/cloud-streaming-large",
+    cloud: true,
+    featured: true,
+  },
+];
+
+const baseFeatures = [
+  "Servidor propio",
+  "Transferencia ilimitada",
+  "Transmite hasta 2080p",
+];
+---
+
+<section
+  id="planes"
+  class="relative overflow-hidden bg-[#030713] py-20 text-white sm:py-32"
+  aria-labelledby="plans-title"
+>
+  <div
+    class="pointer-events-none absolute left-1/2 top-[35%] h-120 w-[min(100%,100rem)] -translate-x-1/2 bg-[radial-gradient(ellipse,rgba(57,80,255,.18),transparent_67%)]"
+  >
+  </div>
+  <div
+    class="relative mx-auto w-[min(100%-2.5rem,106rem)] sm:w-[min(100%-4rem,106rem)]"
+  >
+    <header data-tv-reveal class="mx-auto max-w-4xl text-center">
+      <h5 class="text-[#6490ff]">PLANES TV STREAMING</h5><h2
+        id="plans-title"
+        class="mt-6 text-white leading-[.94]"
+      >
+        Una señal profesional a tu medida
+      </h2><p
+        class="mx-auto mt-6 max-w-3xl font-[var(--fuente-principal)] leading-relaxed text-[#bbc5df]"
+      >
+        Elige la capacidad ideal para alojar y transmitir tu contenido de video
+        con una <br /> infraestructura preparada para crecer.
+      </p>
+    </header>
+    <div class="mt-16 grid gap-5 sm:grid-cols-2 xl:grid-cols-5 xl:gap-4">
+      {
+        planes.map((plan) => (
+          <article
+            data-tv-reveal
+            class:list={[
+              "tv-plan relative flex min-h-155 flex-col rounded-[1.6rem]  p-6 shadow-[inset_0_1px_0_rgb(255_255_255_/_12%)] backdrop-blur-md sm:p-7",
+              plan.cloud
+                ? "border-[#859cff]/6 bg-[linear-gradient(155deg,rgba(57,67,157,.6),rgba(15,14,42,.84))] shadow-[0_18px_48px_rgb(54_69_230_/_18%),inset_0_1px_0_rgb(255_255_255_/_16%)]"
+                : "border-white/6 bg-[linear-gradient(155deg,rgba(22,27,64,.58),rgba(7,9,23,.8))]",
+            ]}
+          >
+            {plan.featured && (
+              <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#5a6fff] px-4 py-1 font-[var(--fuente-principal)] text-xs font-bold whitespace-nowrap text-white shadow-[0_8px_24px_rgb(90_111_255_/_40%)]">
+                MÁS COMPLETO
+              </span>
+            )}
+            <div>
+              <>
+                <p class="min-h-12 bg-[linear-gradient(90deg,#84a0ff,#ec86cf)] bg-clip-text font-[var(--fuente-principal)] text-xl font-bold leading-tight text-transparent">
+                  {plan.name}
+                </p>
+                <p class="mt-2 min-h-11 font-[var(--fuente-principal)] text-sm leading-snug text-[#bdc7e5]">
+                  {plan.description}
+                </p>
+              </>
+            </div>
+            <>
+              <div class="mt-8 flex items-end gap-1">
+                <>
+                  <span class="text-6xl leading-none ">
+                    ${plan.price}
+                  </span>
+                  <span class="mb-1.5 font-[var(--fuente-principal)] text-lg text-[#c7cee5]">
+                    /mes
+                  </span>
+                </>
+              </div>
+              <p class="mt-3 font-[var(--fuente-principal)] text-sm text-[#c6d1f2]">
+                Activación en unas horas
+              </p>
+            </>
+            <a
+              href={plan.href}
+              class:list={[
+                "mt-7 flex min-h-10 items-center justify-center gap-2 rounded-full font-sans text-sm  text-white no-underline transition hover:-translate-y-0.5",
+                plan.featured
+                  ? "border-[#6e85ff] bg-[#566bff] shadow-[0_10px_28px_rgb(75_94_255_/_30%)] hover:bg-[#6880ff]"
+                  : "border-[#7f91ff]/60 bg-white/8 hover:bg-white/15",
+              ]}
+            >
+              Realizar Pedido
+              <MaterialIcon name="arrow_forward" size={17} />
+            </a>
+            <div class="mt-7 border-t border-white/10 pt-7">
+              <>
+                <p class="font-[var(--fuente-principal)] text-sm font-bold text-white">
+                  Características incluidas:
+                </p>
+                <ul
+                  class="mt-5 space-y-3 font-[var(--fuente-principal)] text-[.94rem] leading-snug text-[#c3cae0]"
+                  role="list"
+                >
+                  <li class="flex mb-0 gap-2">
+                    <MaterialIcon
+                      name="check"
+                      size={18}
+                      class="shrink-0 text-[#91a6ff]"
+                    />
+                    {plan.viewers}
+                  </li>
+                  {baseFeatures.map((feature) => (
+                    <li class="flex mb-0 gap-2">
+                      <MaterialIcon
+                        name="check"
+                        size={18}
+                        class="shrink-0 text-[#91a6ff]"
+                      />
+                      {feature}
+                    </li>
+                  ))}
+                  {plan.storage && (
+                    <li class="flex mb-0 gap-2">
+                      <MaterialIcon
+                        name="check"
+                        size={18}
+                        class="shrink-0 text-[#91a6ff]"
+                      />
+                      {plan.storage}
+                    </li>
+                  )}
+                  <li class="flex gap-2">
+                    <MaterialIcon
+                      name="check"
+                      size={18}
+                      class="shrink-0 text-[#91a6ff]"
+                    />
+                    {plan.panel}
+                  </li>
+                </ul>
+              </>
+            </div>
+            <div class="mt-auto pt-7 font-[var(--fuente-principal)] text-xs text-[#aeb9dc]">
+              <span class="mr-2 inline-flex items-center gap-1">
+                <MaterialIcon name="smartphone" size={15} />
+                App Android
+              </span>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

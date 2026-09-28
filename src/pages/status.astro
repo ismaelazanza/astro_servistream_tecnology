@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MenuNegro from '../components/menuGlobal.astro';
+import Footer from '../components/footerNegro.astro';
+import MaterialIcon from '../components/MaterialIcon.astro';
+---
+
+<Layout title="Estado de servicios | ServiStream" description="Consulta el estado en tiempo real de la infraestructura y servicios de ServiStream." bodyClass="bg-white">
+  <div class="min-h-screen bg-white text-[#101828]">
+    <MenuNegro variant="blanco" />
+    <main class="relative overflow-hidden pt-28 sm:pt-36">
+      <div class="pointer-events-none absolute inset-x-0 top-0 h-[48rem] bg-[radial-gradient(ellipse_at_50%_0%,rgba(183,214,255,.72),transparent_48%),radial-gradient(ellipse_at_15%_35%,rgba(224,237,255,.78),transparent_32%)]"></div>
+      <svg class="pointer-events-none absolute inset-x-0 top-48 h-[35rem] w-full opacity-45" viewBox="0 0 1800 500" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="status-beam" x1="0" x2="1"><stop stop-color="#336eff" stop-opacity="0"/><stop offset=".35" stop-color="#5d99ff" stop-opacity=".85"/><stop offset="1" stop-color="#7b61ff" stop-opacity="0"/></linearGradient><filter id="status-blur"><feGaussianBlur stdDeviation="2.2"/></filter></defs><g fill="none" stroke="url(#status-beam)"><path d="M-60 250 C250 360 420 115 780 235 S1330 160 1870 300" stroke-width="2" filter="url(#status-blur)"/><path d="M-60 250 C250 360 420 115 780 235 S1330 160 1870 300" stroke-width="1"/><path d="M-50 282 C260 390 470 140 820 265 S1360 195 1850 340" stroke-width="1"/></g></svg>
+
+      <section class="relative mx-auto container pb-16 text-center sm:pb-20">
+        <span class="inline-flex items-center gap-2 rounded-full border border-emerald-300/60 bg-emerald-50 px-4 py-2 font-[var(--fuente-principal)] text-sm font-medium text-emerald-700"><span class="size-2 rounded-full bg-emerald-500 shadow-[0_0_14px_#4ade80]"></span>Monitoreo en tiempo real</span>
+        <h1 class="mx-auto mt-7 max-w-4xl text-[clamp(2.8rem,6vw,6rem)] leading-[.93] text-[#101828]">Estado de nuestros servicios</h1>
+        <p class="mx-auto mt-6 max-w-2xl font-[var(--fuente-principal)] text-lg leading-relaxed text-[#526078]">Consulta la disponibilidad de nuestra infraestructura de hosting, radio streaming, televisión y servicios en línea.</p>
+        <div class="mx-auto mt-10 grid max-w-3xl gap-4 text-left sm:grid-cols-3">
+          <article class="rounded-2xl border border-[#dce5f5] bg-white/80 p-5 shadow-[0_14px_35px_rgba(54,93,157,.08)] backdrop-blur-lg"><MaterialIcon name="monitoring" size={24} class="text-[#286fe6]"/><p class="mt-4 font-[var(--fuente-principal)] font-semibold">Monitoreo continuo</p><p class="mt-1 font-[var(--fuente-principal)] text-sm text-[#66738a]">Verificación automática 24/7.</p></article>
+          <article class="rounded-2xl border border-[#dce5f5] bg-white/80 p-5 shadow-[0_14px_35px_rgba(54,93,157,.08)] backdrop-blur-lg"><MaterialIcon name="history" size={24} class="text-[#286fe6]"/><p class="mt-4 font-[var(--fuente-principal)] font-semibold">Historial visible</p><p class="mt-1 font-[var(--fuente-principal)] text-sm text-[#66738a]">Consulta eventos y disponibilidad.</p></article>
+          <article class="rounded-2xl border border-[#dce5f5] bg-white/80 p-5 shadow-[0_14px_35px_rgba(54,93,157,.08)] backdrop-blur-lg"><MaterialIcon name="support_agent" size={24} class="text-[#286fe6]"/><p class="mt-4 font-[var(--fuente-principal)] font-semibold">Soporte disponible</p><p class="mt-1 font-[var(--fuente-principal)] text-sm text-[#66738a]">Te acompañamos ante cualquier incidencia.</p></article>
+        </div>
+      </section>
+
+      <section class="relative mx-auto container pb-24 sm:pb-32" aria-label="Panel de estado UptimeRobot">
+        <div class="overflow-hidden rounded-[2rem] border border-[#d9e4f5] bg-white/85 p-2 shadow-[0_25px_80px_rgba(37,77,133,.16)] backdrop-blur-xl sm:p-4">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-[#e3eaf5] px-4 py-4 font-[var(--fuente-principal)] sm:px-6"><div class="flex items-center gap-3"><span class="grid size-10 place-items-center rounded-xl bg-[#1e64d7] text-white"><MaterialIcon name="dns" size={22} /></span><div><p class="font-semibold text-[#17223a]">Estado de la infraestructura</p><p class="text-sm text-[#66738a]">Datos proporcionados por UptimeRobot</p></div></div><a href="https://stats.uptimerobot.com/L02P2B2oYz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full border border-[#7eaeff] bg-[#eef5ff] px-4 py-2 text-sm font-medium text-[#1760cc] no-underline transition hover:bg-[#dbeaff]">Abrir monitor <MaterialIcon name="open_in_new" size={17} /></a></div>
+          <div class="relative min-h-[42rem] bg-white"><iframe title="Estado de servicios de ServiStream" src="https://stats.uptimerobot.com/L02P2B2oYz" class="absolute inset-0 size-full border-0" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">Tu navegador no permite mostrar el panel de estado. <a href="https://stats.uptimerobot.com/L02P2B2oYz" target="_blank" rel="noopener noreferrer">Abrir estado de servicios</a>.</iframe></div>
+        </div>
+        <p class="mt-5 text-center font-[var(--fuente-principal)] text-sm text-[#71809a]">El estado se actualiza directamente desde nuestro panel público de monitoreo.</p>
+      </section>
+    </main>
+  </div>
+  <Footer />
+</Layout>

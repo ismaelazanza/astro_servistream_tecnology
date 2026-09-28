@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MenuNegro from '../components/menuGlobal.astro';
+import PlanesResellerRadio from '../components/reseller-radio/PlanesResellerRadio.astro';
+import BeneficiosResellerRadio from '../components/reseller-radio/BeneficiosResellerRadio.astro';
+import PanelResellerRadio from '../components/reseller-radio/PanelResellerRadio.astro';
+import PreguntasResellerRadio from '../components/reseller-radio/PreguntasResellerRadio.astro';
+import Footer from '../components/footerNegro.astro';
+import DarkStreamingAtmosphere from '../components/DarkStreamingAtmosphere.astro';
+---
+
+<Layout title="Reseller Radio Streaming | Servistream Technology" description="Crea tu negocio de radio streaming con panel multi-cliente, AutoDJ, SonicPanel y planes reseller de marca propia." bodyClass="bg-[#03040d]">
+  <div class="dark-streaming-experience relative isolate overflow-hidden bg-[#03040d]">
+    <DarkStreamingAtmosphere tone="violet" />
+    <div class="relative z-10">
+    <MenuNegro variant="transparente" />
+    <PlanesResellerRadio />
+    <BeneficiosResellerRadio />
+    <PanelResellerRadio />
+    <PreguntasResellerRadio />
+    </div>
+  </div>
+  <Footer />
+</Layout>

@@ -1,0 +1,27 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const benefits = [
+  { icon: 'smart_display', title: 'Reproductores', text: 'Nuestra empresa cuenta con más de 20 reproductores gratuitos para nuestros clientes. Entregamos códigos HTML listos para su sitio.' },
+  { icon: 'speed', title: 'Delay mínimo', text: 'Servidores estratégicamente posicionados, configurados y optimizados para obtener el menor retardo de su señal de radio.' },
+  { icon: 'graphic_eq', title: 'Beneficios', text: 'Todos nuestros planes cuentan con tecnología AACPlus y MP3 para transmitir a baja calidad con un excelente sonido.' },
+  { icon: 'queue_music', title: 'AutoDJ', text: 'Los planes con espacio AutoDJ permiten reproducir archivos musicales directamente desde el servidor.' },
+  { icon: 'verified', title: '99.9% de actividad', text: 'Experimente una transmisión confiable con servidores ubicados en distintos puntos de Estados Unidos y Europa.' },
+  { icon: 'lock', title: 'Soporte SSL', text: 'Nuestro servidor proporciona una URL de transmisión segura que puede usar en cualquier aplicación que requiera HTTPS.' },
+  { icon: 'tune', title: 'Panel de control', text: 'Utiliza el panel Sonic para una administración fácil e intuitiva de tu servidor de radio.' },
+  { icon: 'devices', title: 'Compatibilidad', text: 'Ofrece a tus oyentes soporte para reproductores multimedia como Winamp, Real y Windows Player.' },
+];
+---
+
+<section class="bg-[#03040d] py-20 text-white sm:py-32" aria-labelledby="radio-benefits-title">
+  <div class="mx-auto container">
+    <header class="max-w-4xl">
+      <h5 class="font-[var(--fuente-principal)] text-left text-[#7284ff]">TECNOLOGÍA PARA TU EMISORA</h5>
+      <h2 id="radio-benefits-title" class="mt-6 text-[var(--h-blanco)]">Todo lo que tu radio necesita para sonar mejor</h2>
+      <p class="mt-7 max-w-3xl font-[var(--fuente-principal)] text-lg leading-relaxed text-[#bcbccb] sm:text-xl">Infraestructura estable, herramientas prácticas y una experiencia de escucha profesional para tu audiencia.</p>
+    </header>
+    <div class="mt-18 grid gap-x-12 gap-y-14 sm:grid-cols-2 xl:grid-cols-4">
+      {benefits.map((benefit) => <article class="max-w-sm font-[var(--fuente-principal)]"><MaterialIcon name={benefit.icon} size={30} class="text-[#7f86ff]" /><h3 class="mt-5 text-[20px] font-medium">{benefit.title}</h3><p class="mt-4 text-base text-[#b6b5c4]">{benefit.text}</p></article>)}
+    </div>
+  </div>
+</section>

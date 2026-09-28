@@ -1,0 +1,79 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const categories = [
+  {
+    title: 'Cloudflare',
+    items: ['Protección DDoS, optimización de rendimiento y seguridad avanzada para tu sitio web.'],
+    icon: 'ic:baseline-verified',
+  },
+  {
+    title: 'Cloudlinux',
+    items: ['CloudLinux es un sistema operativo optimizado para servidores web que mejora el rendimiento, la seguridad y la estabilidad de tus sitios y aplicaciones.'],
+    icon: 'ic:outline-settings-suggest',
+  },
+  {
+    title: 'Hardware',
+    items: ['Debido a que lo hospedamos en la nube, siempre tendrá el hardware más reciente. Sin discos defectuosos ni rendimiento deficiente'],
+    icon: 'ic:baseline-memory',
+  },
+  {
+    title: 'Imunify360',
+    items: ['La protección contra malware Imunify360 se incluye de serie en todos los sistemas. Esto busca malware y puede repararse automáticamente'],
+    icon: 'ic:round-privacy-tip',
+  },
+  {
+    title: 'LiteSpeed',
+    items: ['Con su tecnología de caché avanzada, LiteSpeed es capaz de servir contenido web más rápido y con mayor eficiencia'],
+    icon: 'ic:baseline-timelapse',
+  },
+  {
+    title: '99.99% Uptime',
+    items: ['Garantizamos un tiempo de actividad del 99.99% para que tu sitio siempre esté disponible.'],
+    icon: 'ic:baseline-arrow-circle-up',
+  },
+];
+---
+
+<section class="overflow-hidden bg-[#23252b] text-white" aria-labelledby="solutions-title">
+  <div class="mx-auto w-[min(100%-2rem,118rem)] px-2 py-20 sm:px-6 sm:py-28 lg:px-10 lg:py-36">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-20">
+      <h5 class="flex items-center gap-3 text-(--h-blanco)">
+        <span class="size-2.5 rounded-full bg-[#03b99a]"></span>
+        Por qué elegirnos
+      </h5>
+
+      <div>
+        <h2 id="solutions-title" class="text-[clamp(2.5rem,4vw,4.5rem)] leading-none tracking-[-.045em] text-[var(--h-blanco)]">
+          Soluciones que impulsan tu negocio<span class="text-[#03b99a]">.</span>
+        </h2>
+        <p class="mt-8 max-w-3xl font-[var(--fuente-principal)] text-base leading-relaxed text-white/80 sm:text-lg">
+          Combinamos infraestructura, experiencia y soporte para ayudarte a construir una presencia digital rápida, estable y preparada para crecer.
+          <a class="ml-1 border-b border-white/60 pb-1 text-white transition-colors hover:border-[#03b99a] hover:text-[#03b99a]" href="/servicios">Ver todos los servicios</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-20 grid sm:grid-cols-2 lg:mt-24 lg:grid-cols-3 xl:grid-cols-6">
+      {categories.map((category) => (
+        <article class="group flex min-h-100 flex-col border-t border-white/20 px-5 py-7 transition-colors hover:bg-white/4 sm:border-l sm:border-t-0 lg:min-h-96 lg:px-6">
+          <h3 class="font-[var(--fuente-principal)] text-lg text-white">{category.title}</h3>
+
+          <MaterialIcon
+            name={category.icon}
+            size={64}
+            class="mt-12 text-white/80 transition-all duration-300 group-hover:-translate-y-1 group-hover:text-[#00b285]"
+          />
+
+          <ul class="mt-auto space-y-2 font-[var(--fuente-principal)] text-sm leading-relaxed text-white/75">
+            {category.items.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <p class="mt-16 text-center font-[var(--fuente-principal)] text-sm text-white/75 lg:mt-24">
+      * Todos nuestros servicios tienen conexión de 1 Gbps lo que garantiza una experiencia óptima para tus usuarios.
+    </p>
+  </div>
+</section>

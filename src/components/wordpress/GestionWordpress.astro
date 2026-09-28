@@ -1,0 +1,119 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const questions = [
+  {
+    title: '¿Cómo mejora el rendimiento de WordPress?',
+    content: 'Optimizamos caché, servidor LiteSpeed, Cloudflare y recursos VPS para que WordPress responda rápido incluso con tráfico alto, plugins y contenido dinámico.',
+  },
+  {
+    title: '¿Incluye protección y Cloudflare?',
+    content: 'Sí. Integramos Cloudflare para mejorar seguridad, DNS, cache de borde y protección contra tráfico malicioso antes de que llegue a tu servidor.',
+  },
+  {
+    title: '¿Puedo migrar mi sitio actual?',
+    content: 'Sí. Revisamos tu instalación, migramos archivos y base de datos, ajustamos PHP, cache y comprobamos que el sitio quede funcionando antes del cambio final.',
+  },
+];
+---
+
+<section class="bg-white px-5 py-18 text-[#26333d] sm:px-8 lg:px-12 lg:py-28" aria-labelledby="wordpress-management-title" data-wordpress-management>
+  <div class="mx-auto grid container items-center gap-14 lg:grid-cols-[minmax(0,.9fr)_minmax(32rem,1fr)] lg:gap-24">
+    <div>
+      <h5 class="text-left text-[#65727c]">Optimiza y crece</h5>
+      <h2 id="wordpress-management-title" class="mt-5">
+        Administra WordPress en una plataforma rápida y preparada para crecer.
+      </h2>
+      <p class="mt-8 font-[var(--fuente-principal)] leading-[1.55]">
+        Hosting WordPress administrado sobre VPS, Cloudflare y discos NVMe para sitios que necesitan velocidad, estabilidad y soporte técnico real.
+      </p>
+
+      <a
+        class="mt-10 inline-flex min-h-12 items-center font-medium gap-1 rounded-full bg-[#5614ff] px-5 font-[var(--fuente-principal)] font-black text-white no-underline transition-colors duration-200 hover:bg-[#26333d] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#5614ff]"
+        href="#wordpress-hosting"
+      >
+        <span class="grid size-6 place-items-center rounded-full border border-white/55">
+          <MaterialIcon name="north_east" size={15} />
+        </span>
+        Empezar ahora
+      </a>
+
+      <div class="mt-14 grid gap-5">
+        {questions.map((question, index) => (
+          <article class:list={['rounded-[1.6rem] bg-[#f4f6f7] px-7 py-6', { 'is-open': index === 0 }]} data-management-item>
+            <button class="flex w-full items-start justify-between gap-6 text-left" type="button" aria-expanded={index === 0 ? 'true' : 'false'} data-management-trigger>
+              <span class="font-[var(--fuente-principal)] leading-tight font-medium text-[#26333d]">
+                {question.title}
+              </span>
+              <span class="grid size-12 shrink-0 place-items-center rounded-full bg-[#e9eef1] text-[#26333d]" aria-hidden="true" data-management-icon>
+                {index === 0 ? '-' : '+'}
+              </span>
+            </button>
+            <div class="overflow-hidden transition-[height] duration-300 ease-[cubic-bezier(.22,1,.36,1)]" style={`height: ${index === 0 ? 'auto' : '0px'}`} data-management-panel>
+              <p class="max-w-[43rem] pt-7 font-[var(--fuente-principal)] leading-[1.62] text-[#52616b]">
+                {question.content}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <figure class="overflow-hidden rounded-[2rem] bg-[#5614ff] lg:rounded-[2.6rem]">
+      <img
+        class="h-full w-full object-cover"
+        src="/img/wordpress/gestion-wordpress-vps.avif"
+        alt="Panel móvil ilustrado para gestionar WordPress, VPS, Cloudflare y rendimiento"
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  </div>
+</section>
+
+<script>
+  const initWordpressManagement = () => {
+    document.querySelectorAll('[data-wordpress-management]').forEach((section) => {
+      if (!(section instanceof HTMLElement) || section.dataset.ready) return;
+      section.dataset.ready = 'true';
+
+      const items = [...section.querySelectorAll('[data-management-item]')];
+
+      const closeItem = (item) => {
+        const trigger = item.querySelector('[data-management-trigger]');
+        const panel = item.querySelector('[data-management-panel]');
+        const icon = item.querySelector('[data-management-icon]');
+        item.classList.remove('is-open');
+        trigger?.setAttribute('aria-expanded', 'false');
+        if (panel instanceof HTMLElement) panel.style.height = '0px';
+        if (icon) icon.textContent = '+';
+      };
+
+      const openItem = (item) => {
+        const trigger = item.querySelector('[data-management-trigger]');
+        const panel = item.querySelector('[data-management-panel]');
+        const icon = item.querySelector('[data-management-icon]');
+        item.classList.add('is-open');
+        trigger?.setAttribute('aria-expanded', 'true');
+        if (panel instanceof HTMLElement) panel.style.height = `${panel.scrollHeight}px`;
+        if (icon) icon.textContent = '-';
+      };
+
+      items.forEach((item) => {
+        const trigger = item.querySelector('[data-management-trigger]');
+        const panel = item.querySelector('[data-management-panel]');
+        if (item.classList.contains('is-open') && panel instanceof HTMLElement) panel.style.height = `${panel.scrollHeight}px`;
+
+        trigger?.addEventListener('click', () => {
+          const shouldOpen = !item.classList.contains('is-open');
+          items.forEach(closeItem);
+          if (shouldOpen) openItem(item);
+        });
+      });
+    });
+  };
+
+  document.addEventListener('astro:page-load', initWordpressManagement);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initWordpressManagement, { once: true });
+  else initWordpressManagement();
+</script>

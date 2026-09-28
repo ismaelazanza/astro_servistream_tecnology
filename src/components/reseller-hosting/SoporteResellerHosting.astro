@@ -1,0 +1,32 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+---
+
+<section class="bg-white py-20 sm:py-28" aria-labelledby="support-title">
+  <div class="mx-auto container">
+    <header class="mx-auto max-w-4xl text-center">
+      <h5 class="inline-flex rounded-full bg-[#e8f6ff] px-5 py-2 text-[#1769ef]">SOPORTE AL CLIENTE</h5>
+      <h2 id="support-title" class="mt-7 leading-[1] text-[var(--h-negro)]">Hosting sin estrés. Soporte proactivo.</h2>
+      <p class="mt-5 text-[#45444b]">Personas reales, respuestas rápidas y asistencia técnica 24/7.</p>
+    </header>
+
+    <div class="mt-14 grid items-center gap-10 lg:grid-cols-[.98fr_1fr] lg:gap-18">
+      <div class="grid gap-5 font-[var(--fuente-principal)]">
+        <article class="rounded-[1.5rem] border-2 border-[#2877f5] bg-[#f3f8ff] p-6 sm:p-7"><div class="flex gap-5"><span class="grid size-16 shrink-0 place-items-center rounded-2xl bg-[#1769ef] text-white"><MaterialIcon name="chat" size={31} /></span><div><div class="flex flex-wrap items-center gap-3"><h3 class="text-xl font-bold text-[#15161b]">Soporte experto 24/7</h3><span class="rounded-full bg-[#dff9e8] px-3 py-1 text-xs font-bold text-[#20a85c]">SIEMPRE ACTIVO</span></div><p class="mt-2 text-[#74747c]">Chat en vivo, correo y tickets atendidos por especialistas de hosting.</p></div></div></article>
+        <article class="rounded-[1.5rem] border border-[#dedfe5] p-6 sm:p-7"><div class="flex gap-5"><span class="grid size-16 shrink-0 place-items-center rounded-2xl bg-[#e5f5ff] text-[#1769ef]"><MaterialIcon name="bolt" size={32} /></span><div><h3 class="text-xl font-bold text-[#15161b]">Respuestas ágiles y cercanas</h3><p class="mt-2 text-[#74747c]">Te respondemos con claridad para ayudarte a resolver lo que necesitas.</p></div></div></article>
+        <article class="rounded-[1.5rem] border border-[#dedfe5] p-6 sm:p-7"><div class="flex gap-5"><span class="grid size-16 shrink-0 place-items-center rounded-2xl bg-[#e5f5ff] text-[#1769ef]"><MaterialIcon name="support_agent" size={32} /></span><div><h3 class="text-xl font-bold text-[#15161b]">Te acompañamos en cada paso</h3><ul class="mt-3 grid gap-2 text-sm text-[#74747c]"><li class="flex gap-2"><MaterialIcon name="check_circle" size={18} class="text-[#22bd65]" />Configuración de cuentas y paquetes</li><li class="flex gap-2"><MaterialIcon name="check_circle" size={18} class="text-[#22bd65]" />Migraciones y puesta en marcha</li><li class="flex gap-2"><MaterialIcon name="check_circle" size={18} class="text-[#22bd65]" />Seguridad y optimización de sitios</li></ul></div></div></article>
+        <article class="flex items-center gap-5 rounded-[1.5rem] border border-[#dedfe5] p-6 sm:p-7"><strong class="text-5xl tracking-[-.07em] text-[#18ae62]">96<span class="text-2xl">%</span></strong><div><h3 class="font-bold text-[#15161b]">Clientes satisfechos</h3><p class="mt-1 text-sm text-[#74747c]">Atención enfocada en solucionar, no en complicar.</p></div></article>
+      </div>
+
+      <div class="overflow-hidden rounded-[1.75rem] bg-[#f7f8fc] shadow-[0_20px_45px_rgb(25_70_140_/_15%)]">
+        <div class="flex items-center gap-3 bg-[#1769ef] px-6 py-5 text-white"><span class="grid size-11 place-items-center rounded-full bg-white/20 font-bold">S</span><div><p class="font-[var(--fuente-principal)] text-lg font-bold text-white">Soporte Servistream</p><p class="font-[var(--fuente-principal)] text-sm text-white/80"><span class="mr-1 text-[#55e78c]">●</span>En línea ahora</p></div><div class="ml-auto flex gap-2"><span class="grid size-9 place-items-center rounded-lg bg-white/15">−</span><span class="grid size-9 place-items-center rounded-lg bg-white/15">×</span></div></div>
+        <div class="space-y-5 p-6 sm:p-9">
+          <div class="max-w-[85%] rounded-2xl bg-white p-5 shadow-sm"><p class="text-sm font-bold text-[#1769ef]">Equipo de soporte <span class="ml-1 rounded-full bg-[#e5f5ff] px-2 py-1 text-xs">Soporte</span></p><p class="mt-3 font-[var(--fuente-principal)] text-[#25262c]">¡Hola! ¿Cómo podemos ayudarte hoy?</p></div>
+          <div class="ml-auto max-w-[87%] rounded-2xl rounded-br-sm bg-[#1769ef] p-5 font-[var(--fuente-principal)] text-white shadow-lg">Quiero comenzar a vender hosting con mi propia marca.</div>
+          <div class="max-w-[92%] rounded-2xl bg-white p-5 shadow-sm"><p class="text-sm font-bold text-[#1769ef]">Equipo de soporte <span class="ml-1 rounded-full bg-[#e5f5ff] px-2 py-1 text-xs">Soporte</span></p><p class="mt-3 font-[var(--fuente-principal)] leading-relaxed text-[#25262c]">¡Excelente decisión! Te ayudamos a elegir el plan ideal, configurar WHM y crear tus primeros paquetes. Estarás listo para vender con tu marca.</p></div>
+        </div>
+        <div class="flex items-center gap-3 border-t border-[#e4e6ec] bg-white px-6 py-5 text-[#888991]"><span class="font-[var(--fuente-principal)]">Escribe tu mensaje...</span><span class="ml-auto grid size-11 place-items-center rounded-xl bg-[#1769ef] text-white"><MaterialIcon name="send" size={23} /></span></div>
+      </div>
+    </div>
+  </div>
+</section>

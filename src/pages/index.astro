@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MenuNegro from '../components/menuGlobal.astro';
+import HeaderSlider from '../components/inicio/HeaderSlider.astro';
+import ClientesScroll from '../components/ClientesScroll.astro';
+import ServiciosSlider from '../components/inicio/ServiciosSlider.astro';
+import SolucionesIndustrias from '../components/inicio/SolucionesIndustrias.astro';
+import ResultadosStreamingTV from '../components/inicio/ResultadosStreamingTV.astro';
+import FooterNegro from '../components/footerNegro.astro';
+---
+
+<Layout
+  title="Inicio | servistream.net"
+  description="Proyecto Servistream Technology listo para comenzar."
+  bodyClass="min-h-screen text-slate-950"
+>
+  <MenuNegro variant="blanco" />
+
+  <!-- <MenuNegro variant="negro" /> -->
+  <!-- <MenuNegro variant="transparente" /> -->
+  <!-- <MenuNegro variant="transparente" overlay={false} /> (La variante transparente se posiciona automáticamente encima del contenido. Si se necesita transparente sin superposición) -->
+
+  <HeaderSlider />
+  <ClientesScroll />
+  <ServiciosSlider />
+  <SolucionesIndustrias />
+  <ResultadosStreamingTV />
+  <FooterNegro />
+</Layout>

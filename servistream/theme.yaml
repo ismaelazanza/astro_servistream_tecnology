@@ -1,0 +1,11 @@
+# WHMCS Six Theme Configuration File
+
+name: "ServiStream"
+description: "Área de clientes ServiStream, basada en SIX para mantener compatibilidad con WHMCS."
+author: "ServiStream"
+properties:
+  serverSidePagination: false # Defines client side will handle pagination
+provides:
+  bootstrap: 3.4.1
+  jquery: 1.12.4
+  fontawesome: 5.10.1

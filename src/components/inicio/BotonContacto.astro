@@ -1,0 +1,141 @@
+---
+import type { MenuVariant } from '../../data/menu';
+
+interface Props {
+  href?: string;
+  label?: string;
+  class?: string;
+  variant?: MenuVariant;
+}
+
+const {
+  href = 'https://clientes.servistream.net/index.php?rp=/login',
+  label = 'INICIAR SESIÓN',
+  class: className = '',
+  variant = 'blanco',
+} = Astro.props;
+---
+
+<a class:list={['contact-button', `button-${variant}`, className]} href={href} data-contact-button>
+  <span>{label}</span>
+</a>
+
+<style>
+  .contact-button {
+    display: inline-flex;
+    min-height: 2.35rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1.7rem;
+    background: #fff;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    color: #171717;
+    box-shadow: 0 26px 56px rgb(0 0 0 / 25%);
+    font-family: var(--fuente-principal);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: transform 220ms ease, box-shadow 220ms ease, color 220ms ease, background-color 220ms ease, border-color 220ms ease;
+  }
+
+  .button-negro {
+    background: #f5f5f5;
+    color: #171717;
+    box-shadow: 0 20px 44px rgb(0 0 0 / 38%);
+  }
+
+  .button-transparente {
+    border-color: rgb(255 255 255 / 48%);
+    background: rgb(255 255 255 / 10%);
+    color: #fff;
+    box-shadow: 0 18px 42px rgb(0 0 0 / 18%);
+    backdrop-filter: blur(12px);
+  }
+
+  .contact-button span {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid transparent;
+    padding-bottom: -0.1rem;
+  }
+
+  .contact-button span::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background: #555555d6;
+    content: '';
+    transform: translateX(0);
+  }
+
+  .contact-button.is-line-leaving span::after {
+    animation: contact-line-leave 380ms cubic-bezier(.65, 0, .35, 1) forwards;
+  }
+
+  .contact-button:hover span::after,
+  .contact-button:focus-visible span::after {
+    animation: contact-line-leave 380ms cubic-bezier(.65, 0, .35, 1) forwards;
+  }
+
+  .contact-button.is-line-entering span::after {
+    animation: contact-line-enter 380ms cubic-bezier(.65, 0, .35, 1) forwards;
+  }
+
+  .contact-button:hover,
+  .contact-button:focus-visible {
+    color: var(--color-primario);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 42px rgb(0 0 0 / 14%);
+  }
+
+  .button-transparente:hover,
+  .button-transparente:focus-visible {
+    border-color: #fff;
+    background: #fff;
+    color: #171717;
+  }
+
+  .contact-button:focus-visible {
+    outline: 2px solid var(--color-primario);
+    outline-offset: 3px;
+  }
+
+  @keyframes contact-line-leave {
+    from { transform: translateX(0); }
+    to { transform: translateX(105%); }
+  }
+
+  @keyframes contact-line-enter {
+    from { transform: translateX(-105%); }
+    to { transform: translateX(0); }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('[data-contact-button]').forEach((button) => {
+    if (!(button instanceof HTMLElement) || button.dataset.lineReady) return;
+    button.dataset.lineReady = 'true';
+
+    const hideLine = () => {
+      button.classList.remove('is-line-entering');
+      void button.offsetWidth;
+      button.classList.add('is-line-leaving');
+    };
+
+    const showLine = () => {
+      button.classList.remove('is-line-leaving');
+      void button.offsetWidth;
+      button.classList.add('is-line-entering');
+    };
+
+    button.addEventListener('pointerenter', hideLine);
+    button.addEventListener('pointerleave', showLine);
+    button.addEventListener('focus', hideLine);
+    button.addEventListener('blur', showLine);
+  });
+</script>

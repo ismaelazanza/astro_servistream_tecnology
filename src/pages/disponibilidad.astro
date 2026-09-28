@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MenuNegro from '../components/menuGlobal.astro';
+import ComprobadorDisponibilidad from '../components/disponibilidad/ComprobadorDisponibilidad.astro';
+---
+
+<Layout
+  title="Comprobador de Disponibilidad Web | Servistream Technology"
+  description="Comprueba si un sitio web está en línea, su estado HTTP y su tiempo de respuesta."
+  bodyClass="bg-[#fbfbfd]"
+>
+  <MenuNegro variant="blanco" />
+  <ComprobadorDisponibilidad />
+</Layout>

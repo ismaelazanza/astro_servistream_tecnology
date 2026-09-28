@@ -1,0 +1,271 @@
+---
+import MaterialIcon from "../MaterialIcon.astro";
+
+const plans = [
+  {
+    name: "Económico",
+    monthly: "$5",
+    annual: "$60",
+    href: "https://clientes.servistream.net/cart.php?a=add&pid=8",
+    featureTitle: "Características incluidas:",
+    features: [
+      "500 oyentes simultáneos",
+      "Hasta 128 KBPS",
+      "Transferencia ilimitada",
+      "Compatible con SSL",
+      "5 GB de AutoDJ",
+      "Soporte para móviles",
+      "Reproductor HTML5",
+      "Shoutcast",
+      "Panel de control",
+      "App Android (aplican restricciones)",
+    ],
+  },
+  {
+    name: "Básico",
+    monthly: "$10",
+    annual: "$120",
+    href: "https://clientes.servistream.net/cart.php?a=add&pid=9",
+    featureTitle: "Características incluidas:",
+    features: [
+      "1.000 oyentes simultáneos",
+      "Hasta 192 KBPS",
+      "Transferencia ilimitada",
+      "Compatible con SSL",
+      "10 GB de AutoDJ",
+      "Soporte para móviles",
+      "Reproductor HTML5",
+      "Shoutcast",
+      "Panel de control",
+      "App Android (aplican restricciones)",
+    ],
+    popular: true,
+  },
+  {
+    name: "Plus",
+    monthly: "$15",
+    annual: "$180",
+    href: "https://clientes.servistream.net/cart.php?a=add&pid=10",
+    featureTitle: "Características incluidas:",
+    features: [
+      "3.000 oyentes simultáneos",
+      "Hasta 320 KBPS",
+      "Transferencia ilimitada",
+      "Compatible con SSL",
+      "15 GB de AutoDJ",
+      "Soporte para móviles",
+      "Reproductor HTML5",
+      "Shoutcast",
+      "Panel de control",
+      "App Android (aplican restricciones)",
+    ],
+  },
+  {
+    name: "",
+    monthly: "$20",
+    annual: "$240",
+    href: "https://clientes.servistream.net/cart.php?a=add&pid=11",
+    featureTitle: "Características incluidas:",
+    features: [
+      "5.000 oyentes simultáneos",
+      "Hasta 320 KBPS",
+      "Transferencia ilimitada",
+      "Compatible con SSL",
+      "20 GB de AutoDJ",
+      "Soporte para móviles",
+      "Reproductor HTML5",
+      "Shoutcast",
+      "Panel de control",
+      "App Android (aplican restricciones)",
+    ],
+    featured: true,
+  },
+];
+---
+
+<main
+  class="relative overflow-hidden bg-[#03040d] text-white"
+  aria-labelledby="radio-title"
+  data-radio-plans
+>
+  <div
+    class="pointer-events-none absolute inset-x-0 top-0 h-[46rem] bg-[radial-gradient(ellipse_at_50%_20%,rgba(108,27,231,.5),transparent_45%),radial-gradient(ellipse_at_25%_18%,rgba(22,54,220,.37),transparent_34%),linear-gradient(180deg,#050516_0%,#03040d_86%)]"
+  >
+  </div>
+  <svg
+    class="pointer-events-none absolute left-0 top-[14rem] h-[52rem] w-full opacity-90"
+    viewBox="0 0 1800 800"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+  >
+    <defs
+      ><linearGradient id="radio-beam" x1="0" x2="1"
+        ><stop stop-color="#263fff" stop-opacity="0"></stop><stop
+          offset=".12"
+          stop-color="#4d6bff"
+          stop-opacity=".65"></stop><stop
+          offset=".55"
+          stop-color="#435dff"
+          stop-opacity=".9"></stop><stop
+          offset="1"
+          stop-color="#a06cff"
+          stop-opacity=".12"></stop></linearGradient
+      ><filter id="radio-glow"
+        ><feGaussianBlur stdDeviation="3"></feGaussianBlur></filter
+      ></defs
+    >
+    <g fill="none" stroke="url(#radio-beam)" stroke-linecap="round">
+      <path
+        d="M-120 230 C190 280 325 425 640 435 S1200 380 1920 610"
+        stroke-width="1.5"
+        filter="url(#radio-glow)"></path><path
+        d="M-120 230 C190 280 325 425 640 435 S1200 380 1920 610"
+        stroke-width="1.2"></path>
+      <path
+        d="M-80 260 C220 310 380 455 700 470 S1260 420 1900 650"
+        stroke-width="1.2"></path><path
+        d="M-90 294 C210 340 410 495 750 505 S1290 465 1920 682"
+        stroke-width="1"></path>
+      <path
+        d="M-70 328 C245 382 454 530 790 540 S1305 515 1880 720"
+        stroke-width="1.2"
+        filter="url(#radio-glow)"></path><path
+        d="M-70 328 C245 382 454 530 790 540 S1305 515 1880 720"
+        stroke-width=".9"></path>
+      <path
+        d="M-90 370 C220 418 480 570 840 585 S1345 565 1920 760"
+        stroke-width=".85"></path><path
+        d="M-70 410 C235 462 495 615 875 630 S1370 610 1920 790"
+        stroke-width=".8"></path>
+    </g>
+  </svg>
+  <section class="relative mx-auto container py-20 sm:py-28">
+    <header class="mx-auto max-w-5xl text-center">
+      <h5 class="text-center mt-20 text-[#a99cff]">EMPIEZA A TRANSMITIR HOY</h5>
+      <h1
+        id="radio-title"
+        class="mt-6 text-[clamp(2rem,4vw,6.6rem)] leading-[.92] text-[var(--h-blanco)]"
+      >
+        Elige cómo quieres hacer <br /> sonar tu radio
+      </h1>
+      <p
+        class="mx-auto mt-7 max-w-3xl font-[var(--fuente-principal)] leading-relaxed text-[#c4c5d5]"
+      >
+        Transmite en vivo, llega a más oyentes y administra tu emisora desde un
+        solo lugar.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <button
+          class="billing-toggle flex items-center gap-3 font-[var(--fuente-principal)] text-sm font-medium text-[#dbdaea]"
+          type="button"
+          aria-pressed="false"
+          ><span>Mensual</span><span
+            class="relative h-8 w-14 rounded-full bg-[#a7a6bd] p-1 transition"
+            ><span class="block size-6 rounded-full bg-white shadow transition"
+            ></span></span
+          ><span>Anual</span></button>
+      </div>
+    </header>
+
+    <div
+      class="relative mt-24 grid gap-6 md:grid-cols-2 xl:grid-cols-4 xl:items-stretch"
+    >
+      {
+        plans.map((plan) => (
+          <article
+            class:list={[
+              "relative flex min-h-full flex-col rounded-3xl p-6 font-[var(--fuente-principal)] backdrop-blur-[3px]",
+              plan.featured
+                ? " bg-[linear-gradient(145deg,rgba(60,54,112,.42),rgba(18,16,41,.22))]"
+                : "",
+            ]}
+          >
+            {plan.popular && (
+              <span class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-[#6c57ff] px-4 py-1 text-xs font-bold text-white">
+                MÁS ELEGIDO
+              </span>
+            )}
+            {plan.featured && (
+              <span class=" inline-flex self-start rounded-lg bg-white/10 px-3 py-1.5 text-[14px] text-white">
+                Profesional
+              </span>
+            )}
+            <p class="text-[#deddea] text-[14px]">{plan.name}</p>
+            <p class="mt-7 text-[clamp(3rem,2vw,5rem)] leading-none text-white">
+              <>
+                <span
+                  class="price"
+                  data-monthly={plan.monthly}
+                  data-annual={plan.annual}
+                >
+                  {plan.monthly}
+                </span>
+                <span class="price-period ml-2 text-base tracking-normal text-[#b4b3c4]">
+                  /mes
+                </span>
+              </>
+            </p>
+            <a
+              href={plan.href}
+              class:list={[
+                "mt-10 flex min-h-10 items-center justify-center rounded-full  font-semibold text-white no-underline transition hover:-translate-y-0.5",
+                plan.featured
+                  ? "border-[#6c57ff] bg-[#5c48f7] hover:bg-[#4c38ec]"
+                  : "border-white/20 bg-white/10 hover:bg-white/15",
+              ]}
+            >
+              Elegir este plan
+            </a>
+            <div class="my-10 border-t border-white/10" />
+            <p class="font-semibold text-[12px] text-white">
+              {plan.featureTitle}
+            </p>
+            <ul class="mt-6 grid gap-0 font-light text-[14px] text-[#c1c0d0]">
+              {plan.features.map((feature) => (
+                <li class="flex gap-3">
+                  <MaterialIcon
+                    name="check"
+                    size={19}
+                    class="shrink-0 text-[#8f82ff]"
+                  />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</main>
+
+<script>
+  document.querySelectorAll("[data-radio-plans]").forEach((section) => {
+    const toggle = section.querySelector(".billing-toggle");
+    const knob = toggle?.querySelector("span > span");
+    toggle?.addEventListener("click", () => {
+      const annual = toggle.getAttribute("aria-pressed") !== "true";
+      toggle.setAttribute("aria-pressed", String(annual));
+      knob?.classList.toggle("translate-x-6", annual);
+      section.querySelectorAll(".price").forEach((price) => {
+        price.textContent = annual
+          ? price.dataset.annual
+          : price.dataset.monthly;
+      });
+      section.querySelectorAll(".price-period").forEach((period) => {
+        period.textContent = annual ? "/año" : "/mes";
+      });
+    });
+    section.querySelectorAll(".radio-mode").forEach((mode) =>
+      mode.addEventListener("click", () => {
+        section.querySelectorAll(".radio-mode").forEach((item) => {
+          const active = item === mode;
+          item.setAttribute("aria-selected", String(active));
+          item.classList.toggle("bg-[#514075]", active);
+          item.classList.toggle("text-white", active);
+          item.classList.toggle("text-[#a9a7bc]", !active);
+        });
+      }),
+    );
+  });
+</script>

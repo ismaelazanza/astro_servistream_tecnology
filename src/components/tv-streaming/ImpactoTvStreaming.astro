@@ -1,0 +1,14 @@
+---
+const stats = [
+  { label: 'Administración', value: '1 panel central' },
+  { label: 'Contenido', value: 'En vivo + VOD' },
+  { label: 'Distribución', value: 'Simulcast multicanal' },
+];
+---
+
+<section class="relative overflow-hidden bg-[#030713] py-20 text-white sm:py-28" aria-label="Capacidades de StreamCP Pro">
+  <div class="pointer-events-none absolute inset-x-[20%] top-0 h-px bg-[linear-gradient(90deg,transparent,#5480ff,transparent)]"></div>
+  <div class="mx-auto grid container gap-12 text-center md:grid-cols-3 md:gap-8">
+    {stats.map((stat) => <div class="font-[var(--fuente-principal)]"><p class="text-lg font-medium text-[#6490ff]">{stat.label}</p><p class="mt-5 text-[clamp(2.3rem,2vw,4.4rem)] leading-none  text-white">{stat.value}</p></div>)}
+  </div>
+</section>

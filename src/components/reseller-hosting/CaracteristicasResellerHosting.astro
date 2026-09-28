@@ -1,0 +1,48 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+
+const groups = [
+  { id: 'esenciales', label: 'Características clave', items: ['Marca blanca para tu negocio', 'Nameservers personalizados', 'Subdominios ilimitados', 'Dominios aparcados ilimitados', 'Dominios adicionales ilimitados', 'Certificados SSL ilimitados', 'Activación inmediata', 'Garantía de reembolso de 15 días', 'Cuentas FTP/SFTP ilimitadas', 'Actualiza tu plan cuando lo necesites', 'Múltiples ubicaciones de servidor', 'Staging de WordPress en un clic', 'Creador de sitios web', 'Tutoriales de WHM, cPanel y webmail'] },
+  { id: 'panel', label: 'Panel de control', items: ['Última versión de cPanel', 'Gestión de cuentas FTP', 'Escáner de virus', 'Administrador de imágenes', 'Administrador de Apache', 'Protección contra hotlink', 'Administrador de IP bloqueadas', 'Administrador de índices', 'Protección Leech', 'Listas de correo', 'Gestor de tipos MIME', 'Herramientas de red', 'PGP/GPG', 'Redirecciones', 'Disco web', 'Protección con contraseña', 'Soporte para múltiples versiones de PHP', 'Tareas Cron', 'Editor DNS avanzado', 'Administrador de copias de seguridad'] },
+  { id: 'servidor', label: 'Servidor y rendimiento', items: ['HTTP/2 y compresión Gzip', 'MariaDB optimizado', 'Acceso SSH y SFTP', 'Caché LiteSpeed para WordPress', 'OPcache y mod_rewrite', 'PHPMyAdmin y MySQL remoto', 'Monitoreo de uso de recursos', 'Estadísticas y registros de acceso', 'WP-CLI disponible', 'Soporte para Laravel y aplicaciones PHP', 'Encabezados Expires', 'KeepAlive para conexiones rápidas', 'Cron optimizado', 'Bases de datos MySQL ilimitadas'] },
+  { id: 'seguridad', label: 'Seguridad y correo', items: ['Firewall de red', 'Firewall de aplicaciones web', 'Protección contra fuerza bruta', 'Protección ante malware y exploits', 'Escaneo y reportes de malware', 'Aislamiento de cuentas', 'Seguridad BitNinja', 'Seguridad CageFS', 'Servidores CloudLinux', 'Autenticación en dos pasos (2FA)', 'Redundancia de energía y red', 'Copias de seguridad diarias', 'Certificados SSL sin límites', 'Cuentas de correo ilimitadas'] },
+];
+---
+
+<section class="overflow-hidden bg-[radial-gradient(circle_at_0%_55%,#dceaff_0,transparent_34%),radial-gradient(circle_at_100%_45%,#fff3fb_0,transparent_35%),#fff] py-20 sm:py-28" aria-labelledby="features-title" data-reseller-features>
+  <div class="mx-auto container">
+    <h2 id="features-title" class="mx-auto text-center text-[var(--h-negro)]">Todos los planes incluyen mucho más</h2>
+    <div class="mx-auto mt-12 max-w-6xl overflow-x-auto rounded-full bg-[#eef4ff] p-2 [scrollbar-width:none]">
+      <div class="grid min-w-[46rem] grid-cols-4 gap-1" role="tablist" aria-label="Categorías de características">
+        {groups.map((group, index) => <button id={`tab-${group.id}`} class:list={['feature-tab w-full rounded-full px-6 py-4 font-[var(--fuente-principal)] text-base font-bold transition sm:px-9 sm:text-lg', index === 0 ? 'bg-white text-[#1769ef] shadow-[0_4px_12px_rgb(23_105_239_/_20%)]' : 'text-[#33343a] hover:text-[#1769ef]']} type="button" role="tab" aria-selected={index === 0 ? 'true' : 'false'} aria-controls={`panel-${group.id}`} data-feature-tab={group.id}>{group.label}</button>)}
+      </div>
+    </div>
+    <div class="mt-14 rounded-[2rem] bg-white p-7 shadow-[0_20px_58px_rgb(38_84_155_/_9%)] sm:p-12 lg:p-16">
+      {groups.map((group, index) => <div id={`panel-${group.id}`} role="tabpanel" aria-labelledby={`tab-${group.id}`} hidden={index !== 0} data-feature-panel={group.id}>
+        <h3 class="mb-9 font-[var(--fuente-principal)] text-xl font-bold text-[#15161b] sm:text-2xl">{group.label}</h3>
+        <ul class="grid gap-x-10 gap-y-2 font-[var(--fuente-principal)]  text-[#202126] sm:grid-cols-2 sm:text-[16px] lg:grid-cols-4" aria-label={group.label}>
+          {group.items.map((item) => <li class="flex items-start gap-3"><MaterialIcon name="check" size={22} class="mt-0.5 shrink-0 text-[#20b962]" /><span>{item}</span></li>)}
+        </ul>
+      </div>)}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('[data-reseller-features]').forEach((section) => {
+    const tabs = [...section.querySelectorAll('[data-feature-tab]')];
+    const panels = [...section.querySelectorAll('[data-feature-panel]')];
+    tabs.forEach((tab) => tab.addEventListener('click', () => {
+      const selected = tab.getAttribute('data-feature-tab');
+      tabs.forEach((item) => {
+        const active = item === tab;
+        item.setAttribute('aria-selected', String(active));
+        item.classList.toggle('bg-white', active);
+        item.classList.toggle('text-[#1769ef]', active);
+        item.classList.toggle('shadow-[0_4px_12px_rgb(23_105_239_/_20%)]', active);
+        item.classList.toggle('text-[#33343a]', !active);
+      });
+      panels.forEach((panel) => { panel.hidden = panel.getAttribute('data-feature-panel') !== selected; });
+    }));
+  });
+</script>

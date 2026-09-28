@@ -1,0 +1,50 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+---
+
+<section class="relative isolate min-h-192 overflow-hidden bg-[#111013] text-white sm:min-h-216 lg:min-h-248" aria-labelledby="tv-results-title">
+  <img
+    class="absolute inset-0 -z-30 size-full object-cover object-center"
+    src="/img/inicio/tv-streaming-resultados.avif"
+    alt="Equipo profesional operando una transmisión de televisión en directo"
+    loading="lazy"
+  />
+  <div class="absolute inset-0 -z-20 bg-[#111013]/70"></div>
+  <div class="absolute inset-0 -z-10 bg-linear-to-b from-[#111013]/20 via-transparent to-[#111013]/80"></div>
+
+  <div class="mx-auto flex min-h-192 w-[min(100%-2rem,118rem)] flex-col px-2 py-14 sm:min-h-216 sm:px-6 sm:py-20 lg:min-h-248 lg:px-10 lg:py-24">
+    <div class="max-w-4xl">
+      <h5 class="mb-5 flex items-center gap-3 text-(--h-blanco)">
+        <span class="size-2.5 rounded-full bg-[#03b99a]"></span>
+        Streaming de televisión
+      </h5>
+      <h2 id="tv-results-title" class="text-[clamp(4rem,9vw,10rem)] leading-[.85] tracking-[-.065em] text-[var(--h-blanco)]">
+        Resultados reales<span class="text-[#03b99a]">.</span>
+      </h2>
+    </div>
+
+    <div class="mt-auto grid gap-12 pt-32 lg:grid-cols-[.9fr_1.25fr] lg:items-end lg:gap-24">
+      <div>
+        <div class="mb-8 h-px w-full max-w-md bg-white/65"></div>
+        <p class="max-w-md font-[var(--fuente-principal)] text-base leading-relaxed text-[var(--h-blanco)] sm:text-lg">
+          Transmisión estable para canales, productoras, eventos y medios digitales con distribución adaptable a cualquier audiencia.
+        </p>
+        <p class="mt-12 font-[var(--fuente-principal)] text-[clamp(5rem,10vw,10rem)] font-light leading-[.75] tracking-[-.065em] text-[var(--h-blanco)]">99.9%</p>
+        <p class="mt-7 font-[var(--fuente-principal)] text-sm text-[var(--h-blanco)]">Disponibilidad garantizada para tus emisiones</p>
+      </div>
+
+      <blockquote class="max-w-4xl lg:justify-self-end">
+        <div class="mb-8 grid size-20 place-items-center rounded-full border border-white/30 bg-white/10 backdrop-blur-sm sm:size-24">
+          <MaterialIcon name="ic:outline-cell-tower" size={56} class="size-11 text-[var(--h-blanco)] sm:size-14" />
+        </div>
+        <p class="font-[var(--fuente-principal)] text-[clamp(1.8rem,3.1vw,3.8rem)] font-semibold leading-[1.18] tracking-[-.035em] text-[var(--h-blanco)]">
+          “Nuestra señal permanece estable, rápida y disponible para la audiencia en todo momento<span class="text-[#03b99a]">.</span>”
+        </p>
+        <footer class="mt-8 font-[var(--fuente-principal)] text-sm text-[var(--h-blanco)] sm:text-base">
+          Canales y productores conectados con Servistream.
+          <a class="ml-1 border-b border-white/50 pb-1 text-[var(--h-blanco)] transition-colors hover:border-[#03b99a] hover:text-[#03b99a]" href="/streaming-tv">Conocer TV Streaming</a>
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+</section>

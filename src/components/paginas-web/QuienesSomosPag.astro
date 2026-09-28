@@ -1,0 +1,49 @@
+---
+import MaterialIcon from '../MaterialIcon.astro';
+---
+
+
+<section class="container mx-auto px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-12">
+
+        <div class="">
+            <h5 class="text-(--parrafo-negro) text-left">QUIÉNES SOMOS</h5>
+            <p class="text-[clamp(1.8rem,4vw,2.7rem)] leading-[1.12] font-medium  text-[var(--parrafo-negro)]">Nuestro equipo está formado por profesionales que tienen años de experiencia en el lanzamiento y gestión de proyectos.</p>
+
+            <div class="mt-8 grid grid-cols-[auto_auto_1fr] gap-3 sm:grid-cols-12 sm:gap-0">
+                <div class="flex items-end sm:col-[1/2]">
+                    <p class="font-[var(--fuente-principal)] text-xs font-medium tracking-[.1em]">CERCA</p>
+                </div>
+                <div class="flex items-end sm:col-[2/4]">
+                     <MaterialIcon name="ic:outline-arrow-outward" size={56} class="sm:[--material-icon-size:72px]" />
+                </div>
+
+                <div class="sm:col-[4/-1]">
+                    <p class="font-[var(--fuente-principal)] text-sm leading-[1.65] sm:text-base">SERVISTREAM es el aliado en soluciones de hosting y cloud. Somos expertos en diseño y ofrecemos un portafolio de soluciones para posicionar a las empresas online y para que éstas puedan trabajar en el mundo digital.</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <img class="aspect-[4/3] w-full rounded-3xl object-cover sm:rounded-4xl" src="/img/pagina-web/imagen_web.avif" alt="Equipo de Servistream trabajando en diseño web" loading="lazy">
+        </div>
+
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 gap-8 border-y border-black/10 py-8 sm:grid-cols-3 sm:gap-5 sm:py-10">
+        <div class="text-center">
+            <h3 class="text-6xl font-semibold tracking-[-.06em] sm:text-7xl lg:text-8xl">1K</h3>
+            <p class="mt-2 font-[var(--fuente-principal)] text-xs font-medium tracking-[.08em]">PROYECTOS COMPLETADOS</p>
+        </div>
+                <div class="text-center">
+            <h3 class="text-6xl font-semibold tracking-[-.06em] sm:text-7xl lg:text-8xl">10</h3>
+            <p class="mt-2 font-[var(--fuente-principal)] text-xs font-medium tracking-[.08em]">MIEMBROS DEL EQUIPO</p>
+        </div>
+        <div class="text-center">
+            <h3 class="text-6xl font-semibold tracking-[-.06em] sm:text-7xl lg:text-8xl">6K</h3>
+            <p class="mt-2 font-[var(--fuente-principal)] text-xs font-medium tracking-[.08em]">CLIENTES SATISFECHOS</p>
+        </div>
+
+    </div>
+
+</section>
